@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Final_Project.PAL.User_Control;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,7 +24,7 @@ namespace Final_Project.PAL.Forms
             panelSlide.Size = new Size(8, 47); // Set appropriate size
             panelSlide.BackColor = Color.White;  // Set color
             panelSlide.Visible = false; // Start hidden
-
+            showDashboard();
             // Add panelSlide to the panel containing the buttons
             panel1.Controls.Add(panelSlide);
 
@@ -104,48 +105,61 @@ namespace Final_Project.PAL.Forms
                 currentButton.BackColor = Color.Transparent; // Change the color of the currently selected button to transparent
             }
         }
+        private void showDashboard()
+        {
+            UserControlDashboard userControlDashboard = new UserControlDashboard();
+            userControlDashboard.Dock = DockStyle.Fill;
+            panelContainer.Controls.Clear();
+            panelContainer.Controls.Add(userControlDashboard);
+        }
 
         private void buttonDashboard_Click(object sender, EventArgs e)
         {
             MoveSidePanel(buttonDashboard);
-            userControlAddClass1.Visible = false;
-            userControlDashboard1.Count();
-            userControlDashboard1.Visible = true;
+            UserControlDashboard userControlDashboard = new UserControlDashboard();
+            userControlDashboard.Dock = DockStyle.Fill;
+            panelContainer.Controls.Clear();    
+            panelContainer.Controls.Add(userControlDashboard);
         }
 
         private void buttonAttendance_Click(object sender, EventArgs e)
         {
             MoveSidePanel(buttonAttendance);
-            userControlAddClass1.Visible = false;
-            userControlDashboard1.Visible = false;
+            UserControlAttendance userControlAttendance = new UserControlAttendance();
+            userControlAttendance.Dock = DockStyle.Fill;
+            panelContainer.Controls.Clear();
+            panelContainer.Controls.Add(userControlAttendance);
+
         }
 
         private void buttonAddClass_Click(object sender, EventArgs e)
         {
             MoveSidePanel(buttonAddClass);
-            userControlAddClass1.Visible = true;
-            userControlDashboard1.Visible = false;
+            UserControlAddClass userControlAddClass = new UserControlAddClass();
+            userControlAddClass.Dock = DockStyle.Fill;
+            panelContainer.Controls.Clear();
+            panelContainer.Controls.Add(userControlAddClass);
         }
 
         private void buttonAddStudent_Click(object sender, EventArgs e)
         {
             MoveSidePanel(buttonAddStudent);
-            userControlAddClass1.Visible = false;
-            userControlDashboard1.Visible = false;
+            UserControl1AddStudentcs userControlAddStudent = new UserControl1AddStudentcs();
+            userControlAddStudent.Dock = DockStyle.Fill;
+            panelContainer.Controls.Clear();
+            panelContainer.Controls.Add(userControlAddStudent);
         }
 
         private void buttonReport_Click(object sender, EventArgs e)
         {
             MoveSidePanel(buttonReport);
-            userControlAddClass1.Visible = false;
-            userControlDashboard1.Visible = false;
+            
         }
 
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             MoveSidePanel(buttonRegister);
-            userControlAddClass1.Visible = false;
-            userControlDashboard1.Visible = false;
+            
         }
     }
 }

@@ -42,7 +42,6 @@ namespace Final_Project.PAL.Forms
             panelSlide = new Panel();
             label1 = new Label();
             pictureBox1 = new PictureBox();
-            userControlAddClass1 = new Final_Project.PAL.User_Control.UserControlAddClass();
             panel2 = new Panel();
             panelBack = new Panel();
             buttonDown = new Button();
@@ -57,9 +56,8 @@ namespace Final_Project.PAL.Forms
             label6 = new Label();
             labelUsername = new Label();
             label3 = new Label();
-            userControlDashboard1 = new Final_Project.PAL.User_Control.UserControlDashboard();
             timerDateAndTime = new System.Windows.Forms.Timer(components);
-            userControlAttendance1 = new Final_Project.PAL.User_Control.UserControlAttendance();
+            panelContainer = new Panel();
             panel1.SuspendLayout();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -227,16 +225,6 @@ namespace Final_Project.PAL.Forms
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
-            // 
-            // userControlAddClass1
-            // 
-            userControlAddClass1.Dock = DockStyle.Right;
-            userControlAddClass1.Font = new Font("Century Gothic", 9.75F);
-            userControlAddClass1.Location = new Point(268, 125);
-            userControlAddClass1.Margin = new Padding(4, 3, 4, 3);
-            userControlAddClass1.Name = "userControlAddClass1";
-            userControlAddClass1.Size = new Size(932, 595);
-            userControlAddClass1.TabIndex = 0;
             // 
             // panel2
             // 
@@ -413,30 +401,16 @@ namespace Final_Project.PAL.Forms
             label3.TabIndex = 3;
             label3.Text = "Welcome:";
             // 
-            // userControlDashboard1
-            // 
-            userControlDashboard1.AutoSize = true;
-            userControlDashboard1.BackColor = Color.White;
-            userControlDashboard1.Font = new Font("Century Gothic", 9.75F);
-            userControlDashboard1.Location = new Point(186, 88);
-            userControlDashboard1.Margin = new Padding(4);
-            userControlDashboard1.Name = "userControlDashboard1";
-            userControlDashboard1.Size = new Size(1087, 686);
-            userControlDashboard1.TabIndex = 0;
-            // 
             // timerDateAndTime
             // 
             timerDateAndTime.Tick += timerDateAndTime_Tick;
             // 
-            // userControlAttendance1
+            // panelContainer
             // 
-            userControlAttendance1.BackColor = Color.White;
-            userControlAttendance1.Font = new Font("Century Gothic", 9.75F);
-            userControlAttendance1.Location = new Point(400, 171);
-            userControlAttendance1.Margin = new Padding(4, 3, 4, 3);
-            userControlAttendance1.Name = "userControlAttendance1";
-            userControlAttendance1.Size = new Size(1178, 626);
-            userControlAttendance1.TabIndex = 2;
+            panelContainer.Location = new Point(268, 123);
+            panelContainer.Name = "panelContainer";
+            panelContainer.Size = new Size(932, 564);
+            panelContainer.TabIndex = 2;
             // 
             // FormMain
             // 
@@ -444,11 +418,9 @@ namespace Final_Project.PAL.Forms
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1200, 720);
-            Controls.Add(userControlAttendance1);
-            Controls.Add(userControlAddClass1);
+            Controls.Add(panelContainer);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Controls.Add(userControlDashboard1);
             Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -469,7 +441,6 @@ namespace Final_Project.PAL.Forms
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
 
@@ -500,11 +471,9 @@ namespace Final_Project.PAL.Forms
         private Button buttonAddClass;
         private Button buttonReport;
         private Button buttonRegister;
-        private User_Control.UserControlDashboard userControlDashboard1;
         private Button buttonDown;
         private System.Windows.Forms.Timer timerDateAndTime;
         private Button buttonAttendance;
-        private User_Control.UserControlAddClass userControlAddClass1;
-        private User_Control.UserControlAttendance userControlAttendance1;
+        private Panel panelContainer;
     }
 }
