@@ -28,20 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tabControlAddStudent = new TabControl();
+            tabControlRegister = new TabControl();
             tabPageAddStudent = new TabPage();
             radioButtonFemale = new RadioButton();
             radioButtonMale = new RadioButton();
-            comboBoxClass = new ComboBox();
             buttonAdd = new Button();
-            panel3 = new Panel();
             label5 = new Label();
-            textBoxMale = new TextBox();
-            label4 = new Label();
-            panel2 = new Panel();
-            textBoxRegNo = new TextBox();
             panel1 = new Panel();
-            label3 = new Label();
             textBoxName = new TextBox();
             label2 = new Label();
             label1 = new Label();
@@ -80,42 +73,50 @@
             buttonDelete = new Button();
             buttonUpdate = new Button();
             label14 = new Label();
-            tabControlAddStudent.SuspendLayout();
+            panel9 = new Panel();
+            textBoxPass = new TextBox();
+            label15 = new Label();
+            maskedTextBoxPho = new MaskedTextBox();
+            label16 = new Label();
+            panel10 = new Panel();
+            pictureBox1 = new PictureBox();
+            tabControlRegister.SuspendLayout();
             tabPageAddStudent.SuspendLayout();
             tabPageSearchStudent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewStudent).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSearch).BeginInit();
             tabPageUPStudent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // tabControlAddStudent
+            // tabControlRegister
             // 
-            tabControlAddStudent.Alignment = TabAlignment.Bottom;
-            tabControlAddStudent.Anchor = AnchorStyles.None;
-            tabControlAddStudent.Controls.Add(tabPageAddStudent);
-            tabControlAddStudent.Controls.Add(tabPageSearchStudent);
-            tabControlAddStudent.Controls.Add(tabPageUPStudent);
-            tabControlAddStudent.Location = new Point(0, 2);
-            tabControlAddStudent.Name = "tabControlAddStudent";
-            tabControlAddStudent.SelectedIndex = 0;
-            tabControlAddStudent.Size = new Size(942, 501);
-            tabControlAddStudent.TabIndex = 2;
+            tabControlRegister.Alignment = TabAlignment.Bottom;
+            tabControlRegister.Anchor = AnchorStyles.None;
+            tabControlRegister.Controls.Add(tabPageAddStudent);
+            tabControlRegister.Controls.Add(tabPageSearchStudent);
+            tabControlRegister.Controls.Add(tabPageUPStudent);
+            tabControlRegister.Location = new Point(0, 0);
+            tabControlRegister.Name = "tabControlRegister";
+            tabControlRegister.SelectedIndex = 0;
+            tabControlRegister.Size = new Size(942, 501);
+            tabControlRegister.TabIndex = 2;
             // 
             // tabPageAddStudent
             // 
             tabPageAddStudent.BackColor = Color.White;
+            tabPageAddStudent.Controls.Add(pictureBox1);
+            tabPageAddStudent.Controls.Add(panel10);
+            tabPageAddStudent.Controls.Add(label16);
+            tabPageAddStudent.Controls.Add(maskedTextBoxPho);
+            tabPageAddStudent.Controls.Add(panel9);
+            tabPageAddStudent.Controls.Add(textBoxPass);
+            tabPageAddStudent.Controls.Add(label15);
             tabPageAddStudent.Controls.Add(radioButtonFemale);
             tabPageAddStudent.Controls.Add(radioButtonMale);
-            tabPageAddStudent.Controls.Add(comboBoxClass);
             tabPageAddStudent.Controls.Add(buttonAdd);
-            tabPageAddStudent.Controls.Add(panel3);
             tabPageAddStudent.Controls.Add(label5);
-            tabPageAddStudent.Controls.Add(textBoxMale);
-            tabPageAddStudent.Controls.Add(label4);
-            tabPageAddStudent.Controls.Add(panel2);
-            tabPageAddStudent.Controls.Add(textBoxRegNo);
             tabPageAddStudent.Controls.Add(panel1);
-            tabPageAddStudent.Controls.Add(label3);
             tabPageAddStudent.Controls.Add(textBoxName);
             tabPageAddStudent.Controls.Add(label2);
             tabPageAddStudent.Controls.Add(label1);
@@ -124,7 +125,7 @@
             tabPageAddStudent.Padding = new Padding(3);
             tabPageAddStudent.Size = new Size(934, 465);
             tabPageAddStudent.TabIndex = 0;
-            tabPageAddStudent.Text = " Add Student";
+            tabPageAddStudent.Text = " Add User";
             // 
             // radioButtonFemale
             // 
@@ -150,17 +151,6 @@
             radioButtonMale.Text = "Male";
             radioButtonMale.UseVisualStyleBackColor = true;
             // 
-            // comboBoxClass
-            // 
-            comboBoxClass.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxClass.FlatStyle = FlatStyle.Flat;
-            comboBoxClass.FormattingEnabled = true;
-            comboBoxClass.Items.AddRange(new object[] { "-- SELECT --" });
-            comboBoxClass.Location = new Point(112, 215);
-            comboBoxClass.Name = "comboBoxClass";
-            comboBoxClass.Size = new Size(273, 31);
-            comboBoxClass.TabIndex = 14;
-            // 
             // buttonAdd
             // 
             buttonAdd.BackColor = Color.Maroon;
@@ -175,14 +165,6 @@
             buttonAdd.Text = "Add";
             buttonAdd.UseVisualStyleBackColor = false;
             // 
-            // panel3
-            // 
-            panel3.BackColor = Color.LightGray;
-            panel3.Location = new Point(115, 244);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(270, 2);
-            panel3.TabIndex = 9;
-            // 
             // label5
             // 
             label5.AutoSize = true;
@@ -193,65 +175,19 @@
             label5.TabIndex = 10;
             label5.Text = "Gender:";
             // 
-            // textBoxMale
-            // 
-            textBoxMale.BorderStyle = BorderStyle.None;
-            textBoxMale.Font = new Font("Century Gothic", 10F);
-            textBoxMale.Location = new Point(115, 220);
-            textBoxMale.Name = "textBoxMale";
-            textBoxMale.Size = new Size(270, 21);
-            textBoxMale.TabIndex = 8;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label4.Location = new Point(118, 196);
-            label4.Name = "label4";
-            label4.Size = new Size(55, 19);
-            label4.TabIndex = 7;
-            label4.Text = "Male:";
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.LightGray;
-            panel2.Location = new Point(553, 175);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(270, 2);
-            panel2.TabIndex = 6;
-            // 
-            // textBoxRegNo
-            // 
-            textBoxRegNo.BorderStyle = BorderStyle.None;
-            textBoxRegNo.Font = new Font("Century Gothic", 10F);
-            textBoxRegNo.Location = new Point(553, 151);
-            textBoxRegNo.Name = "textBoxRegNo";
-            textBoxRegNo.Size = new Size(270, 21);
-            textBoxRegNo.TabIndex = 5;
-            // 
             // panel1
             // 
             panel1.BackColor = Color.LightGray;
-            panel1.Location = new Point(115, 175);
+            panel1.Location = new Point(112, 91);
             panel1.Name = "panel1";
             panel1.Size = new Size(270, 2);
             panel1.TabIndex = 3;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label3.Location = new Point(559, 128);
-            label3.Name = "label3";
-            label3.Size = new Size(75, 19);
-            label3.TabIndex = 4;
-            label3.Text = "Reg No:";
             // 
             // textBoxName
             // 
             textBoxName.BorderStyle = BorderStyle.None;
             textBoxName.Font = new Font("Century Gothic", 10F);
-            textBoxName.Location = new Point(115, 151);
+            textBoxName.Location = new Point(112, 67);
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(270, 21);
             textBoxName.TabIndex = 2;
@@ -260,7 +196,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label2.Location = new Point(118, 128);
+            label2.Location = new Point(109, 38);
             label2.Name = "label2";
             label2.Size = new Size(65, 19);
             label2.TabIndex = 1;
@@ -272,11 +208,11 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Maroon;
-            label1.Location = new Point(9, 6);
+            label1.Location = new Point(6, 3);
             label1.Name = "label1";
-            label1.Size = new Size(135, 23);
+            label1.Size = new Size(104, 23);
             label1.TabIndex = 0;
-            label1.Text = "Add Student:";
+            label1.Text = "Add User:";
             // 
             // tabPageSearchStudent
             // 
@@ -295,7 +231,7 @@
             tabPageSearchStudent.Location = new Point(4, 4);
             tabPageSearchStudent.Name = "tabPageSearchStudent";
             tabPageSearchStudent.Padding = new Padding(3);
-            tabPageSearchStudent.Size = new Size(934, 465);
+            tabPageSearchStudent.Size = new Size(934, 468);
             tabPageSearchStudent.TabIndex = 1;
             tabPageSearchStudent.Text = "Search Student";
             tabPageSearchStudent.UseVisualStyleBackColor = true;
@@ -487,7 +423,7 @@
             tabPageUPStudent.Location = new Point(4, 4);
             tabPageUPStudent.Name = "tabPageUPStudent";
             tabPageUPStudent.Padding = new Padding(3);
-            tabPageUPStudent.Size = new Size(934, 465);
+            tabPageUPStudent.Size = new Size(934, 468);
             tabPageUPStudent.TabIndex = 2;
             tabPageUPStudent.Text = "Update and Delete Student";
             tabPageUPStudent.UseVisualStyleBackColor = true;
@@ -658,16 +594,83 @@
             label14.TabIndex = 14;
             label14.Text = "Update and Delete Student:";
             // 
+            // panel9
+            // 
+            panel9.BackColor = Color.LightGray;
+            panel9.Location = new Point(553, 91);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(270, 2);
+            panel9.TabIndex = 19;
+            // 
+            // textBoxPass
+            // 
+            textBoxPass.BorderStyle = BorderStyle.None;
+            textBoxPass.Font = new Font("Century Gothic", 10F);
+            textBoxPass.Location = new Point(553, 67);
+            textBoxPass.Name = "textBoxPass";
+            textBoxPass.Size = new Size(270, 21);
+            textBoxPass.TabIndex = 18;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
+            label15.Location = new Point(559, 38);
+            label15.Name = "label15";
+            label15.Size = new Size(92, 19);
+            label15.TabIndex = 17;
+            label15.Text = "Password:";
+            // 
+            // maskedTextBoxPho
+            // 
+            maskedTextBoxPho.BorderStyle = BorderStyle.None;
+            maskedTextBoxPho.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            maskedTextBoxPho.ForeColor = Color.DarkGray;
+            maskedTextBoxPho.Location = new Point(112, 135);
+            maskedTextBoxPho.Mask = "0000 000 0000";
+            maskedTextBoxPho.Name = "maskedTextBoxPho";
+            maskedTextBoxPho.Size = new Size(270, 21);
+            maskedTextBoxPho.TabIndex = 20;
+            maskedTextBoxPho.Text = "00000000000";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
+            label16.Location = new Point(109, 106);
+            label16.Name = "label16";
+            label16.Size = new Size(95, 19);
+            label16.TabIndex = 21;
+            label16.Text = "Phone No.";
+            // 
+            // panel10
+            // 
+            panel10.BackColor = Color.LightGray;
+            panel10.Location = new Point(112, 159);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(270, 2);
+            panel10.TabIndex = 4;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources._614338_;
+            pictureBox1.Location = new Point(390, 254);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(125, 62);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 22;
+            pictureBox1.TabStop = false;
+            // 
             // UserControlRegister
             // 
             AutoScaleDimensions = new SizeF(12F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(tabControlAddStudent);
+            Controls.Add(tabControlRegister);
             Font = new Font("Century Gothic", 12F);
             Margin = new Padding(4, 3, 4, 3);
             Name = "UserControlRegister";
             Size = new Size(942, 501);
-            tabControlAddStudent.ResumeLayout(false);
+            tabControlRegister.ResumeLayout(false);
             tabPageAddStudent.ResumeLayout(false);
             tabPageAddStudent.PerformLayout();
             tabPageSearchStudent.ResumeLayout(false);
@@ -676,25 +679,19 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxSearch).EndInit();
             tabPageUPStudent.ResumeLayout(false);
             tabPageUPStudent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private TabControl tabControlAddStudent;
+        private TabControl tabControlRegister;
         private TabPage tabPageAddStudent;
         private RadioButton radioButtonFemale;
         private RadioButton radioButtonMale;
-        private ComboBox comboBoxClass;
         private Button buttonAdd;
-        private Panel panel3;
         private Label label5;
-        private TextBox textBoxMale;
-        private Label label4;
-        private Panel panel2;
-        private TextBox textBoxRegNo;
         private Panel panel1;
-        private Label label3;
         private TextBox textBoxName;
         private Label label2;
         private Label label1;
@@ -733,5 +730,12 @@
         private Button buttonDelete;
         private Button buttonUpdate;
         private Label label14;
+        private MaskedTextBox maskedTextBoxPho;
+        private Panel panel9;
+        private TextBox textBoxPass;
+        private Label label15;
+        private Panel panel10;
+        private Label label16;
+        private PictureBox pictureBox1;
     }
 }

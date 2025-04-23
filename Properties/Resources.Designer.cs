@@ -63,6 +63,16 @@ namespace Final_Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _614338_ {
+            get {
+                object obj = ResourceManager.GetObject("614338-", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap arrow_icon_vector_symbol_sign_260nw_1886517145 {
             get {
                 object obj = ResourceManager.GetObject("arrow-icon-vector-symbol-sign-260nw-1886517145", resourceCulture);
