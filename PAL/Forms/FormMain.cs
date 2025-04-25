@@ -118,7 +118,7 @@ namespace Final_Project.PAL.Forms
             MoveSidePanel(buttonDashboard);
             UserControlDashboard userControlDashboard = new UserControlDashboard();
             userControlDashboard.Dock = DockStyle.Fill;
-            panelContainer.Controls.Clear();    
+            panelContainer.Controls.Clear();
             panelContainer.Controls.Add(userControlDashboard);
         }
 
@@ -153,13 +153,13 @@ namespace Final_Project.PAL.Forms
         private void buttonReport_Click(object sender, EventArgs e)
         {
             MoveSidePanel(buttonReport);
-            
+
         }
 
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             MoveSidePanel(buttonRegister);
-            
+
         }
     }
 }

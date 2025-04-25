@@ -282,6 +282,7 @@
             label9.Size = new Size(33, 21);
             label9.TabIndex = 11;
             label9.Text = "{?}";
+            label9.Click += label9_Click;
             // 
             // label8
             // 

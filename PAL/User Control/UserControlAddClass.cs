@@ -388,5 +388,10 @@ namespace Final_Project.PAL.User_Control
                 }
             }
         }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

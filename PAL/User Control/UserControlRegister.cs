@@ -16,5 +16,10 @@ namespace Final_Project.PAL.User_Control
         {
             InitializeComponent();
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
