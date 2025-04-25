@@ -133,6 +133,7 @@
             buttonAdd.TabIndex = 13;
             buttonAdd.Text = "Add";
             buttonAdd.UseVisualStyleBackColor = false;
+            buttonAdd.Click += buttonAdd_Click;
             // 
             // panel4
             // 
@@ -267,7 +268,7 @@
             tabPageSearchClass.Location = new Point(4, 4);
             tabPageSearchClass.Name = "tabPageSearchClass";
             tabPageSearchClass.Padding = new Padding(3);
-            tabPageSearchClass.Size = new Size(934, 468);
+            tabPageSearchClass.Size = new Size(934, 467);
             tabPageSearchClass.TabIndex = 1;
             tabPageSearchClass.Text = "Search Class";
             tabPageSearchClass.UseVisualStyleBackColor = true;
@@ -314,6 +315,8 @@
             dataGridViewClass.ShowRowErrors = false;
             dataGridViewClass.Size = new Size(900, 328);
             dataGridViewClass.TabIndex = 9;
+            dataGridViewClass.CellClick += dataGridViewClass_CellClick;
+            dataGridViewClass.CellContentClick += dataGridViewClass_CellContentClick;
             // 
             // Column1
             // 
@@ -437,6 +440,7 @@
             buttonDelete.TabIndex = 28;
             buttonDelete.Text = "Delete";
             buttonDelete.UseVisualStyleBackColor = false;
+            buttonDelete.Click += buttonDelete_Click;
             // 
             // buttonUpdate
             // 
@@ -450,6 +454,7 @@
             buttonUpdate.TabIndex = 27;
             buttonUpdate.Text = "Update";
             buttonUpdate.UseVisualStyleBackColor = false;
+            buttonUpdate.Click += buttonUpdate_Click;
             // 
             // panel6
             // 

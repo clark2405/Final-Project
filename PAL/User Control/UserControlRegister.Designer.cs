@@ -30,6 +30,13 @@
         {
             tabControlRegister = new TabControl();
             tabPageAddStudent = new TabPage();
+            pictureBox1 = new PictureBox();
+            panel10 = new Panel();
+            label16 = new Label();
+            maskedTextBoxPho = new MaskedTextBox();
+            panel9 = new Panel();
+            textBoxPass = new TextBox();
+            label15 = new Label();
             radioButtonFemale = new RadioButton();
             radioButtonMale = new RadioButton();
             buttonAdd = new Button();
@@ -73,20 +80,13 @@
             buttonDelete = new Button();
             buttonUpdate = new Button();
             label14 = new Label();
-            panel9 = new Panel();
-            textBoxPass = new TextBox();
-            label15 = new Label();
-            maskedTextBoxPho = new MaskedTextBox();
-            label16 = new Label();
-            panel10 = new Panel();
-            pictureBox1 = new PictureBox();
             tabControlRegister.SuspendLayout();
             tabPageAddStudent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabPageSearchStudent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewStudent).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSearch).BeginInit();
             tabPageUPStudent.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // tabControlRegister
@@ -126,6 +126,73 @@
             tabPageAddStudent.Size = new Size(934, 465);
             tabPageAddStudent.TabIndex = 0;
             tabPageAddStudent.Text = " Add User";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources._614338_;
+            pictureBox1.Location = new Point(390, 254);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(125, 62);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 22;
+            pictureBox1.TabStop = false;
+            // 
+            // panel10
+            // 
+            panel10.BackColor = Color.LightGray;
+            panel10.Location = new Point(112, 159);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(270, 2);
+            panel10.TabIndex = 4;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
+            label16.Location = new Point(109, 106);
+            label16.Name = "label16";
+            label16.Size = new Size(95, 19);
+            label16.TabIndex = 21;
+            label16.Text = "Phone No.";
+            // 
+            // maskedTextBoxPho
+            // 
+            maskedTextBoxPho.BorderStyle = BorderStyle.None;
+            maskedTextBoxPho.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            maskedTextBoxPho.ForeColor = Color.DarkGray;
+            maskedTextBoxPho.Location = new Point(112, 135);
+            maskedTextBoxPho.Mask = "0000 000 0000";
+            maskedTextBoxPho.Name = "maskedTextBoxPho";
+            maskedTextBoxPho.Size = new Size(270, 21);
+            maskedTextBoxPho.TabIndex = 20;
+            maskedTextBoxPho.Text = "00000000000";
+            // 
+            // panel9
+            // 
+            panel9.BackColor = Color.LightGray;
+            panel9.Location = new Point(553, 91);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(270, 2);
+            panel9.TabIndex = 19;
+            // 
+            // textBoxPass
+            // 
+            textBoxPass.BorderStyle = BorderStyle.None;
+            textBoxPass.Font = new Font("Century Gothic", 10F);
+            textBoxPass.Location = new Point(553, 67);
+            textBoxPass.Name = "textBoxPass";
+            textBoxPass.Size = new Size(270, 21);
+            textBoxPass.TabIndex = 18;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
+            label15.Location = new Point(559, 38);
+            label15.Name = "label15";
+            label15.Size = new Size(92, 19);
+            label15.TabIndex = 17;
+            label15.Text = "Password:";
             // 
             // radioButtonFemale
             // 
@@ -594,73 +661,6 @@
             label14.TabIndex = 14;
             label14.Text = "Update and Delete Student:";
             // 
-            // panel9
-            // 
-            panel9.BackColor = Color.LightGray;
-            panel9.Location = new Point(553, 91);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(270, 2);
-            panel9.TabIndex = 19;
-            // 
-            // textBoxPass
-            // 
-            textBoxPass.BorderStyle = BorderStyle.None;
-            textBoxPass.Font = new Font("Century Gothic", 10F);
-            textBoxPass.Location = new Point(553, 67);
-            textBoxPass.Name = "textBoxPass";
-            textBoxPass.Size = new Size(270, 21);
-            textBoxPass.TabIndex = 18;
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label15.Location = new Point(559, 38);
-            label15.Name = "label15";
-            label15.Size = new Size(92, 19);
-            label15.TabIndex = 17;
-            label15.Text = "Password:";
-            // 
-            // maskedTextBoxPho
-            // 
-            maskedTextBoxPho.BorderStyle = BorderStyle.None;
-            maskedTextBoxPho.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            maskedTextBoxPho.ForeColor = Color.DarkGray;
-            maskedTextBoxPho.Location = new Point(112, 135);
-            maskedTextBoxPho.Mask = "0000 000 0000";
-            maskedTextBoxPho.Name = "maskedTextBoxPho";
-            maskedTextBoxPho.Size = new Size(270, 21);
-            maskedTextBoxPho.TabIndex = 20;
-            maskedTextBoxPho.Text = "00000000000";
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label16.Location = new Point(109, 106);
-            label16.Name = "label16";
-            label16.Size = new Size(95, 19);
-            label16.TabIndex = 21;
-            label16.Text = "Phone No.";
-            // 
-            // panel10
-            // 
-            panel10.BackColor = Color.LightGray;
-            panel10.Location = new Point(112, 159);
-            panel10.Name = "panel10";
-            panel10.Size = new Size(270, 2);
-            panel10.TabIndex = 4;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Properties.Resources._614338_;
-            pictureBox1.Location = new Point(390, 254);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(125, 62);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 22;
-            pictureBox1.TabStop = false;
-            // 
             // UserControlRegister
             // 
             AutoScaleDimensions = new SizeF(12F, 23F);
@@ -673,13 +673,13 @@
             tabControlRegister.ResumeLayout(false);
             tabPageAddStudent.ResumeLayout(false);
             tabPageAddStudent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tabPageSearchStudent.ResumeLayout(false);
             tabPageSearchStudent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewStudent).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSearch).EndInit();
             tabPageUPStudent.ResumeLayout(false);
             tabPageUPStudent.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
