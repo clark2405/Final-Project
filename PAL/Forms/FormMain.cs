@@ -159,7 +159,10 @@ namespace Final_Project.PAL.Forms
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             MoveSidePanel(buttonRegister);
-
+            UserControlRegister userControlRegister = new UserControlRegister();
+            userControlRegister.Dock = DockStyle.Fill;
+            panelContainer.Controls.Clear();
+            panelContainer.Controls.Add(userControlRegister);
         }
     }
 }

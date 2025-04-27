@@ -295,7 +295,7 @@
             tabPageSearchStudent.Location = new Point(4, 4);
             tabPageSearchStudent.Name = "tabPageSearchStudent";
             tabPageSearchStudent.Padding = new Padding(3);
-            tabPageSearchStudent.Size = new Size(934, 468);
+            tabPageSearchStudent.Size = new Size(934, 467);
             tabPageSearchStudent.TabIndex = 1;
             tabPageSearchStudent.Text = "Search Student";
             tabPageSearchStudent.UseVisualStyleBackColor = true;
@@ -354,9 +354,9 @@
             label8.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label8.Location = new Point(686, 448);
             label8.Name = "label8";
-            label8.Size = new Size(119, 19);
+            label8.Size = new Size(123, 19);
             label8.TabIndex = 10;
-            label8.Text = "Total Classes:";
+            label8.Text = "Total Students:";
             // 
             // dataGridViewStudent
             // 

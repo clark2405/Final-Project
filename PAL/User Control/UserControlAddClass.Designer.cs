@@ -47,7 +47,7 @@
             label2 = new Label();
             label1 = new Label();
             tabPageSearchClass = new TabPage();
-            label9 = new Label();
+            labelTotalClass = new Label();
             label8 = new Label();
             dataGridViewClass = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
@@ -257,7 +257,7 @@
             // 
             // tabPageSearchClass
             // 
-            tabPageSearchClass.Controls.Add(label9);
+            tabPageSearchClass.Controls.Add(labelTotalClass);
             tabPageSearchClass.Controls.Add(label8);
             tabPageSearchClass.Controls.Add(dataGridViewClass);
             tabPageSearchClass.Controls.Add(textBoxSearch);
@@ -273,16 +273,16 @@
             tabPageSearchClass.Text = "Search Class";
             tabPageSearchClass.UseVisualStyleBackColor = true;
             // 
-            // label9
+            // labelTotalClass
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(819, 443);
-            label9.Name = "label9";
-            label9.Size = new Size(33, 21);
-            label9.TabIndex = 11;
-            label9.Text = "{?}";
-            label9.Click += label9_Click;
+            labelTotalClass.AutoSize = true;
+            labelTotalClass.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelTotalClass.Location = new Point(819, 443);
+            labelTotalClass.Name = "labelTotalClass";
+            labelTotalClass.Size = new Size(33, 21);
+            labelTotalClass.TabIndex = 11;
+            labelTotalClass.Text = "{?}";
+            labelTotalClass.Click += labelTotalClass_Click;
             // 
             // label8
             // 
@@ -630,7 +630,7 @@
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
         private Label label8;
-        private Label label9;
+        private Label labelTotalClass;
         private TabPage tabPageUPClass;
         private Button buttonDelete;
         private Button buttonUpdate;

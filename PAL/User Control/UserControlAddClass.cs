@@ -389,9 +389,26 @@ namespace Final_Project.PAL.User_Control
             }
         }
 
-        private void label9_Click(object sender, EventArgs e)
+        private void labelTotalClass_Click(object sender, EventArgs e)
         {
+            string query = "SELECT COUNT(*) FROM Class";
 
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (OleDbCommand command = new OleDbCommand(query, connection))
+                    {
+                        int totalClasses = (int)command.ExecuteScalar();
+                        labelTotalClass.Text = totalClasses.ToString(); // Display only the number  
+                    }
+                }
+                catch (OleDbException ex)
+                {
+                    MessageBox.Show($"Error retrieving total class count: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
