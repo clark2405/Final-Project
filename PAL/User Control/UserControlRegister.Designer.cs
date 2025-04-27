@@ -552,7 +552,7 @@
             tabPageSearchUser.Location = new Point(4, 4);
             tabPageSearchUser.Name = "tabPageSearchUser";
             tabPageSearchUser.Padding = new Padding(3);
-            tabPageSearchUser.Size = new Size(939, 476);
+            tabPageSearchUser.Size = new Size(939, 473);
             tabPageSearchUser.TabIndex = 1;
             tabPageSearchUser.Text = "Search User";
             tabPageSearchUser.UseVisualStyleBackColor = true;
@@ -807,7 +807,7 @@
             // 
             pictureBox4.Anchor = AnchorStyles.None;
             pictureBox4.Image = Properties.Resources._614338_;
-            pictureBox4.Location = new Point(823, 133);
+            pictureBox4.Location = new Point(823, 131);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(19, 17);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
@@ -830,7 +830,7 @@
             // 
             pictureBox1.Anchor = AnchorStyles.None;
             pictureBox1.Image = Properties.Resources._614338_;
-            pictureBox1.Location = new Point(390, 289);
+            pictureBox1.Location = new Point(390, 287);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(19, 17);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -919,7 +919,7 @@
             // 
             pictureBox2.Anchor = AnchorStyles.None;
             pictureBox2.Image = Properties.Resources._614338_;
-            pictureBox2.Location = new Point(390, 215);
+            pictureBox2.Location = new Point(390, 213);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(19, 17);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -992,7 +992,7 @@
             // 
             pictureBox3.Anchor = AnchorStyles.None;
             pictureBox3.Image = Properties.Resources._614338_;
-            pictureBox3.Location = new Point(390, 138);
+            pictureBox3.Location = new Point(390, 136);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(19, 17);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
