@@ -110,7 +110,7 @@
             labelTotalRole.AutoSize = true;
             labelTotalRole.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
             labelTotalRole.ForeColor = Color.White;
-            labelTotalRole.Location = new Point(125, 61);
+            labelTotalRole.Location = new Point(116, 61);
             labelTotalRole.Name = "labelTotalRole";
             labelTotalRole.Size = new Size(35, 23);
             labelTotalRole.TabIndex = 2;
@@ -122,11 +122,11 @@
             label5.AutoSize = true;
             label5.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(125, 30);
+            label5.Location = new Point(116, 30);
             label5.Name = "label5";
-            label5.Size = new Size(53, 23);
+            label5.Size = new Size(126, 23);
             label5.TabIndex = 1;
-            label5.Text = "Role";
+            label5.Text = "Attendance";
             // 
             // pictureBox3
             // 
