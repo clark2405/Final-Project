@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -16,7 +16,7 @@ namespace Final_Project.PAL.User_Control
     {
         OleDbConnection myConn;
         OleDbCommand cmd;
-        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= ""C:\Database Files\Attendance Management\Attendance Management.accdb""";
+        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Database Files\Attendance Management\Attendance Management.accdb";
 
         // Public properties to store selected class data
         public static string SelectedClassName { get; set; }
@@ -29,17 +29,55 @@ namespace Final_Project.PAL.User_Control
         {
             InitializeComponent();
             LoadClass();
+            TestConnection();
+            labelTotalClass.Text = LoadLabel().ToString();
+
 
             // Populate input fields if data was previously selected
             if (!string.IsNullOrEmpty(SelectedClassName))
             {
                 textBoxName.Text = SelectedClassName;
+                textBoxName1.Text = SelectedClassName;
                 textBoxHmStudents.Text = SelectedQuantity;
+                textBoxHwStudent1.Text = SelectedQuantity;
                 textBoxMale.Text = SelectedMale;
+                textBoxMale1.Text = SelectedMale;
                 textBoxFemale.Text = SelectedFemale;
+                textBoxFemale1.Text = SelectedFemale;
+            }
+
+            if (!this.DesignMode)
+            {
+                // Only run this if NOT in Design Mode (when app is running)
+                TestConnection();
             }
         }
 
+        public bool TestConnection()
+        {
+            if (this.DesignMode) return false;
+
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    return true;
+                }
+                catch (OleDbException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
         private void pictureBoxSearch_MouseHover(object sender, EventArgs e)
         {
             toolTip.SetToolTip(pictureBoxSearch, "Search");
@@ -148,17 +186,16 @@ namespace Final_Project.PAL.User_Control
                 return;
             }
             int classIDToUpdate = Convert.ToInt32(dataGridViewClass.SelectedRows[0].Cells["ClassID"].Value);
-
-            string newClassName = textBoxName.Text.Trim();
+            string newClassName = textBoxName1.Text.Trim();
             if (string.IsNullOrEmpty(newClassName))
             {
                 MessageBox.Show("Please enter a Class Name.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!int.TryParse(textBoxHmStudents.Text, out int newQuantity) ||
-                !int.TryParse(textBoxMale.Text, out int newMaleNum) ||
-                !int.TryParse(textBoxFemale.Text, out int newFemaleNum))
+            if (!int.TryParse(textBoxHwStudent1.Text, out int newQuantity) ||
+                !int.TryParse(textBoxMale1.Text, out int newMaleNum) ||
+                !int.TryParse(textBoxFemale1.Text, out int newFemaleNum))
             {
                 MessageBox.Show("Please enter valid numbers for student quantities.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -184,19 +221,12 @@ namespace Final_Project.PAL.User_Control
                         command.Parameters.AddWithValue("@MaleNumber", newMaleNum);
                         command.Parameters.AddWithValue("@FemaleNumber", newFemaleNum);
                         command.Parameters.AddWithValue("@ClassID", classIDToUpdate);
-
-                        int rowsAffected = command.ExecuteNonQuery();
-
-                        if (rowsAffected > 0)
-                        {
+                        command.ExecuteNonQuery();
+                        
                             MessageBox.Show("Class Updated Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LoadClass(); // Refresh the DataGridView
                             ClearInputFields();
-                        }
-                        else
-                        {
-                            MessageBox.Show("No records were updated. Please try again.", "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                       
                     }
                 }
                 catch (OleDbException ex)
@@ -257,10 +287,13 @@ namespace Final_Project.PAL.User_Control
             {
                 // Populate text boxes with selected row data
                 textBoxName.Text = dataGridViewClass.SelectedRows[0].Cells["ClassName"]?.Value?.ToString();
+                textBoxName1.Text = dataGridViewClass.SelectedRows[0].Cells["ClassName"]?.Value?.ToString();
                 textBoxHmStudents.Text = dataGridViewClass.SelectedRows[1].Cells["QuantityStudents"]?.Value?.ToString();
+                textBoxHwStudent1.Text = dataGridViewClass.SelectedRows[1].Cells["QuantityStudents"]?.Value?.ToString();
                 textBoxMale.Text = dataGridViewClass.SelectedRows[2].Cells["MaleNumber"]?.Value?.ToString();
+                textBoxMale1.Text = dataGridViewClass.SelectedRows[2].Cells["MaleNumber"]?.Value?.ToString();
                 textBoxFemale.Text = dataGridViewClass.SelectedRows[3].Cells["FemaleNumber"]?.Value?.ToString();
-
+                textBoxFemale1.Text = dataGridViewClass.SelectedRows[3].Cells["FemaleNumber"]?.Value?.ToString();
                 // Store ClassID if available
                 if (dataGridViewClass.SelectedRows[0].Cells["ClassID"]?.Value != null)
                 {
@@ -350,10 +383,10 @@ namespace Final_Project.PAL.User_Control
                 DataGridViewRow selectedRow = dataGridViewClass.Rows[e.RowIndex];
 
                 // Populate text boxes with selected cell data
-                textBoxName.Text = selectedRow.Cells["ClassName"]?.Value?.ToString();
-                textBoxHmStudents.Text = selectedRow.Cells["QuantityStudents"]?.Value?.ToString();
-                textBoxMale.Text = selectedRow.Cells["MaleNumber"]?.Value?.ToString();
-                textBoxFemale.Text = selectedRow.Cells["FemaleNumber"]?.Value?.ToString();
+                textBoxName1.Text = selectedRow.Cells["ClassName"]?.Value?.ToString();
+                textBoxHwStudent1.Text = selectedRow.Cells["QuantityStudents"]?.Value?.ToString();
+                textBoxMale1.Text = selectedRow.Cells["MaleNumber"]?.Value?.ToString();
+                textBoxFemale1.Text = selectedRow.Cells["FemaleNumber"]?.Value?.ToString();
 
                 // Store ClassID if available
                 if (selectedRow.Cells["ClassID"]?.Value != null)
@@ -373,9 +406,13 @@ namespace Final_Project.PAL.User_Control
             {
                 // Populate text boxes with selected row data
                 textBoxName.Text = dataGridViewClass.SelectedRows[0].Cells["ClassName"]?.Value?.ToString();
+                textBoxName1.Text = dataGridViewClass.SelectedRows[0].Cells["ClassName"]?.Value?.ToString();
                 textBoxHmStudents.Text = dataGridViewClass.SelectedRows[1].Cells["QuantityStudents"]?.Value?.ToString();
+                textBoxHwStudent1.Text = dataGridViewClass.SelectedRows[1].Cells["QuantityStudents"]?.Value?.ToString();
                 textBoxMale.Text = dataGridViewClass.SelectedRows[2].Cells["MaleNumber"]?.Value?.ToString();
+                textBoxMale1.Text = dataGridViewClass.SelectedRows[2].Cells["MaleNumber"]?.Value?.ToString();
                 textBoxFemale.Text = dataGridViewClass.SelectedRows[3].Cells["FemaleNumber"]?.Value?.ToString();
+                textBoxFemale1.Text = dataGridViewClass.SelectedRows[3].Cells["FemaleNumber"]?.Value?.ToString();
 
                 // Store ClassID if available
                 if (dataGridViewClass.SelectedRows[0].Cells["ClassID"]?.Value != null)
@@ -410,5 +447,31 @@ namespace Final_Project.PAL.User_Control
                 }
             }
         }
+        private int LoadLabel()
+        {
+            string query = "SELECT COUNT(*) FROM Class";
+
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (OleDbCommand command = new OleDbCommand(query, connection))
+                    {
+                        object result = command.ExecuteScalar();
+                        if (result != null && int.TryParse(result.ToString(), out int totalClasses))
+                        {
+                            return totalClasses;
+                        }
+                    }
+                }
+                catch (OleDbException ex)
+                {
+                    MessageBox.Show($"Error retrieving total class count: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            return 0; // Default if error
+        }
+
     }
 }

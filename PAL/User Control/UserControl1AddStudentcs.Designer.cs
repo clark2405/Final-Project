@@ -64,18 +64,18 @@
             label6 = new Label();
             label7 = new Label();
             tabPageUPStudent = new TabPage();
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
-            comboBox2 = new ComboBox();
+            radioButtonFemale1 = new RadioButton();
+            radioButtonMale1 = new RadioButton();
+            comboBoxClass1 = new ComboBox();
             panel6 = new Panel();
             label10 = new Label();
             textBox2 = new TextBox();
             label11 = new Label();
             panel7 = new Panel();
-            textBox3 = new TextBox();
+            textBoxRegNo1 = new TextBox();
             panel8 = new Panel();
             label12 = new Label();
-            textBox4 = new TextBox();
+            textBoxName1 = new TextBox();
             label13 = new Label();
             buttonDelete = new Button();
             buttonUpdate = new Button();
@@ -160,6 +160,7 @@
             comboBoxClass.Name = "comboBoxClass";
             comboBoxClass.Size = new Size(273, 29);
             comboBoxClass.TabIndex = 14;
+            comboBoxClass.SelectedIndexChanged += comboBoxClass_SelectedIndexChanged;
             // 
             // buttonAdd
             // 
@@ -174,6 +175,7 @@
             buttonAdd.TabIndex = 13;
             buttonAdd.Text = "Add";
             buttonAdd.UseVisualStyleBackColor = false;
+            buttonAdd.Click += buttonAdd_Click;
             // 
             // panel3
             // 
@@ -208,9 +210,9 @@
             label4.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label4.Location = new Point(115, 193);
             label4.Name = "label4";
-            label4.Size = new Size(55, 19);
+            label4.Size = new Size(58, 19);
             label4.TabIndex = 7;
-            label4.Text = "Male:";
+            label4.Text = "Class:";
             // 
             // panel2
             // 
@@ -370,7 +372,7 @@
             dataGridViewStudent.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewStudent.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewStudent.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5 });
-            dataGridViewStudent.Location = new Point(15, 112);
+            dataGridViewStudent.Location = new Point(28, 117);
             dataGridViewStudent.Name = "dataGridViewStudent";
             dataGridViewStudent.ReadOnly = true;
             dataGridViewStudent.RowHeadersWidth = 51;
@@ -383,7 +385,7 @@
             // 
             // Column1
             // 
-            Column1.HeaderText = "ID";
+            Column1.HeaderText = "ClassID";
             Column1.MinimumWidth = 6;
             Column1.Name = "Column1";
             Column1.ReadOnly = true;
@@ -468,18 +470,18 @@
             // 
             // tabPageUPStudent
             // 
-            tabPageUPStudent.Controls.Add(radioButton1);
-            tabPageUPStudent.Controls.Add(radioButton2);
-            tabPageUPStudent.Controls.Add(comboBox2);
+            tabPageUPStudent.Controls.Add(radioButtonFemale1);
+            tabPageUPStudent.Controls.Add(radioButtonMale1);
+            tabPageUPStudent.Controls.Add(comboBoxClass1);
             tabPageUPStudent.Controls.Add(panel6);
             tabPageUPStudent.Controls.Add(label10);
             tabPageUPStudent.Controls.Add(textBox2);
             tabPageUPStudent.Controls.Add(label11);
             tabPageUPStudent.Controls.Add(panel7);
-            tabPageUPStudent.Controls.Add(textBox3);
+            tabPageUPStudent.Controls.Add(textBoxRegNo1);
             tabPageUPStudent.Controls.Add(panel8);
             tabPageUPStudent.Controls.Add(label12);
-            tabPageUPStudent.Controls.Add(textBox4);
+            tabPageUPStudent.Controls.Add(textBoxName1);
             tabPageUPStudent.Controls.Add(label13);
             tabPageUPStudent.Controls.Add(buttonDelete);
             tabPageUPStudent.Controls.Add(buttonUpdate);
@@ -487,45 +489,45 @@
             tabPageUPStudent.Location = new Point(4, 4);
             tabPageUPStudent.Name = "tabPageUPStudent";
             tabPageUPStudent.Padding = new Padding(3);
-            tabPageUPStudent.Size = new Size(934, 467);
+            tabPageUPStudent.Size = new Size(934, 468);
             tabPageUPStudent.TabIndex = 2;
             tabPageUPStudent.Text = "Update and Delete Student";
             tabPageUPStudent.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // radioButtonFemale1
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Font = new Font("Century Gothic", 10F);
-            radioButton1.Location = new Point(632, 243);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(91, 25);
-            radioButton1.TabIndex = 42;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Female";
-            radioButton1.UseVisualStyleBackColor = true;
+            radioButtonFemale1.AutoSize = true;
+            radioButtonFemale1.Font = new Font("Century Gothic", 10F);
+            radioButtonFemale1.Location = new Point(632, 243);
+            radioButtonFemale1.Name = "radioButtonFemale1";
+            radioButtonFemale1.Size = new Size(91, 25);
+            radioButtonFemale1.TabIndex = 42;
+            radioButtonFemale1.TabStop = true;
+            radioButtonFemale1.Text = "Female";
+            radioButtonFemale1.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // radioButtonMale1
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Font = new Font("Century Gothic", 10F);
-            radioButton2.Location = new Point(632, 212);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(74, 25);
-            radioButton2.TabIndex = 41;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Male";
-            radioButton2.UseVisualStyleBackColor = true;
+            radioButtonMale1.AutoSize = true;
+            radioButtonMale1.Font = new Font("Century Gothic", 10F);
+            radioButtonMale1.Location = new Point(632, 212);
+            radioButtonMale1.Name = "radioButtonMale1";
+            radioButtonMale1.Size = new Size(74, 25);
+            radioButtonMale1.TabIndex = 41;
+            radioButtonMale1.TabStop = true;
+            radioButtonMale1.Text = "Male";
+            radioButtonMale1.UseVisualStyleBackColor = true;
             // 
-            // comboBox2
+            // comboBoxClass1
             // 
-            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox2.FlatStyle = FlatStyle.Flat;
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "-- SELECT --" });
-            comboBox2.Location = new Point(109, 212);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(273, 29);
-            comboBox2.TabIndex = 40;
+            comboBoxClass1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxClass1.FlatStyle = FlatStyle.Flat;
+            comboBoxClass1.FormattingEnabled = true;
+            comboBoxClass1.Items.AddRange(new object[] { "-- SELECT --" });
+            comboBoxClass1.Location = new Point(109, 212);
+            comboBoxClass1.Name = "comboBoxClass1";
+            comboBoxClass1.Size = new Size(273, 29);
+            comboBoxClass1.TabIndex = 40;
             // 
             // panel6
             // 
@@ -560,9 +562,9 @@
             label11.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label11.Location = new Point(112, 190);
             label11.Name = "label11";
-            label11.Size = new Size(55, 19);
+            label11.Size = new Size(58, 19);
             label11.TabIndex = 36;
-            label11.Text = "Male:";
+            label11.Text = "Class:";
             // 
             // panel7
             // 
@@ -572,14 +574,14 @@
             panel7.Size = new Size(270, 2);
             panel7.TabIndex = 35;
             // 
-            // textBox3
+            // textBoxRegNo1
             // 
-            textBox3.BorderStyle = BorderStyle.None;
-            textBox3.Font = new Font("Century Gothic", 10F);
-            textBox3.Location = new Point(550, 148);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(270, 21);
-            textBox3.TabIndex = 34;
+            textBoxRegNo1.BorderStyle = BorderStyle.None;
+            textBoxRegNo1.Font = new Font("Century Gothic", 10F);
+            textBoxRegNo1.Location = new Point(550, 148);
+            textBoxRegNo1.Name = "textBoxRegNo1";
+            textBoxRegNo1.Size = new Size(270, 21);
+            textBoxRegNo1.TabIndex = 34;
             // 
             // panel8
             // 
@@ -599,14 +601,14 @@
             label12.TabIndex = 33;
             label12.Text = "Reg No:";
             // 
-            // textBox4
+            // textBoxName1
             // 
-            textBox4.BorderStyle = BorderStyle.None;
-            textBox4.Font = new Font("Century Gothic", 10F);
-            textBox4.Location = new Point(112, 148);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(270, 21);
-            textBox4.TabIndex = 31;
+            textBoxName1.BorderStyle = BorderStyle.None;
+            textBoxName1.Font = new Font("Century Gothic", 10F);
+            textBoxName1.Location = new Point(112, 148);
+            textBoxName1.Name = "textBoxName1";
+            textBoxName1.Size = new Size(270, 21);
+            textBoxName1.TabIndex = 31;
             // 
             // label13
             // 
@@ -714,27 +716,27 @@
         private ComboBox comboBoxClass;
         private RadioButton radioButtonFemale;
         private RadioButton radioButtonMale;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column4;
-        private DataGridViewTextBoxColumn Column5;
         private ComboBox comboBox1;
         private Panel panel4;
         private TextBox textBox1;
         private Label label9;
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
-        private ComboBox comboBox2;
+        private RadioButton radioButtonFemale1;
+        private RadioButton radioButtonMale1;
+        private ComboBox comboBoxClass1;
         private Panel panel6;
         private Label label10;
         private TextBox textBox2;
         private Label label11;
         private Panel panel7;
-        private TextBox textBox3;
+        private TextBox textBoxRegNo1;
         private Panel panel8;
         private Label label12;
-        private TextBox textBox4;
+        private TextBox textBoxName1;
         private Label label13;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewTextBoxColumn Column5;
     }
 }

@@ -268,7 +268,7 @@
             tabPageSearchClass.Location = new Point(4, 4);
             tabPageSearchClass.Name = "tabPageSearchClass";
             tabPageSearchClass.Padding = new Padding(3);
-            tabPageSearchClass.Size = new Size(934, 467);
+            tabPageSearchClass.Size = new Size(934, 468);
             tabPageSearchClass.TabIndex = 1;
             tabPageSearchClass.Text = "Search Class";
             tabPageSearchClass.UseVisualStyleBackColor = true;
@@ -424,7 +424,7 @@
             tabPageUPClass.Location = new Point(4, 4);
             tabPageUPClass.Name = "tabPageUPClass";
             tabPageUPClass.Padding = new Padding(3);
-            tabPageUPClass.Size = new Size(934, 468);
+            tabPageUPClass.Size = new Size(934, 467);
             tabPageUPClass.TabIndex = 2;
             tabPageUPClass.Text = "Update and Delete Class";
             tabPageUPClass.UseVisualStyleBackColor = true;
