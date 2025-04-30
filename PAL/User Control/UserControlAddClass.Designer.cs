@@ -91,10 +91,10 @@
             tabControlAddClass.Controls.Add(tabPageAddClass);
             tabControlAddClass.Controls.Add(tabPageSearchClass);
             tabControlAddClass.Controls.Add(tabPageUPClass);
-            tabControlAddClass.Location = new Point(0, 2);
+            tabControlAddClass.Location = new Point(-5, 0);
             tabControlAddClass.Name = "tabControlAddClass";
             tabControlAddClass.SelectedIndex = 0;
-            tabControlAddClass.Size = new Size(942, 501);
+            tabControlAddClass.Size = new Size(942, 594);
             tabControlAddClass.TabIndex = 0;
             // 
             // tabPageAddClass
@@ -116,7 +116,7 @@
             tabPageAddClass.Location = new Point(4, 4);
             tabPageAddClass.Name = "tabPageAddClass";
             tabPageAddClass.Padding = new Padding(3);
-            tabPageAddClass.Size = new Size(934, 467);
+            tabPageAddClass.Size = new Size(934, 530);
             tabPageAddClass.TabIndex = 0;
             tabPageAddClass.Text = "Add Class";
             tabPageAddClass.UseVisualStyleBackColor = true;
@@ -127,7 +127,7 @@
             buttonAdd.FlatAppearance.BorderSize = 0;
             buttonAdd.FlatStyle = FlatStyle.Flat;
             buttonAdd.ForeColor = Color.White;
-            buttonAdd.Location = new Point(115, 291);
+            buttonAdd.Location = new Point(114, 339);
             buttonAdd.Name = "buttonAdd";
             buttonAdd.Size = new Size(114, 37);
             buttonAdd.TabIndex = 13;
@@ -138,7 +138,7 @@
             // panel4
             // 
             panel4.BackColor = Color.LightGray;
-            panel4.Location = new Point(553, 244);
+            panel4.Location = new Point(552, 292);
             panel4.Name = "panel4";
             panel4.Size = new Size(270, 2);
             panel4.TabIndex = 12;
@@ -147,7 +147,7 @@
             // 
             textBoxFemale.BorderStyle = BorderStyle.None;
             textBoxFemale.Font = new Font("Century Gothic", 10F);
-            textBoxFemale.Location = new Point(553, 220);
+            textBoxFemale.Location = new Point(552, 268);
             textBoxFemale.Name = "textBoxFemale";
             textBoxFemale.Size = new Size(270, 21);
             textBoxFemale.TabIndex = 11;
@@ -155,7 +155,7 @@
             // panel3
             // 
             panel3.BackColor = Color.LightGray;
-            panel3.Location = new Point(115, 244);
+            panel3.Location = new Point(114, 292);
             panel3.Name = "panel3";
             panel3.Size = new Size(270, 2);
             panel3.TabIndex = 9;
@@ -164,7 +164,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label5.Location = new Point(550, 190);
+            label5.Location = new Point(549, 238);
             label5.Name = "label5";
             label5.Size = new Size(75, 19);
             label5.TabIndex = 10;
@@ -174,7 +174,7 @@
             // 
             textBoxMale.BorderStyle = BorderStyle.None;
             textBoxMale.Font = new Font("Century Gothic", 10F);
-            textBoxMale.Location = new Point(115, 220);
+            textBoxMale.Location = new Point(114, 268);
             textBoxMale.Name = "textBoxMale";
             textBoxMale.Size = new Size(270, 21);
             textBoxMale.TabIndex = 8;
@@ -183,7 +183,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label4.Location = new Point(112, 190);
+            label4.Location = new Point(111, 238);
             label4.Name = "label4";
             label4.Size = new Size(55, 19);
             label4.TabIndex = 7;
@@ -192,7 +192,7 @@
             // panel2
             // 
             panel2.BackColor = Color.LightGray;
-            panel2.Location = new Point(553, 175);
+            panel2.Location = new Point(552, 223);
             panel2.Name = "panel2";
             panel2.Size = new Size(270, 2);
             panel2.TabIndex = 6;
@@ -201,7 +201,7 @@
             // 
             textBoxHmStudents.BorderStyle = BorderStyle.None;
             textBoxHmStudents.Font = new Font("Century Gothic", 10F);
-            textBoxHmStudents.Location = new Point(553, 151);
+            textBoxHmStudents.Location = new Point(552, 199);
             textBoxHmStudents.Name = "textBoxHmStudents";
             textBoxHmStudents.Size = new Size(270, 21);
             textBoxHmStudents.TabIndex = 5;
@@ -209,7 +209,7 @@
             // panel1
             // 
             panel1.BackColor = Color.LightGray;
-            panel1.Location = new Point(115, 175);
+            panel1.Location = new Point(114, 223);
             panel1.Name = "panel1";
             panel1.Size = new Size(270, 2);
             panel1.TabIndex = 3;
@@ -218,7 +218,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label3.Location = new Point(553, 122);
+            label3.Location = new Point(552, 170);
             label3.Name = "label3";
             label3.Size = new Size(179, 19);
             label3.TabIndex = 4;
@@ -228,7 +228,7 @@
             // 
             textBoxName.BorderStyle = BorderStyle.None;
             textBoxName.Font = new Font("Century Gothic", 10F);
-            textBoxName.Location = new Point(115, 151);
+            textBoxName.Location = new Point(114, 199);
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(270, 21);
             textBoxName.TabIndex = 2;
@@ -237,7 +237,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label2.Location = new Point(112, 122);
+            label2.Location = new Point(111, 170);
             label2.Name = "label2";
             label2.Size = new Size(65, 19);
             label2.TabIndex = 1;
@@ -268,7 +268,7 @@
             tabPageSearchClass.Location = new Point(4, 4);
             tabPageSearchClass.Name = "tabPageSearchClass";
             tabPageSearchClass.Padding = new Padding(3);
-            tabPageSearchClass.Size = new Size(934, 468);
+            tabPageSearchClass.Size = new Size(934, 560);
             tabPageSearchClass.TabIndex = 1;
             tabPageSearchClass.Text = "Search Class";
             tabPageSearchClass.UseVisualStyleBackColor = true;
@@ -277,7 +277,7 @@
             // 
             labelTotalClass.AutoSize = true;
             labelTotalClass.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelTotalClass.Location = new Point(819, 443);
+            labelTotalClass.Location = new Point(819, 534);
             labelTotalClass.Name = "labelTotalClass";
             labelTotalClass.Size = new Size(33, 21);
             labelTotalClass.TabIndex = 11;
@@ -288,7 +288,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label8.Location = new Point(683, 445);
+            label8.Location = new Point(683, 536);
             label8.Name = "label8";
             label8.Size = new Size(119, 19);
             label8.TabIndex = 10;
@@ -306,7 +306,7 @@
             dataGridViewClass.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewClass.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewClass.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5 });
-            dataGridViewClass.Location = new Point(15, 112);
+            dataGridViewClass.Location = new Point(6, 122);
             dataGridViewClass.Name = "dataGridViewClass";
             dataGridViewClass.ReadOnly = true;
             dataGridViewClass.RowHeadersWidth = 51;
@@ -314,7 +314,7 @@
             dataGridViewClass.ShowCellErrors = false;
             dataGridViewClass.ShowEditingIcon = false;
             dataGridViewClass.ShowRowErrors = false;
-            dataGridViewClass.Size = new Size(900, 328);
+            dataGridViewClass.Size = new Size(922, 409);
             dataGridViewClass.TabIndex = 9;
             dataGridViewClass.CellClick += dataGridViewClass_CellClick;
             dataGridViewClass.CellContentClick += dataGridViewClass_CellContentClick;
@@ -358,7 +358,7 @@
             // 
             textBoxSearch.BorderStyle = BorderStyle.None;
             textBoxSearch.Font = new Font("Century Gothic", 10F);
-            textBoxSearch.Location = new Point(154, 68);
+            textBoxSearch.Location = new Point(154, 87);
             textBoxSearch.Name = "textBoxSearch";
             textBoxSearch.Size = new Size(225, 21);
             textBoxSearch.TabIndex = 6;
@@ -366,7 +366,7 @@
             // pictureBoxSearch
             // 
             pictureBoxSearch.Image = Properties.Resources.search__1_;
-            pictureBoxSearch.Location = new Point(405, 63);
+            pictureBoxSearch.Location = new Point(405, 82);
             pictureBoxSearch.Name = "pictureBoxSearch";
             pictureBoxSearch.Size = new Size(19, 26);
             pictureBoxSearch.SizeMode = PictureBoxSizeMode.Zoom;
@@ -377,7 +377,7 @@
             // panel5
             // 
             panel5.BackColor = Color.LightGray;
-            panel5.Location = new Point(151, 93);
+            panel5.Location = new Point(151, 112);
             panel5.Name = "panel5";
             panel5.Size = new Size(270, 2);
             panel5.TabIndex = 7;
@@ -386,7 +386,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label6.Location = new Point(151, 44);
+            label6.Location = new Point(151, 63);
             label6.Name = "label6";
             label6.Size = new Size(65, 19);
             label6.TabIndex = 5;
@@ -424,7 +424,7 @@
             tabPageUPClass.Location = new Point(4, 4);
             tabPageUPClass.Name = "tabPageUPClass";
             tabPageUPClass.Padding = new Padding(3);
-            tabPageUPClass.Size = new Size(934, 467);
+            tabPageUPClass.Size = new Size(934, 560);
             tabPageUPClass.TabIndex = 2;
             tabPageUPClass.Text = "Update and Delete Class";
             tabPageUPClass.UseVisualStyleBackColor = true;
@@ -435,7 +435,7 @@
             buttonDelete.FlatAppearance.BorderSize = 0;
             buttonDelete.FlatStyle = FlatStyle.Flat;
             buttonDelete.ForeColor = Color.White;
-            buttonDelete.Location = new Point(247, 291);
+            buttonDelete.Location = new Point(247, 345);
             buttonDelete.Name = "buttonDelete";
             buttonDelete.Size = new Size(114, 37);
             buttonDelete.TabIndex = 28;
@@ -449,7 +449,7 @@
             buttonUpdate.FlatAppearance.BorderSize = 0;
             buttonUpdate.FlatStyle = FlatStyle.Flat;
             buttonUpdate.ForeColor = Color.White;
-            buttonUpdate.Location = new Point(115, 291);
+            buttonUpdate.Location = new Point(115, 345);
             buttonUpdate.Name = "buttonUpdate";
             buttonUpdate.Size = new Size(114, 37);
             buttonUpdate.TabIndex = 27;
@@ -460,7 +460,7 @@
             // panel6
             // 
             panel6.BackColor = Color.LightGray;
-            panel6.Location = new Point(553, 244);
+            panel6.Location = new Point(553, 298);
             panel6.Name = "panel6";
             panel6.Size = new Size(270, 2);
             panel6.TabIndex = 26;
@@ -469,7 +469,7 @@
             // 
             textBoxFemale1.BorderStyle = BorderStyle.None;
             textBoxFemale1.Font = new Font("Century Gothic", 10F);
-            textBoxFemale1.Location = new Point(553, 220);
+            textBoxFemale1.Location = new Point(553, 274);
             textBoxFemale1.Name = "textBoxFemale1";
             textBoxFemale1.Size = new Size(270, 21);
             textBoxFemale1.TabIndex = 25;
@@ -477,7 +477,7 @@
             // panel7
             // 
             panel7.BackColor = Color.LightGray;
-            panel7.Location = new Point(115, 244);
+            panel7.Location = new Point(115, 298);
             panel7.Name = "panel7";
             panel7.Size = new Size(270, 2);
             panel7.TabIndex = 23;
@@ -486,7 +486,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label10.Location = new Point(550, 190);
+            label10.Location = new Point(550, 244);
             label10.Name = "label10";
             label10.Size = new Size(75, 19);
             label10.TabIndex = 24;
@@ -496,7 +496,7 @@
             // 
             textBoxMale1.BorderStyle = BorderStyle.None;
             textBoxMale1.Font = new Font("Century Gothic", 10F);
-            textBoxMale1.Location = new Point(115, 220);
+            textBoxMale1.Location = new Point(115, 274);
             textBoxMale1.Name = "textBoxMale1";
             textBoxMale1.Size = new Size(270, 21);
             textBoxMale1.TabIndex = 22;
@@ -505,7 +505,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label11.Location = new Point(112, 190);
+            label11.Location = new Point(112, 244);
             label11.Name = "label11";
             label11.Size = new Size(55, 19);
             label11.TabIndex = 21;
@@ -514,7 +514,7 @@
             // panel8
             // 
             panel8.BackColor = Color.LightGray;
-            panel8.Location = new Point(553, 175);
+            panel8.Location = new Point(553, 229);
             panel8.Name = "panel8";
             panel8.Size = new Size(270, 2);
             panel8.TabIndex = 20;
@@ -523,7 +523,7 @@
             // 
             textBoxHwStudent1.BorderStyle = BorderStyle.None;
             textBoxHwStudent1.Font = new Font("Century Gothic", 10F);
-            textBoxHwStudent1.Location = new Point(553, 151);
+            textBoxHwStudent1.Location = new Point(553, 205);
             textBoxHwStudent1.Name = "textBoxHwStudent1";
             textBoxHwStudent1.Size = new Size(270, 21);
             textBoxHwStudent1.TabIndex = 19;
@@ -531,7 +531,7 @@
             // panel9
             // 
             panel9.BackColor = Color.LightGray;
-            panel9.Location = new Point(115, 175);
+            panel9.Location = new Point(115, 229);
             panel9.Name = "panel9";
             panel9.Size = new Size(270, 2);
             panel9.TabIndex = 17;
@@ -540,7 +540,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label12.Location = new Point(553, 122);
+            label12.Location = new Point(553, 176);
             label12.Name = "label12";
             label12.Size = new Size(179, 19);
             label12.TabIndex = 18;
@@ -550,7 +550,7 @@
             // 
             textBoxName1.BorderStyle = BorderStyle.None;
             textBoxName1.Font = new Font("Century Gothic", 10F);
-            textBoxName1.Location = new Point(115, 151);
+            textBoxName1.Location = new Point(115, 205);
             textBoxName1.Name = "textBoxName1";
             textBoxName1.Size = new Size(270, 21);
             textBoxName1.TabIndex = 16;
@@ -559,7 +559,7 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label13.Location = new Point(112, 122);
+            label13.Location = new Point(112, 176);
             label13.Name = "label13";
             label13.Size = new Size(65, 19);
             label13.TabIndex = 15;
@@ -585,7 +585,7 @@
             Font = new Font("Century Gothic", 9.75F);
             Margin = new Padding(4, 3, 4, 3);
             Name = "UserControlAddClass";
-            Size = new Size(942, 504);
+            Size = new Size(932, 597);
             tabControlAddClass.ResumeLayout(false);
             tabPageAddClass.ResumeLayout(false);
             tabPageAddClass.PerformLayout();

@@ -409,7 +409,7 @@ namespace Final_Project.PAL.Forms
             // 
             panelContainer.Location = new Point(268, 123);
             panelContainer.Name = "panelContainer";
-            panelContainer.Size = new Size(932, 564);
+            panelContainer.Size = new Size(932, 597);
             panelContainer.TabIndex = 2;
             // 
             // FormMain

@@ -73,7 +73,7 @@
             tabPageMarkAttendance.Location = new Point(4, 4);
             tabPageMarkAttendance.Name = "tabPageMarkAttendance";
             tabPageMarkAttendance.Padding = new Padding(3);
-            tabPageMarkAttendance.Size = new Size(934, 467);
+            tabPageMarkAttendance.Size = new Size(934, 563);
             tabPageMarkAttendance.TabIndex = 0;
             tabPageMarkAttendance.Text = "Mark Attendance";
             tabPageMarkAttendance.UseVisualStyleBackColor = true;
@@ -90,7 +90,7 @@
             dataGridViewMarkAttendance.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewMarkAttendance.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewMarkAttendance.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5 });
-            dataGridViewMarkAttendance.Location = new Point(16, 133);
+            dataGridViewMarkAttendance.Location = new Point(6, 166);
             dataGridViewMarkAttendance.Name = "dataGridViewMarkAttendance";
             dataGridViewMarkAttendance.RowHeadersWidth = 51;
             dataGridViewMarkAttendance.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -98,7 +98,7 @@
             dataGridViewMarkAttendance.ShowCellErrors = false;
             dataGridViewMarkAttendance.ShowEditingIcon = false;
             dataGridViewMarkAttendance.ShowRowErrors = false;
-            dataGridViewMarkAttendance.Size = new Size(895, 328);
+            dataGridViewMarkAttendance.Size = new Size(922, 391);
             dataGridViewMarkAttendance.TabIndex = 14;
             // 
             // Column1
@@ -141,7 +141,7 @@
             // panel8
             // 
             panel8.BackColor = Color.LightGray;
-            panel8.Location = new Point(549, 99);
+            panel8.Location = new Point(549, 120);
             panel8.Name = "panel8";
             panel8.Size = new Size(270, 2);
             panel8.TabIndex = 13;
@@ -151,7 +151,7 @@
             comboBoxClass.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxClass.FlatStyle = FlatStyle.Flat;
             comboBoxClass.FormattingEnabled = true;
-            comboBoxClass.Location = new Point(549, 73);
+            comboBoxClass.Location = new Point(549, 94);
             comboBoxClass.Name = "comboBoxClass";
             comboBoxClass.Size = new Size(270, 29);
             comboBoxClass.TabIndex = 12;
@@ -160,7 +160,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label3.Location = new Point(546, 46);
+            label3.Location = new Point(546, 67);
             label3.Name = "label3";
             label3.Size = new Size(58, 19);
             label3.TabIndex = 11;
@@ -169,7 +169,7 @@
             // panel7
             // 
             panel7.BackColor = Color.LightGray;
-            panel7.Location = new Point(120, 99);
+            panel7.Location = new Point(120, 120);
             panel7.Name = "panel7";
             panel7.Size = new Size(270, 2);
             panel7.TabIndex = 9;
@@ -177,7 +177,7 @@
             // panel6
             // 
             panel6.BackColor = Color.Transparent;
-            panel6.Location = new Point(347, 73);
+            panel6.Location = new Point(347, 94);
             panel6.Name = "panel6";
             panel6.Size = new Size(10, 23);
             panel6.TabIndex = 8;
@@ -186,7 +186,7 @@
             // 
             panel4.BackColor = Color.Transparent;
             panel4.Controls.Add(panel5);
-            panel4.Location = new Point(390, 73);
+            panel4.Location = new Point(390, 94);
             panel4.Name = "panel4";
             panel4.Size = new Size(10, 23);
             panel4.TabIndex = 7;
@@ -202,7 +202,7 @@
             // panel3
             // 
             panel3.BackColor = Color.Transparent;
-            panel3.Location = new Point(111, 73);
+            panel3.Location = new Point(111, 94);
             panel3.Name = "panel3";
             panel3.Size = new Size(10, 23);
             panel3.TabIndex = 6;
@@ -210,7 +210,7 @@
             // panel2
             // 
             panel2.BackColor = Color.Transparent;
-            panel2.Location = new Point(120, 95);
+            panel2.Location = new Point(120, 116);
             panel2.Name = "panel2";
             panel2.Size = new Size(270, 10);
             panel2.TabIndex = 5;
@@ -218,7 +218,7 @@
             // panel1
             // 
             panel1.BackColor = Color.Transparent;
-            panel1.Location = new Point(120, 64);
+            panel1.Location = new Point(120, 85);
             panel1.Name = "panel1";
             panel1.Size = new Size(270, 10);
             panel1.TabIndex = 4;
@@ -227,7 +227,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label2.Location = new Point(117, 46);
+            label2.Location = new Point(117, 67);
             label2.Name = "label2";
             label2.Size = new Size(52, 19);
             label2.TabIndex = 2;
@@ -249,7 +249,7 @@
             // 
             dateTimePicker1.CustomFormat = "yyyy/MM/dd";
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(120, 73);
+            dateTimePicker1.Location = new Point(120, 94);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(270, 27);
             dateTimePicker1.TabIndex = 10;
@@ -259,10 +259,10 @@
             tabControl1.Alignment = TabAlignment.Bottom;
             tabControl1.Anchor = AnchorStyles.None;
             tabControl1.Controls.Add(tabPageMarkAttendance);
-            tabControl1.Location = new Point(0, 0);
+            tabControl1.Location = new Point(-5, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(942, 501);
+            tabControl1.Size = new Size(942, 597);
             tabControl1.TabIndex = 0;
             // 
             // UserControlAttendance
@@ -274,7 +274,8 @@
             Font = new Font("Century Gothic", 9.75F);
             Margin = new Padding(4, 3, 4, 3);
             Name = "UserControlAttendance";
-            Size = new Size(942, 501);
+            Size = new Size(932, 597);
+            Load += UserControlAttendance_Load;
             tabPageMarkAttendance.ResumeLayout(false);
             tabPageMarkAttendance.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewMarkAttendance).EndInit();

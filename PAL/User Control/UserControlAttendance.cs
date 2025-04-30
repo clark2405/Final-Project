@@ -11,7 +11,7 @@ using System.Data.OleDb;
 
 namespace Final_Project.PAL.User_Control
 {
-    public partial class UserControlAttendance: UserControl
+    public partial class UserControlAttendance : UserControl
     {
         OleDbConnection myConn;
         OleDbCommand cmd;
@@ -20,6 +20,11 @@ namespace Final_Project.PAL.User_Control
         public UserControlAttendance()
         {
             InitializeComponent();
+        }
+
+        private void UserControlAttendance_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
