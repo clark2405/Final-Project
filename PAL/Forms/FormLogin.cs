@@ -15,8 +15,7 @@ namespace Final_Project.PAL.Forms
     {
         OleDbConnection Account_DataBase_Conn;
         OleDbCommand Account_DataBase_Command;
-        // Update this to your Access database path - make sure the path is correct
-        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Database Files\Attendance Management\Attendance Management.accdb;";
+        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Users\joshlee rash\Downloads\DatabaseHere.accdb";
 
         public FormLogin()
         {
@@ -114,7 +113,7 @@ namespace Final_Project.PAL.Forms
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                labelError.Text = "Please enter username and password";
+                labelError.Text = "Please enter your Name and Password";
                 labelError.Show();
                 pictureBoxError.Show();
                 return false;
@@ -125,42 +124,68 @@ namespace Final_Project.PAL.Forms
                 using (OleDbConnection conn = new OleDbConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT [Role] FROM [Users] WHERE [Username] = ? AND [Password] = ?";
-                    using (OleDbCommand cmd = new OleDbCommand(query, conn))
+
+                    // Try logging in as a teacher
+                    string teacherQuery = "SELECT TeacherID, TeacherName FROM TeacherAccount WHERE TeacherName = ? AND Password = ?";
+                    using (OleDbCommand teacherCmd = new OleDbCommand(teacherQuery, conn))
                     {
-                        // Although OleDb uses positional parameters, providing names can improve clarity.
-                        cmd.Parameters.AddWithValue("@Username", username);
-                        cmd.Parameters.AddWithValue("@Password", password);
+                        teacherCmd.Parameters.AddWithValue("?", username); // Using TeacherName as username
+                        teacherCmd.Parameters.AddWithValue("?", password);
 
-                        using (OleDbDataReader reader = cmd.ExecuteReader())
+                        using (OleDbDataReader teacherReader = teacherCmd.ExecuteReader())
                         {
-                            if (reader.Read()) // Read returns true if there is at least one record.
+                            if (teacherReader.Read())
                             {
-                                string role = reader["Role"].ToString();
+                                string loggedInTeacherName = teacherReader["TeacherName"].ToString();
+                                int teacherID = Convert.ToInt32(teacherReader["TeacherID"]);
 
-                                // Initialize the main form with the role and username information.
                                 FormMain mainForm = new FormMain
                                 {
-                                    Username = username,
-                                    Role = role
+                                    Username = loggedInTeacherName,
+                                    Role = "Teacher"
                                 };
 
                                 this.Hide();
                                 mainForm.FormClosed += (s, args) => this.Close();
                                 mainForm.Show();
-
-                                return true;
-                            }
-                            else
-                            {
-                                // No matching user found.
-                                labelError.Text = "Invalid username or password";
-                                labelError.Show();
-                                pictureBoxError.Show();
-                                return false;
+                                return true; // Login successful as teacher
                             }
                         }
                     }
+
+                    // If teacher login failed, try logging in as a student
+                    string studentQuery = "SELECT StudentID, StudentName FROM StudentAccount WHERE StudentName = ? AND Password = ?";
+                    using (OleDbCommand studentCmd = new OleDbCommand(studentQuery, conn))
+                    {
+                        studentCmd.Parameters.AddWithValue("?", username); // Using StudentName as username
+                        studentCmd.Parameters.AddWithValue("?", password);
+
+                        using (OleDbDataReader studentReader = studentCmd.ExecuteReader())
+                        {
+                            if (studentReader.Read())
+                            {
+                                int studentID = Convert.ToInt32(studentReader["StudentID"]);
+                                string loggedInStudentName = studentReader["StudentName"].ToString();
+
+                                FormStudentAccess studentAccessForm = new FormStudentAccess
+                                {
+                                    StudentID = studentID,
+                                    StudentName = loggedInStudentName
+                                };
+
+                                this.Hide();
+                                studentAccessForm.FormClosed += (s, args) => this.Close();
+                                studentAccessForm.Show();
+                                return true; // Login successful as student
+                            }
+                        }
+                    }
+
+                    // If neither teacher nor student login was successful
+                    labelError.Text = "Invalid Name or Password";
+                    labelError.Show();
+                    pictureBoxError.Show();
+                    return false;
                 }
             }
             catch (Exception ex)
@@ -169,7 +194,6 @@ namespace Final_Project.PAL.Forms
                 return false;
             }
         }
-
 
         // For testing purposes - you can use this to bypass the database check
 

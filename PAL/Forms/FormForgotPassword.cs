@@ -93,7 +93,7 @@ namespace Final_Project.PAL.Forms
             // Check if email exists in database
             try
             {
-                using (OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=YourDatabasePath.accdb;"))
+                using (OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\\Users\\joshlee rash\\Downloads\\DatabaseHere.accdb;"))
                 {
                     connection.Open();
                     string query = "SELECT UserID, Username FROM Users WHERE Email = @Email";

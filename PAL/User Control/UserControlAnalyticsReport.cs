@@ -8,13 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Final_Project.PAL.Forms
+namespace Final_Project.PAL.User_Control
 {
-    public partial class FormStudentAccess : Form
+    public partial class UserControlAnalyticsReport : UserControl
     {
-        public int StudentID { get; set; }
-        public string StudentName { get; set; }
-        public FormStudentAccess()
+        public UserControlAnalyticsReport()
         {
             InitializeComponent();
         }
