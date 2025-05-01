@@ -30,11 +30,6 @@
         {
             tabPageMarkAttendance = new TabPage();
             dataGridViewMarkAttendance = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewCheckBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
             panel8 = new Panel();
             comboBoxClass = new ComboBox();
             label3 = new Label();
@@ -49,6 +44,9 @@
             label1 = new Label();
             dateTimePicker1 = new DateTimePicker();
             tabControl1 = new TabControl();
+            Column2 = new DataGridViewTextBoxColumn();
+            Column3 = new DataGridViewTextBoxColumn();
+            Column4 = new DataGridViewCheckBoxColumn();
             tabPageMarkAttendance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewMarkAttendance).BeginInit();
             panel4.SuspendLayout();
@@ -89,7 +87,7 @@
             dataGridViewMarkAttendance.BorderStyle = BorderStyle.None;
             dataGridViewMarkAttendance.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewMarkAttendance.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewMarkAttendance.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5 });
+            dataGridViewMarkAttendance.Columns.AddRange(new DataGridViewColumn[] { Column2, Column3, Column4 });
             dataGridViewMarkAttendance.Location = new Point(6, 166);
             dataGridViewMarkAttendance.Name = "dataGridViewMarkAttendance";
             dataGridViewMarkAttendance.RowHeadersWidth = 51;
@@ -100,43 +98,6 @@
             dataGridViewMarkAttendance.ShowRowErrors = false;
             dataGridViewMarkAttendance.Size = new Size(922, 391);
             dataGridViewMarkAttendance.TabIndex = 14;
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "ID";
-            Column1.MinimumWidth = 6;
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Student Name";
-            Column2.MinimumWidth = 6;
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            Column3.HeaderText = "Reg No.";
-            Column3.MinimumWidth = 6;
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            Column4.HeaderText = "Status";
-            Column4.MinimumWidth = 6;
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            Column4.Resizable = DataGridViewTriState.True;
-            Column4.SortMode = DataGridViewColumnSortMode.Automatic;
-            // 
-            // Column5
-            // 
-            Column5.HeaderText = "Status";
-            Column5.MinimumWidth = 6;
-            Column5.Name = "Column5";
-            Column5.ReadOnly = true;
             // 
             // panel8
             // 
@@ -155,6 +116,7 @@
             comboBoxClass.Name = "comboBoxClass";
             comboBoxClass.Size = new Size(270, 29);
             comboBoxClass.TabIndex = 12;
+            comboBoxClass.SelectedIndexChanged += comboBoxClass_SelectedIndexChanged;
             // 
             // label3
             // 
@@ -265,6 +227,29 @@
             tabControl1.Size = new Size(942, 597);
             tabControl1.TabIndex = 0;
             // 
+            // Column2
+            // 
+            Column2.HeaderText = "Student Name";
+            Column2.MinimumWidth = 6;
+            Column2.Name = "Column2";
+            Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            Column3.HeaderText = "Reg No.";
+            Column3.MinimumWidth = 6;
+            Column3.Name = "Column3";
+            Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            Column4.HeaderText = "Status";
+            Column4.MinimumWidth = 6;
+            Column4.Name = "Column4";
+            Column4.ReadOnly = true;
+            Column4.Resizable = DataGridViewTriState.True;
+            Column4.SortMode = DataGridViewColumnSortMode.Automatic;
+            // 
             // UserControlAttendance
             // 
             AutoScaleDimensions = new SizeF(10F, 21F);
@@ -275,7 +260,6 @@
             Margin = new Padding(4, 3, 4, 3);
             Name = "UserControlAttendance";
             Size = new Size(932, 597);
-            Load += UserControlAttendance_Load;
             tabPageMarkAttendance.ResumeLayout(false);
             tabPageMarkAttendance.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewMarkAttendance).EndInit();
@@ -302,10 +286,8 @@
         private Label label3;
         private Panel panel8;
         private DataGridView dataGridViewMarkAttendance;
-        private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewCheckBoxColumn Column4;
-        private DataGridViewTextBoxColumn Column5;
     }
 }

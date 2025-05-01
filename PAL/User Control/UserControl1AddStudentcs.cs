@@ -26,97 +26,88 @@ namespace Final_Project.PAL.User_Control
             // Load classes and students
             LoadClasses();
             LoadStudents();
+            ConfigureDataGridView();
         }
 
         private void LoadClasses()
-{
-    try
-    {
-        connection.Open();
-        string query = "SELECT ClassID, ClassName FROM Class ORDER BY ClassName";
-        OleDbCommand cmd = new OleDbCommand(query, connection);
-        
-        DataTable dt = new DataTable();
-        dt.Load(cmd.ExecuteReader());
-        
-        // Bind to Add Student ComboBox
-        comboBoxClass.DisplayMember = "ClassName";
-        comboBoxClass.ValueMember = "ClassID";
-        comboBoxClass.DataSource = dt;
-        
-        // Bind to Update Student ComboBox
-        comboBoxClass1.DisplayMember = "ClassName";
-        comboBoxClass1.ValueMember = "ClassID";
-        comboBoxClass1.DataSource = dt.Copy();
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show("Error loading classes: " + ex.Message);
-    }
-    finally
-    {
-        connection.Close();
-    }
-}
+        {
+            try
+            {
+                using (OleDbConnection loadConnection = new OleDbConnection(connectionString))
+                {
+                    loadConnection.Open();
+                    string query = "SELECT ClassID, ClassName FROM Class ORDER BY ClassName";
+                    OleDbCommand cmd = new OleDbCommand(query, loadConnection);
+
+                    DataTable dt = new DataTable();
+                    dt.Load(cmd.ExecuteReader());
+
+                    // Bind to Add Student ComboBox
+                    comboBoxClass.DisplayMember = "ClassName";
+                    comboBoxClass.ValueMember = "ClassID";
+                    comboBoxClass.DataSource = dt;
+
+                    // Bind to Update Student ComboBox
+                    comboBoxClass1.DisplayMember = "ClassName";
+                    comboBoxClass1.ValueMember = "ClassID";
+                    comboBoxClass1.DataSource = dt.Copy();
+                } // loadConnection is automatically closed and disposed here
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading classes: " + ex.Message);
+            }
+        }
 
         private void LoadStudents()
         {
             try
             {
-                connection.Open();
-                string query = @"SELECT s.Name, s.RegNo, c.ClassName, s.Gender 
-                        FROM AddStudent s
-                        INNER JOIN Class c ON s.ClassID = c.ClassID";
-                OleDbDataAdapter adapter = new OleDbDataAdapter(query, connection);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-
-                // Clear existing columns first
-                dataGridViewStudent.Columns.Clear();
-
-                // Disable auto-generation of columns
-                dataGridViewStudent.AutoGenerateColumns = false;
-
-                // Manually create and add columns
-                dataGridViewStudent.Columns.Add(new DataGridViewTextBoxColumn()
+                using (OleDbConnection loadConnection = new OleDbConnection(connectionString))
                 {
-                    DataPropertyName = "Name",
-                    HeaderText = "Name",
-                    Name = "Name"
-                });
+                    loadConnection.Open();
 
-                dataGridViewStudent.Columns.Add(new DataGridViewTextBoxColumn()
-                {
-                    DataPropertyName = "RegNo",
-                    HeaderText = "Reg No.",
-                    Name = "RegNo"
-                });
+                    // Simple query to get all students
+                    string query = "SELECT * FROM AddStudent";
 
-                dataGridViewStudent.Columns.Add(new DataGridViewTextBoxColumn()
-                {
-                    DataPropertyName = "ClassName",
-                    HeaderText = "Class",
-                    Name = "ClassName"
-                });
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(query, loadConnection);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
 
-                dataGridViewStudent.Columns.Add(new DataGridViewTextBoxColumn()
-                {
-                    DataPropertyName = "Gender",
-                    HeaderText = "Gender",
-                    Name = "Gender"
-                });
+                    // Clear existing columns and binding
+                    dataGridViewStudent.DataSource = null;
+                    dataGridViewStudent.Columns.Clear();
 
-                // Set the data source
-                dataGridViewStudent.DataSource = dt;
+                    // Set the data source
+                    dataGridViewStudent.DataSource = dt;
+
+                    // Optional: Add a message to confirm loading (for debugging)
+                    if (dt.Rows.Count > 0)
+                    {
+                        // MessageBox.Show($"Successfully loaded {dt.Rows.Count} students.");
+                    }
+                    else
+                    {
+                        // MessageBox.Show("No student records found in the database.");
+                    }
+                } // loadConnection is automatically closed and disposed here
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading students: " + ex.Message);
             }
-            finally
-            {
-                connection.Close();
-            }
+        }
+
+        private void ConfigureDataGridView()
+        {
+            // Enable selection
+            dataGridViewStudent.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewStudent.MultiSelect = false;
+            dataGridViewStudent.ReadOnly = true;
+            dataGridViewStudent.AllowUserToAddRows = false;
+
+            // Auto-size columns
+            dataGridViewStudent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -134,13 +125,16 @@ namespace Final_Project.PAL.User_Control
                 return;
             }
 
-            if (!int.TryParse(textBoxRegNo.Text, out int regNo))
+            // Declare regNo variable here
+            int regNo;
+            if (!int.TryParse(textBoxRegNo.Text, out regNo))
             {
                 MessageBox.Show("Please enter a valid registration number", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Get selected class name
+            // Get selected class ID and name
+            int classID = Convert.ToInt32(comboBoxClass.SelectedValue);
             string className = comboBoxClass.Text; // Get the ClassName directly
 
             // Get gender
@@ -152,13 +146,14 @@ namespace Final_Project.PAL.User_Control
                 {
                     connection.Open();
 
-                    // Insert the student using ClassName
-                    string studentQuery = "INSERT INTO AddStudent (Name, RegNo, Class, Gender) VALUES (?, ?, ?, ?)";
+                    // Insert the student using both ClassID and Class
+                    string studentQuery = "INSERT INTO AddStudent (Name, RegNo, ClassID, Class, Gender) VALUES (?, ?, ?, ?, ?)";
                     using (var studentCmd = new OleDbCommand(studentQuery, connection))
                     {
                         studentCmd.Parameters.AddWithValue("@Name", textBoxName.Text.Trim());
                         studentCmd.Parameters.AddWithValue("@RegNo", regNo);
-                        studentCmd.Parameters.AddWithValue("@Class", className); // Use ClassName here
+                        studentCmd.Parameters.AddWithValue("@ClassID", classID); // Use ClassID here
+                        studentCmd.Parameters.AddWithValue("@Class", className); // Use Class name here
                         studentCmd.Parameters.AddWithValue("@Gender", gender);
 
                         int studentResult = studentCmd.ExecuteNonQuery();
@@ -217,8 +212,8 @@ namespace Final_Project.PAL.User_Control
 
             // Get new gender
             string newGender = radioButtonMale1.Checked ? "Male" : "Female";
- 
-    try
+
+            try
             {
                 connection.Open();
 
@@ -264,8 +259,13 @@ namespace Final_Project.PAL.User_Control
 
                 // Populate the update form fields with selected student's data
                 textBoxName1.Text = selectedRow.Cells["Name"].Value.ToString();
-                comboBoxClass1.SelectedValue = selectedRow.Cells["ClassID"].Value;
                 textBoxRegNo1.Text = selectedRow.Cells["RegNo"].Value.ToString();
+
+                // Use ClassID to set the selected class in the combobox
+                if (selectedRow.Cells["ClassID"] != null && selectedRow.Cells["ClassID"].Value != null)
+                {
+                    comboBoxClass1.SelectedValue = selectedRow.Cells["ClassID"].Value;
+                }
 
                 string gender = selectedRow.Cells["Gender"].Value.ToString();
                 if (gender == "Male")
@@ -275,71 +275,7 @@ namespace Final_Project.PAL.User_Control
             }
         }
 
-        private void buttonDelete_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewStudent.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select a student to delete", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Get selected student data
-            DataGridViewRow selectedRow = dataGridViewStudent.SelectedRows[0];
-            int classID = Convert.ToInt32(selectedRow.Cells["ClassID"].Value);
-            string gender = selectedRow.Cells["Gender"].Value.ToString();
-
-            if (MessageBox.Show("Are you sure you want to delete this student?", "Confirm Delete",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                try
-                {
-                    connection.Open();
-
-                    // 1. Delete the student
-                    string deleteQuery = "DELETE FROM AddStudent WHERE ClassID = ?";
-                    OleDbCommand deleteCmd = new OleDbCommand(deleteQuery, connection);
-                    deleteCmd.Parameters.AddWithValue("@ClassID", classID);
-
-                    int deleteResult = deleteCmd.ExecuteNonQuery();
-
-                    if (deleteResult > 0)
-                    {
-                        // 2. Update class statistics
-                        string updateClassQuery = @"UPDATE Class SET 
-                                                 QuantityStudents = QuantityStudents - 1,
-                                                 MaleNumber = MaleNumber - IIF(? = 'Male', 1, 0),
-                                                 FemaleNum = FemaleNum - IIF(? = 'Female', 1, 0)
-                                                 WHERE ClassID = ?";
-                        OleDbCommand updateCmd = new OleDbCommand(updateClassQuery, connection);
-                        updateCmd.Parameters.AddWithValue("@Gender1", gender);
-                        updateCmd.Parameters.AddWithValue("@Gender2", gender);
-                        updateCmd.Parameters.AddWithValue("@ClassID", classID);
-
-                        updateCmd.ExecuteNonQuery();
-
-                        MessageBox.Show("Student deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Clear update fields
-                        textBoxName1.Clear();
-                        comboBoxClass1.SelectedIndex = -1;
-                        textBoxRegNo1.Clear();
-                        radioButtonMale1.Checked = true;
-
-                        // Refresh the student list
-                        LoadStudents();
-                        LoadClasses();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error deleting student: " + ex.Message);
-                }
-                finally
-                {
-                    connection.Close();
-                }
-            }
-        }
+        
 
         private void dataGridViewStudent_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -349,6 +285,111 @@ namespace Final_Project.PAL.User_Control
         private void comboBoxClass_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonDelete_Click_1(object sender, EventArgs e)
+        {
+            if (dataGridViewStudent.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a student to delete", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                // Get selected student data
+                DataGridViewRow selectedRow = dataGridViewStudent.SelectedRows[0];
+
+                // Check if the necessary columns exist
+                if (!selectedRow.DataGridView.Columns.Contains("RegNo"))
+                {
+                    MessageBox.Show("RegNo column not found in the grid. Please check column names.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Use RegNo as the unique identifier for a student
+                int regNo = Convert.ToInt32(selectedRow.Cells["RegNo"].Value);
+
+                // Get ClassID and Gender if they exist
+                int classID = 0;
+                string gender = "";
+
+                if (selectedRow.DataGridView.Columns.Contains("ClassID"))
+                {
+                    classID = Convert.ToInt32(selectedRow.Cells["ClassID"].Value);
+                }
+
+                if (selectedRow.DataGridView.Columns.Contains("Gender"))
+                {
+                    gender = selectedRow.Cells["Gender"].Value.ToString();
+                }
+
+                if (MessageBox.Show("Are you sure you want to delete this student?", "Confirm Delete",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    // Always create a new connection for each operation
+                    using (OleDbConnection conn = new OleDbConnection(connectionString))
+                    {
+                        conn.Open();
+
+                        // 1. Delete the student using RegNo (unique identifier)
+                        string deleteQuery = "DELETE FROM AddStudent WHERE RegNo = ?";
+                        OleDbCommand deleteCmd = new OleDbCommand(deleteQuery, conn);
+                        deleteCmd.Parameters.AddWithValue("?", regNo);
+
+                        int deleteResult = deleteCmd.ExecuteNonQuery();
+
+                        if (deleteResult > 0)
+                        {
+                            // 2. Update class statistics if ClassID is valid
+                            if (classID > 0)
+                            {
+                                try
+                                {
+                                    string updateClassQuery = @"UPDATE Class SET 
+                                                 QuantityStudents = QuantityStudents - 1,
+                                                 MaleNumber = IIF(? = 'Male', MaleNumber - 1, MaleNumber),
+                                                 FemaleNum = IIF(? = 'Female', FemaleNum - 1, FemaleNum)
+                                                 WHERE ClassID = ?";
+                                    OleDbCommand updateCmd = new OleDbCommand(updateClassQuery, conn);
+                                    updateCmd.Parameters.AddWithValue("?", gender);
+                                    updateCmd.Parameters.AddWithValue("?", gender);
+                                    updateCmd.Parameters.AddWithValue("?", classID);
+
+                                    updateCmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    // Just log this error but continue - the student is already deleted
+                                    //MessageBox.Show("Warning: Student deleted but class statistics could not be updated: " + ex.Message,
+                                    //    "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
+                            }
+
+                            MessageBox.Show("Student deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Clear update fields
+                            textBoxName1.Clear();
+                            comboBoxClass1.SelectedIndex = -1;
+                            textBoxRegNo1.Clear();
+                            radioButtonMale1.Checked = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("No student was deleted. The student may no longer exist in the database.",
+                                "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    } // Connection is automatically closed here
+
+                    // Refresh the student list - with a new connection
+                    LoadStudents();
+                    LoadClasses();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting student: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

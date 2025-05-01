@@ -382,6 +382,8 @@
             dataGridViewStudent.ShowRowErrors = false;
             dataGridViewStudent.Size = new Size(921, 387);
             dataGridViewStudent.TabIndex = 9;
+            dataGridViewStudent.CellClick += dataGridViewStudent_CellContentClick;
+            dataGridViewStudent.SelectionChanged += dataGridViewStudent_SelectionChanged;
             // 
             // Column1
             // 
@@ -633,6 +635,7 @@
             buttonDelete.TabIndex = 28;
             buttonDelete.Text = "Delete";
             buttonDelete.UseVisualStyleBackColor = false;
+            buttonDelete.Click += buttonDelete_Click_1;
             // 
             // buttonUpdate
             // 
