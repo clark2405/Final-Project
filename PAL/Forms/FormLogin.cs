@@ -16,7 +16,7 @@ namespace Final_Project.PAL.Forms
         OleDbConnection Account_DataBase_Conn;
         OleDbCommand Account_DataBase_Command;
         // Update this to your Access database path - make sure the path is correct
-        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Database Files\Attendance Management\Attendance Management.accdb;";
+        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\joshlee rash\Downloads\DatabaseHere.accdb";
 
         public FormLogin()
         {
