@@ -14,7 +14,7 @@ namespace Final_Project.PAL.User_Control
     public partial class UserControlDashboard : UserControl
     {
         private string accessConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;
-                                          Data Source=C:\Database Files\Attendance Management\Attendance Management.accdb;";
+                                          Data Source= C:\Users\joshlee rash\Downloads\DatabaseHere.accdb";
 
 
         public UserControlDashboard()
