@@ -146,8 +146,30 @@ namespace Final_Project.PAL.User_Control
                 {
                     connection.Open();
 
+                    // Check the current number of students in the class
+                    string checkClassCapacityQuery = "SELECT QuantityStudents, MaxStudents FROM Class WHERE ClassID = ?";
+                    using (var checkCmd = new OleDbCommand(checkClassCapacityQuery, connection))
+                    {
+                        checkCmd.Parameters.AddWithValue("@ClassID", classID);
+                        using (var reader = checkCmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int currentStudents = Convert.ToInt32(reader["QuantityStudents"]);
+                                int maxStudents = Convert.ToInt32(reader["MaxStudents"]);
+
+                                if (currentStudents >= maxStudents)
+                                {
+                                    MessageBox.Show("The class has reached its maximum capacity. Cannot add more students.",
+                                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+                            }
+                        }
+                    }
+
                     // Insert the student using both ClassID and Class
-                    string studentQuery = "INSERT INTO AddStudent (Name, RegNo, ClassID, Class, Gender) VALUES (?, ?, ?, ?, ?)";
+                    string studentQuery = "INSERT INTO AddStudent ([Name], [RegNo], [ClassID], [Class], [Gender]) VALUES (?, ?, ?, ?, ?)";
                     using (var studentCmd = new OleDbCommand(studentQuery, connection))
                     {
                         studentCmd.Parameters.AddWithValue("@Name", textBoxName.Text.Trim());
@@ -160,6 +182,14 @@ namespace Final_Project.PAL.User_Control
 
                         if (studentResult > 0)
                         {
+                            // Update the class's student count
+                            string updateClassQuery = "UPDATE Class SET QuantityStudents = QuantityStudents + 1 WHERE ClassID = ?";
+                            using (var updateCmd = new OleDbCommand(updateClassQuery, connection))
+                            {
+                                updateCmd.Parameters.AddWithValue("@ClassID", classID);
+                                updateCmd.ExecuteNonQuery();
+                            }
+
                             MessageBox.Show("Student added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LoadStudents(); // Refresh the student list
                         }
@@ -275,7 +305,7 @@ namespace Final_Project.PAL.User_Control
             }
         }
 
-        
+
 
         private void dataGridViewStudent_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
