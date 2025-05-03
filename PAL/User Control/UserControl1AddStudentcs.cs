@@ -10,7 +10,7 @@ namespace Final_Project.PAL.User_Control
         private OleDbConnection connection;
         OleDbConnection myConn;
         OleDbCommand cmd;
-        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Database Files\Attendance Management\Attendance Management.accdb";
+        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Users\joshlee rash\Downloads\DatabaseHere.accdb";
 
         public UserControl1AddStudentcs()
         {
@@ -125,7 +125,7 @@ namespace Final_Project.PAL.User_Control
                 return;
             }
 
-            // Declare regNo variable here
+            // Declare regNo variable outside the if block
             int regNo;
             if (!int.TryParse(textBoxRegNo.Text, out regNo))
             {
@@ -173,7 +173,7 @@ namespace Final_Project.PAL.User_Control
                     using (var studentCmd = new OleDbCommand(studentQuery, connection))
                     {
                         studentCmd.Parameters.AddWithValue("@Name", textBoxName.Text.Trim());
-                        studentCmd.Parameters.AddWithValue("@RegNo", regNo);
+                        studentCmd.Parameters.AddWithValue("@RegNo", regNo); // regNo is now accessible here
                         studentCmd.Parameters.AddWithValue("@ClassID", classID); // Use ClassID here
                         studentCmd.Parameters.AddWithValue("@Class", className); // Use Class name here
                         studentCmd.Parameters.AddWithValue("@Gender", gender);
@@ -205,7 +205,6 @@ namespace Final_Project.PAL.User_Control
                 MessageBox.Show("Error adding student: " + ex.Message);
             }
         }
-
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             if (dataGridViewStudent.SelectedRows.Count == 0)
