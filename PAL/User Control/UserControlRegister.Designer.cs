@@ -31,7 +31,7 @@
             components = new System.ComponentModel.Container();
             tabControlRegister = new TabControl();
             tabPageAddUser = new TabPage();
-            maskedTextBoxID = new MaskedTextBox();
+            textBoxStudentID = new MaskedTextBox();
             pictureBoxErrorID = new PictureBox();
             panel12 = new Panel();
             label19 = new Label();
@@ -48,20 +48,16 @@
             pictureBoxErrorDateofBirth = new PictureBox();
             panel2 = new Panel();
             label3 = new Label();
-            maskedTextBox1 = new MaskedTextBox();
-            pictureBoxErrorPho = new PictureBox();
-            panel10 = new Panel();
-            label16 = new Label();
-            maskedTextBoxPho = new MaskedTextBox();
+            dateTimePickerDOB = new MaskedTextBox();
             panel9 = new Panel();
-            textBoxPass = new TextBox();
+            textBoxPassword = new TextBox();
             label15 = new Label();
             radioButtonFemale = new RadioButton();
             radioButtonMale = new RadioButton();
-            buttonAdd = new Button();
+            buttonAddStudent = new Button();
             label5 = new Label();
             panel1 = new Panel();
-            textBoxName = new TextBox();
+            textBoxFullName = new TextBox();
             label2 = new Label();
             label1 = new Label();
             tabPageSearchUser = new TabPage();
@@ -128,7 +124,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxErrorID).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxErrorEmail).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxErrorDateofBirth).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxErrorPho).BeginInit();
             tabPageSearchUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewUser).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSearch).BeginInit();
@@ -155,7 +150,7 @@
             // tabPageAddUser
             // 
             tabPageAddUser.BackColor = Color.White;
-            tabPageAddUser.Controls.Add(maskedTextBoxID);
+            tabPageAddUser.Controls.Add(textBoxStudentID);
             tabPageAddUser.Controls.Add(pictureBoxErrorID);
             tabPageAddUser.Controls.Add(panel12);
             tabPageAddUser.Controls.Add(label19);
@@ -172,20 +167,16 @@
             tabPageAddUser.Controls.Add(pictureBoxErrorDateofBirth);
             tabPageAddUser.Controls.Add(panel2);
             tabPageAddUser.Controls.Add(label3);
-            tabPageAddUser.Controls.Add(maskedTextBox1);
-            tabPageAddUser.Controls.Add(pictureBoxErrorPho);
-            tabPageAddUser.Controls.Add(panel10);
-            tabPageAddUser.Controls.Add(label16);
-            tabPageAddUser.Controls.Add(maskedTextBoxPho);
+            tabPageAddUser.Controls.Add(dateTimePickerDOB);
             tabPageAddUser.Controls.Add(panel9);
-            tabPageAddUser.Controls.Add(textBoxPass);
+            tabPageAddUser.Controls.Add(textBoxPassword);
             tabPageAddUser.Controls.Add(label15);
             tabPageAddUser.Controls.Add(radioButtonFemale);
             tabPageAddUser.Controls.Add(radioButtonMale);
-            tabPageAddUser.Controls.Add(buttonAdd);
+            tabPageAddUser.Controls.Add(buttonAddStudent);
             tabPageAddUser.Controls.Add(label5);
             tabPageAddUser.Controls.Add(panel1);
-            tabPageAddUser.Controls.Add(textBoxName);
+            tabPageAddUser.Controls.Add(textBoxFullName);
             tabPageAddUser.Controls.Add(label2);
             tabPageAddUser.Controls.Add(label1);
             tabPageAddUser.Location = new Point(4, 4);
@@ -195,33 +186,34 @@
             tabPageAddUser.TabIndex = 0;
             tabPageAddUser.Text = " Add User";
             // 
-            // maskedTextBoxID
+            // textBoxStudentID
             // 
-            maskedTextBoxID.BorderStyle = BorderStyle.None;
-            maskedTextBoxID.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            maskedTextBoxID.ForeColor = Color.DarkGray;
-            maskedTextBoxID.Location = new Point(112, 332);
-            maskedTextBoxID.Mask = "0000-0000000-0";
-            maskedTextBoxID.Name = "maskedTextBoxID";
-            maskedTextBoxID.Size = new Size(270, 21);
-            maskedTextBoxID.TabIndex = 41;
-            maskedTextBoxID.Text = "000000000000";
+            textBoxStudentID.BorderStyle = BorderStyle.None;
+            textBoxStudentID.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBoxStudentID.ForeColor = Color.DarkGray;
+            textBoxStudentID.Location = new Point(112, 255);
+            textBoxStudentID.Mask = "0000-0000000-0";
+            textBoxStudentID.Name = "textBoxStudentID";
+            textBoxStudentID.Size = new Size(270, 21);
+            textBoxStudentID.TabIndex = 41;
+            textBoxStudentID.Text = "000000000000";
             // 
             // pictureBoxErrorID
             // 
             pictureBoxErrorID.Anchor = AnchorStyles.None;
             pictureBoxErrorID.Image = Properties.Resources._614338_;
-            pictureBoxErrorID.Location = new Point(385, 375);
+            pictureBoxErrorID.Location = new Point(385, 259);
             pictureBoxErrorID.Name = "pictureBoxErrorID";
             pictureBoxErrorID.Size = new Size(19, 17);
             pictureBoxErrorID.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxErrorID.TabIndex = 40;
             pictureBoxErrorID.TabStop = false;
+            pictureBoxErrorID.Visible = false;
             // 
             // panel12
             // 
             panel12.BackColor = Color.LightGray;
-            panel12.Location = new Point(112, 356);
+            panel12.Location = new Point(112, 279);
             panel12.Name = "panel12";
             panel12.Size = new Size(270, 2);
             panel12.TabIndex = 37;
@@ -230,7 +222,7 @@
             // 
             label19.AutoSize = true;
             label19.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label19.Location = new Point(109, 303);
+            label19.Location = new Point(109, 226);
             label19.Name = "label19";
             label19.Size = new Size(31, 19);
             label19.TabIndex = 39;
@@ -240,18 +232,18 @@
             // 
             checkBoxAdmin.AutoSize = true;
             checkBoxAdmin.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            checkBoxAdmin.Location = new Point(630, 305);
+            checkBoxAdmin.Location = new Point(630, 311);
             checkBoxAdmin.Name = "checkBoxAdmin";
-            checkBoxAdmin.Size = new Size(77, 24);
+            checkBoxAdmin.Size = new Size(86, 24);
             checkBoxAdmin.TabIndex = 36;
-            checkBoxAdmin.Text = "Admin";
+            checkBoxAdmin.Text = "Student";
             checkBoxAdmin.UseVisualStyleBackColor = true;
             // 
             // label18
             // 
             label18.AutoSize = true;
             label18.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label18.Location = new Point(574, 306);
+            label18.Location = new Point(574, 312);
             label18.Name = "label18";
             label18.Size = new Size(50, 19);
             label18.TabIndex = 35;
@@ -260,7 +252,7 @@
             // panel11
             // 
             panel11.BackColor = Color.LightGray;
-            panel11.Location = new Point(109, 441);
+            panel11.Location = new Point(109, 451);
             panel11.Name = "panel11";
             panel11.Size = new Size(711, 2);
             panel11.TabIndex = 34;
@@ -269,7 +261,7 @@
             // 
             textBoxAddress.BorderStyle = BorderStyle.None;
             textBoxAddress.Font = new Font("Century Gothic", 10F);
-            textBoxAddress.Location = new Point(109, 392);
+            textBoxAddress.Location = new Point(109, 402);
             textBoxAddress.Multiline = true;
             textBoxAddress.Name = "textBoxAddress";
             textBoxAddress.Size = new Size(711, 48);
@@ -290,27 +282,28 @@
             textBoxEmail.BorderStyle = BorderStyle.None;
             textBoxEmail.Font = new Font("Century Gothic", 10F);
             textBoxEmail.ForeColor = Color.DarkGray;
-            textBoxEmail.Location = new Point(112, 258);
+            textBoxEmail.Location = new Point(112, 181);
             textBoxEmail.Name = "textBoxEmail";
             textBoxEmail.Size = new Size(270, 21);
-            textBoxEmail.TabIndex = 31;
+            textBoxEmail.TabIndex = 1;
             textBoxEmail.Text = "juandelacruz@gmail.com";
             // 
             // pictureBoxErrorEmail
             // 
             pictureBoxErrorEmail.Anchor = AnchorStyles.None;
             pictureBoxErrorEmail.Image = Properties.Resources._614338_;
-            pictureBoxErrorEmail.Location = new Point(385, 301);
+            pictureBoxErrorEmail.Location = new Point(385, 185);
             pictureBoxErrorEmail.Name = "pictureBoxErrorEmail";
             pictureBoxErrorEmail.Size = new Size(19, 17);
             pictureBoxErrorEmail.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxErrorEmail.TabIndex = 30;
             pictureBoxErrorEmail.TabStop = false;
+            pictureBoxErrorEmail.Visible = false;
             // 
             // panel3
             // 
             panel3.BackColor = Color.LightGray;
-            panel3.Location = new Point(112, 282);
+            panel3.Location = new Point(112, 205);
             panel3.Name = "panel3";
             panel3.Size = new Size(270, 2);
             panel3.TabIndex = 27;
@@ -319,7 +312,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label4.Location = new Point(109, 229);
+            label4.Location = new Point(109, 152);
             label4.Name = "label4";
             label4.Size = new Size(58, 19);
             label4.TabIndex = 29;
@@ -330,7 +323,7 @@
             maskedTextBox2.BorderStyle = BorderStyle.None;
             maskedTextBox2.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             maskedTextBox2.ForeColor = Color.DarkGray;
-            maskedTextBox2.Location = new Point(112, 258);
+            maskedTextBox2.Location = new Point(112, 181);
             maskedTextBox2.Mask = "00/00/0000";
             maskedTextBox2.Name = "maskedTextBox2";
             maskedTextBox2.RightToLeft = RightToLeft.No;
@@ -342,12 +335,13 @@
             // 
             pictureBoxErrorDateofBirth.Anchor = AnchorStyles.None;
             pictureBoxErrorDateofBirth.Image = Properties.Resources._614338_;
-            pictureBoxErrorDateofBirth.Location = new Point(823, 224);
+            pictureBoxErrorDateofBirth.Location = new Point(826, 185);
             pictureBoxErrorDateofBirth.Name = "pictureBoxErrorDateofBirth";
             pictureBoxErrorDateofBirth.Size = new Size(19, 17);
             pictureBoxErrorDateofBirth.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxErrorDateofBirth.TabIndex = 26;
             pictureBoxErrorDateofBirth.TabStop = false;
+            pictureBoxErrorDateofBirth.Visible = false;
             // 
             // panel2
             // 
@@ -367,59 +361,18 @@
             label3.TabIndex = 25;
             label3.Text = "Date of Birth:";
             // 
-            // maskedTextBox1
+            // dateTimePickerDOB
             // 
-            maskedTextBox1.BorderStyle = BorderStyle.None;
-            maskedTextBox1.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            maskedTextBox1.ForeColor = Color.DarkGray;
-            maskedTextBox1.Location = new Point(550, 181);
-            maskedTextBox1.Mask = "00/00/0000";
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(270, 21);
-            maskedTextBox1.TabIndex = 24;
-            maskedTextBox1.Text = "00000000";
-            maskedTextBox1.ValidatingType = typeof(DateTime);
-            // 
-            // pictureBoxErrorPho
-            // 
-            pictureBoxErrorPho.Anchor = AnchorStyles.None;
-            pictureBoxErrorPho.Image = Properties.Resources._614338_;
-            pictureBoxErrorPho.Location = new Point(385, 224);
-            pictureBoxErrorPho.Name = "pictureBoxErrorPho";
-            pictureBoxErrorPho.Size = new Size(19, 17);
-            pictureBoxErrorPho.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxErrorPho.TabIndex = 22;
-            pictureBoxErrorPho.TabStop = false;
-            // 
-            // panel10
-            // 
-            panel10.BackColor = Color.LightGray;
-            panel10.Location = new Point(112, 205);
-            panel10.Name = "panel10";
-            panel10.Size = new Size(270, 2);
-            panel10.TabIndex = 4;
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label16.Location = new Point(109, 152);
-            label16.Name = "label16";
-            label16.Size = new Size(95, 19);
-            label16.TabIndex = 21;
-            label16.Text = "Phone No.";
-            // 
-            // maskedTextBoxPho
-            // 
-            maskedTextBoxPho.BorderStyle = BorderStyle.None;
-            maskedTextBoxPho.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            maskedTextBoxPho.ForeColor = Color.DarkGray;
-            maskedTextBoxPho.Location = new Point(112, 181);
-            maskedTextBoxPho.Mask = "0000 000 0000";
-            maskedTextBoxPho.Name = "maskedTextBoxPho";
-            maskedTextBoxPho.Size = new Size(270, 21);
-            maskedTextBoxPho.TabIndex = 20;
-            maskedTextBoxPho.Text = "00000000000";
+            dateTimePickerDOB.BorderStyle = BorderStyle.None;
+            dateTimePickerDOB.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateTimePickerDOB.ForeColor = Color.DarkGray;
+            dateTimePickerDOB.Location = new Point(550, 181);
+            dateTimePickerDOB.Mask = "00/00/0000";
+            dateTimePickerDOB.Name = "dateTimePickerDOB";
+            dateTimePickerDOB.Size = new Size(270, 21);
+            dateTimePickerDOB.TabIndex = 24;
+            dateTimePickerDOB.Text = "00000000";
+            dateTimePickerDOB.ValidatingType = typeof(DateTime);
             // 
             // panel9
             // 
@@ -429,14 +382,14 @@
             panel9.Size = new Size(270, 2);
             panel9.TabIndex = 19;
             // 
-            // textBoxPass
+            // textBoxPassword
             // 
-            textBoxPass.BorderStyle = BorderStyle.None;
-            textBoxPass.Font = new Font("Century Gothic", 10F);
-            textBoxPass.Location = new Point(550, 113);
-            textBoxPass.Name = "textBoxPass";
-            textBoxPass.Size = new Size(270, 21);
-            textBoxPass.TabIndex = 18;
+            textBoxPassword.BorderStyle = BorderStyle.None;
+            textBoxPassword.Font = new Font("Century Gothic", 10F);
+            textBoxPassword.Location = new Point(550, 113);
+            textBoxPassword.Name = "textBoxPassword";
+            textBoxPassword.Size = new Size(270, 21);
+            textBoxPassword.TabIndex = 18;
             // 
             // label15
             // 
@@ -452,7 +405,7 @@
             // 
             radioButtonFemale.AutoSize = true;
             radioButtonFemale.Font = new Font("Century Gothic", 10F);
-            radioButtonFemale.Location = new Point(630, 255);
+            radioButtonFemale.Location = new Point(630, 261);
             radioButtonFemale.Name = "radioButtonFemale";
             radioButtonFemale.Size = new Size(91, 25);
             radioButtonFemale.TabIndex = 16;
@@ -464,7 +417,7 @@
             // 
             radioButtonMale.AutoSize = true;
             radioButtonMale.Font = new Font("Century Gothic", 10F);
-            radioButtonMale.Location = new Point(630, 224);
+            radioButtonMale.Location = new Point(630, 230);
             radioButtonMale.Name = "radioButtonMale";
             radioButtonMale.Size = new Size(74, 25);
             radioButtonMale.TabIndex = 15;
@@ -472,25 +425,26 @@
             radioButtonMale.Text = "Male";
             radioButtonMale.UseVisualStyleBackColor = true;
             // 
-            // buttonAdd
+            // buttonAddStudent
             // 
-            buttonAdd.BackColor = Color.Maroon;
-            buttonAdd.Cursor = Cursors.Hand;
-            buttonAdd.FlatAppearance.BorderSize = 0;
-            buttonAdd.FlatStyle = FlatStyle.Flat;
-            buttonAdd.ForeColor = Color.White;
-            buttonAdd.Location = new Point(109, 463);
-            buttonAdd.Name = "buttonAdd";
-            buttonAdd.Size = new Size(114, 37);
-            buttonAdd.TabIndex = 13;
-            buttonAdd.Text = "Add";
-            buttonAdd.UseVisualStyleBackColor = false;
+            buttonAddStudent.BackColor = Color.Maroon;
+            buttonAddStudent.Cursor = Cursors.Hand;
+            buttonAddStudent.FlatAppearance.BorderSize = 0;
+            buttonAddStudent.FlatStyle = FlatStyle.Flat;
+            buttonAddStudent.ForeColor = Color.White;
+            buttonAddStudent.Location = new Point(109, 463);
+            buttonAddStudent.Name = "buttonAddStudent";
+            buttonAddStudent.Size = new Size(114, 37);
+            buttonAddStudent.TabIndex = 13;
+            buttonAddStudent.Text = "Add";
+            buttonAddStudent.UseVisualStyleBackColor = false;
+            buttonAddStudent.Click += buttonAddStudent_Click;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label5.Location = new Point(549, 243);
+            label5.Location = new Point(549, 249);
             label5.Name = "label5";
             label5.Size = new Size(76, 19);
             label5.TabIndex = 10;
@@ -504,14 +458,14 @@
             panel1.Size = new Size(270, 2);
             panel1.TabIndex = 3;
             // 
-            // textBoxName
+            // textBoxFullName
             // 
-            textBoxName.BorderStyle = BorderStyle.None;
-            textBoxName.Font = new Font("Century Gothic", 10F);
-            textBoxName.Location = new Point(112, 113);
-            textBoxName.Name = "textBoxName";
-            textBoxName.Size = new Size(270, 21);
-            textBoxName.TabIndex = 2;
+            textBoxFullName.BorderStyle = BorderStyle.None;
+            textBoxFullName.Font = new Font("Century Gothic", 10F);
+            textBoxFullName.Location = new Point(112, 113);
+            textBoxFullName.Name = "textBoxFullName";
+            textBoxFullName.Size = new Size(270, 21);
+            textBoxFullName.TabIndex = 2;
             // 
             // label2
             // 
@@ -531,9 +485,9 @@
             label1.ForeColor = Color.Maroon;
             label1.Location = new Point(6, 3);
             label1.Name = "label1";
-            label1.Size = new Size(104, 23);
+            label1.Size = new Size(225, 23);
             label1.TabIndex = 0;
-            label1.Text = "Add User:";
+            label1.Text = "Add Student Account:";
             // 
             // tabPageSearchUser
             // 
@@ -614,7 +568,6 @@
             label8.Size = new Size(92, 19);
             label8.TabIndex = 10;
             label8.Text = "Total Role:";
-            label8.Click += label8_Click;
             // 
             // dataGridViewUser
             // 
@@ -753,11 +706,11 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Maroon;
-            label7.Location = new Point(6, 6);
+            label7.Location = new Point(6, 3);
             label7.Name = "label7";
-            label7.Size = new Size(130, 23);
+            label7.Size = new Size(251, 23);
             label7.TabIndex = 4;
-            label7.Text = "Search User:";
+            label7.Text = "Search Student Account:";
             // 
             // tabPageUPStudent
             // 
@@ -798,7 +751,7 @@
             tabPageUPStudent.Location = new Point(4, 4);
             tabPageUPStudent.Name = "tabPageUPStudent";
             tabPageUPStudent.Padding = new Padding(3);
-            tabPageUPStudent.Size = new Size(939, 558);
+            tabPageUPStudent.Size = new Size(939, 561);
             tabPageUPStudent.TabIndex = 2;
             tabPageUPStudent.Text = "Update and Delete User";
             tabPageUPStudent.UseVisualStyleBackColor = true;
@@ -807,7 +760,7 @@
             // 
             pictureBox4.Anchor = AnchorStyles.None;
             pictureBox4.Image = Properties.Resources._614338_;
-            pictureBox4.Location = new Point(823, 221);
+            pictureBox4.Location = new Point(823, 219);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(19, 17);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
@@ -830,7 +783,7 @@
             // 
             pictureBox1.Anchor = AnchorStyles.None;
             pictureBox1.Image = Properties.Resources._614338_;
-            pictureBox1.Location = new Point(390, 373);
+            pictureBox1.Location = new Point(390, 371);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(19, 17);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -919,7 +872,7 @@
             // 
             pictureBox2.Anchor = AnchorStyles.None;
             pictureBox2.Image = Properties.Resources._614338_;
-            pictureBox2.Location = new Point(390, 299);
+            pictureBox2.Location = new Point(390, 297);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(19, 17);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -992,7 +945,7 @@
             // 
             pictureBox3.Anchor = AnchorStyles.None;
             pictureBox3.Image = Properties.Resources._614338_;
-            pictureBox3.Location = new Point(390, 221);
+            pictureBox3.Location = new Point(390, 219);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(19, 17);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
@@ -1151,11 +1104,11 @@
             label14.BackColor = Color.Transparent;
             label14.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label14.ForeColor = Color.Maroon;
-            label14.Location = new Point(3, 3);
+            label14.Location = new Point(4, 3);
             label14.Name = "label14";
-            label14.Size = new Size(248, 23);
+            label14.Size = new Size(369, 23);
             label14.TabIndex = 14;
-            label14.Text = "Update and Delete User:";
+            label14.Text = "Update and Delete Student Account:";
             // 
             // UserControlRegister
             // 
@@ -1172,7 +1125,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxErrorID).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxErrorEmail).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxErrorDateofBirth).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxErrorPho).EndInit();
             tabPageSearchUser.ResumeLayout(false);
             tabPageSearchUser.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewUser).EndInit();
@@ -1192,10 +1144,10 @@
         private TabPage tabPageAddUser;
         private RadioButton radioButtonFemale;
         private RadioButton radioButtonMale;
-        private Button buttonAdd;
+        private Button buttonAddStudent;
         private Label label5;
         private Panel panel1;
-        private TextBox textBoxName;
+        private TextBox textBoxFullName;
         private Label label2;
         private Label label1;
         private TabPage tabPageSearchUser;
@@ -1214,17 +1166,13 @@
         private TabPage tabPageUPStudent;
         private Button buttonDelete;
         private Label label14;
-        private MaskedTextBox maskedTextBoxPho;
         private Panel panel9;
-        private TextBox textBoxPass;
+        private TextBox textBoxPassword;
         private Label label15;
-        private Panel panel10;
-        private Label label16;
-        private PictureBox pictureBoxErrorPho;
         private PictureBox pictureBoxErrorDateofBirth;
         private Panel panel2;
         private Label label3;
-        private MaskedTextBox maskedTextBox1;
+        private MaskedTextBox dateTimePickerDOB;
         private ToolTip toolTip1;
         private PictureBox pictureBoxErrorEmail;
         private Panel panel3;
@@ -1240,7 +1188,7 @@
         private PictureBox pictureBoxErrorID;
         private Panel panel12;
         private Label label19;
-        private MaskedTextBox maskedTextBoxID;
+        private MaskedTextBox textBoxStudentID;
         private MaskedTextBox maskedTextBox3;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;

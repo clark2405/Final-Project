@@ -16,7 +16,7 @@ namespace Final_Project.PAL.Forms
         OleDbConnection Account_DataBase_Conn;
         OleDbCommand Account_DataBase_Command;
         // Update this to your Access database path - make sure the path is correct
-        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\joshlee rash\Downloads\DatabaseHere.accdb";
+        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Database Files\Attendance Management\DatabaseHere.accdb";
 
         public FormLogin()
         {
@@ -176,7 +176,7 @@ namespace Final_Project.PAL.Forms
         // Add this button to your form for testing
         private void buttonTestLogin_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void buttonLogin_Click_1(object sender, EventArgs e)

@@ -16,7 +16,7 @@ namespace Final_Project.PAL.User_Control
     {
         OleDbConnection myConn;
         OleDbCommand cmd;
-        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Users\joshlee rash\Downloads\DatabaseHere.accdb";
+        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Database Files\Attendance Management\DatabaseHere.accdb";
 
         // Public properties to store selected class data
         public static string SelectedClassName { get; set; }
