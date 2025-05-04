@@ -50,7 +50,6 @@
             panelSlide = new Panel();
             buttonDashboard = new Button();
             panel5 = new Panel();
-            buttonAttendance = new Button();
             buttonReport = new Button();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
@@ -286,22 +285,6 @@
             panel5.Size = new Size(8, 536);
             panel5.TabIndex = 3;
             // 
-            // buttonAttendance
-            // 
-            buttonAttendance.FlatAppearance.BorderSize = 0;
-            buttonAttendance.FlatStyle = FlatStyle.Flat;
-            buttonAttendance.ForeColor = Color.White;
-            buttonAttendance.Image = (Image)resources.GetObject("buttonAttendance.Image");
-            buttonAttendance.ImageAlign = ContentAlignment.MiddleLeft;
-            buttonAttendance.Location = new Point(23, 237);
-            buttonAttendance.Name = "buttonAttendance";
-            buttonAttendance.Size = new Size(250, 47);
-            buttonAttendance.TabIndex = 9;
-            buttonAttendance.Text = "       Attendance";
-            buttonAttendance.TextAlign = ContentAlignment.MiddleRight;
-            buttonAttendance.TextImageRelation = TextImageRelation.ImageBeforeText;
-            buttonAttendance.UseVisualStyleBackColor = true;
-            // 
             // buttonReport
             // 
             buttonReport.FlatAppearance.BorderSize = 0;
@@ -309,7 +292,7 @@
             buttonReport.ForeColor = Color.White;
             buttonReport.Image = (Image)resources.GetObject("buttonReport.Image");
             buttonReport.ImageAlign = ContentAlignment.MiddleLeft;
-            buttonReport.Location = new Point(23, 290);
+            buttonReport.Location = new Point(23, 237);
             buttonReport.Name = "buttonReport";
             buttonReport.Size = new Size(250, 47);
             buttonReport.TabIndex = 7;
@@ -332,7 +315,6 @@
             // panel1
             // 
             panel1.BackColor = Color.Maroon;
-            panel1.Controls.Add(buttonAttendance);
             panel1.Controls.Add(buttonReport);
             panel1.Controls.Add(buttonDashboard);
             panel1.Controls.Add(panel5);
@@ -395,7 +377,6 @@
         private Panel panelSlide;
         private Button buttonDashboard;
         private Panel panel5;
-        private Button buttonAttendance;
         private Button buttonReport;
         private PictureBox pictureBox1;
         private Panel panel1;
