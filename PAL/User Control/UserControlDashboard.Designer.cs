@@ -37,16 +37,10 @@
             labelTotalStudent = new Label();
             label3 = new Label();
             pictureBox2 = new PictureBox();
-            panel3 = new Panel();
-            labelTotalRole = new Label();
-            label5 = new Label();
-            pictureBox3 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -141,58 +135,11 @@
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
             // 
-            // panel3
-            // 
-            panel3.Anchor = AnchorStyles.None;
-            panel3.BackColor = Color.Maroon;
-            panel3.Controls.Add(labelTotalRole);
-            panel3.Controls.Add(label5);
-            panel3.Controls.Add(pictureBox3);
-            panel3.Location = new Point(342, 294);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(259, 128);
-            panel3.TabIndex = 4;
-            // 
-            // labelTotalRole
-            // 
-            labelTotalRole.AutoSize = true;
-            labelTotalRole.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
-            labelTotalRole.ForeColor = Color.White;
-            labelTotalRole.Location = new Point(107, 66);
-            labelTotalRole.Name = "labelTotalRole";
-            labelTotalRole.Size = new Size(35, 23);
-            labelTotalRole.TabIndex = 2;
-            labelTotalRole.Text = "{?}";
-            // 
-            // label5
-            // 
-            label5.Anchor = AnchorStyles.None;
-            label5.AutoSize = true;
-            label5.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(97, 47);
-            label5.Name = "label5";
-            label5.Size = new Size(53, 23);
-            label5.TabIndex = 1;
-            label5.Text = "Role";
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Anchor = AnchorStyles.None;
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(15, 16);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(50, 50);
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox3.TabIndex = 0;
-            pictureBox3.TabStop = false;
-            // 
             // UserControlDashboard
             // 
             AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Font = new Font("Century Gothic", 9.75F);
@@ -205,9 +152,6 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
         }
 
@@ -221,10 +165,6 @@
         private Label labelTotalStudent;
         private Label label3;
         private PictureBox pictureBox2;
-        private Panel panel3;
-        private Label labelTotalRole;
-        private Label label5;
-        private PictureBox pictureBox3;
 
     }
 }

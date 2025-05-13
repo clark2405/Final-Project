@@ -294,11 +294,11 @@ namespace Final_Project.PAL.Forms
             buttonLogout.Location = new Point(0, 40);
             buttonLogout.Name = "buttonLogout";
             buttonLogout.Size = new Size(198, 35);
-            buttonLogout.TabIndex = 0;
+            buttonLogout.TabIndex = 2;
             buttonLogout.Text = "     Logout";
             buttonLogout.TextImageRelation = TextImageRelation.ImageBeforeText;
             buttonLogout.UseVisualStyleBackColor = false;
-            buttonLogout.Click += buttonLogout_Click;
+            buttonLogout.Click += buttonLogout_Click_1;
             // 
             // buttonMinimize
             // 
@@ -313,11 +313,11 @@ namespace Final_Project.PAL.Forms
             buttonMinimize.Location = new Point(0, 0);
             buttonMinimize.Name = "buttonMinimize";
             buttonMinimize.Size = new Size(198, 40);
-            buttonMinimize.TabIndex = 0;
+            buttonMinimize.TabIndex = 1;
             buttonMinimize.Text = "     Minimize";
             buttonMinimize.TextImageRelation = TextImageRelation.ImageBeforeText;
             buttonMinimize.UseVisualStyleBackColor = false;
-            buttonMinimize.Click += buttonMinimize_Click;
+            buttonMinimize.Click += buttonMinimize_Click_1;
             // 
             // pictureBox2
             // 
@@ -462,8 +462,6 @@ namespace Final_Project.PAL.Forms
         private PictureBox pictureBox2;
         private Panel panelExpand;
         private Panel panel4;
-        private Button buttonMinimize;
-        private Button buttonLogout;
         private Panel panel5;
         private Panel panelSlide;
         private Button buttonDashboard;
@@ -475,5 +473,7 @@ namespace Final_Project.PAL.Forms
         private System.Windows.Forms.Timer timerDateAndTime;
         private Button buttonAttendance;
         private Panel panelContainer;
+        private Button buttonLogout;
+        private Button buttonMinimize;
     }
 }

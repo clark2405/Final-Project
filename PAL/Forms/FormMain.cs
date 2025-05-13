@@ -47,7 +47,9 @@ namespace Final_Project.PAL.Forms
             if (dialogResult == DialogResult.Yes)
             {
                 timerDateAndTime.Stop();
-                Application.Exit(); // ✅ Ensures the full application closes
+                this.Hide(); // Hide the current form  
+                FormLogin formLogin = new FormLogin(); // Create a new instance of FormLogin  
+                formLogin.Show(); // Show the login form  
             }
             else
             {
@@ -107,7 +109,7 @@ namespace Final_Project.PAL.Forms
         }
         private void showDashboard()
         {
-            UserControlDashboard userControlDashboard = new UserControlDashboard();
+            UserControlDashboard userControlDashboard = new UserControlDashboard(FormLogin.LoggedInUserID);
             userControlDashboard.Dock = DockStyle.Fill;
             panelContainer.Controls.Clear();
             panelContainer.Controls.Add(userControlDashboard);
@@ -116,7 +118,7 @@ namespace Final_Project.PAL.Forms
         private void buttonDashboard_Click(object sender, EventArgs e)
         {
             MoveSidePanel(buttonDashboard);
-            UserControlDashboard userControlDashboard = new UserControlDashboard();
+            UserControlDashboard userControlDashboard = new UserControlDashboard(FormLogin.LoggedInUserID);
             userControlDashboard.Dock = DockStyle.Fill;
             panelContainer.Controls.Clear();
             panelContainer.Controls.Add(userControlDashboard);
@@ -125,7 +127,7 @@ namespace Final_Project.PAL.Forms
         private void buttonAttendance_Click(object sender, EventArgs e)
         {
             MoveSidePanel(buttonAttendance);
-            UserControlAttendance userControlAttendance = new UserControlAttendance();
+            UserControlAttendance userControlAttendance = new UserControlAttendance(FormLogin.LoggedInUserID);
             userControlAttendance.Dock = DockStyle.Fill;
             panelContainer.Controls.Clear();
             panelContainer.Controls.Add(userControlAttendance);
@@ -135,7 +137,7 @@ namespace Final_Project.PAL.Forms
         private void buttonAddClass_Click(object sender, EventArgs e)
         {
             MoveSidePanel(buttonAddClass);
-            UserControlAddClass userControlAddClass = new UserControlAddClass();
+            UserControlAddClass userControlAddClass = new UserControlAddClass(FormLogin.LoggedInUserID);
             userControlAddClass.Dock = DockStyle.Fill;
             panelContainer.Controls.Clear();
             panelContainer.Controls.Add(userControlAddClass);
@@ -144,7 +146,7 @@ namespace Final_Project.PAL.Forms
         private void buttonAddStudent_Click(object sender, EventArgs e)
         {
             MoveSidePanel(buttonAddStudent);
-            UserControl1AddStudentcs userControlAddStudent = new UserControl1AddStudentcs();
+            UserControl1AddStudentcs userControlAddStudent = new UserControl1AddStudentcs(FormLogin.LoggedInUserID);
             userControlAddStudent.Dock = DockStyle.Fill;
             panelContainer.Controls.Clear();
             panelContainer.Controls.Add(userControlAddStudent);
@@ -153,16 +155,41 @@ namespace Final_Project.PAL.Forms
         private void buttonReport_Click(object sender, EventArgs e)
         {
             MoveSidePanel(buttonReport);
+            UserControlAnalyticsReport userControlAnalyticsReport = new UserControlAnalyticsReport(FormLogin.LoggedInUserID);
+            userControlAnalyticsReport.Dock = DockStyle.Fill;
+            panelContainer.Controls.Clear();
+            panelContainer.Controls.Add(userControlAnalyticsReport);
 
         }
 
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             MoveSidePanel(buttonRegister);
-            UserControlRegister userControlRegister = new UserControlRegister();
+            UserControlRegister userControlRegister = new UserControlRegister(FormLogin.LoggedInUserID);
             userControlRegister.Dock = DockStyle.Fill;
             panelContainer.Controls.Clear();
             panelContainer.Controls.Add(userControlRegister);
+        }
+
+        private void buttonMinimize_Click_1(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void buttonLogout_Click_1(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                timerDateAndTime.Stop();
+                this.Hide(); // Hide the current form  
+                FormLogin formLogin = new FormLogin(); // Create a new instance of FormLogin  
+                formLogin.Show(); // Show the login form  
+            }
+            else
+            {
+                panelExpand.Hide();
+            }
         }
     }
 }

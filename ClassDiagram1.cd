@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Final_Project.Properties.Resources">
+    <Position X="3.25" Y="5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAQBEAABGQAAAAaAAAAAAAgAA6A=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.Forms.AttendanceManager">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PAL\Forms\Attendance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.Forms.AttendanceService">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>PAL\Forms\AttendanceService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.Forms.AttendanceSheet">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAICAAAhgBAAGBwAgCAAEAhEAAgAAAAYABBAA=</HashCode>
+      <FileName>PAL\Forms\AttendanceSheet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.Forms.BaseForm">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAEAAgAAACAAAACAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PAL\Forms\BaseForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.Forms.ChangePassword">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAACAAARAAAACAAAACAAAAAAAAEAAAAQBAAAI=</HashCode>
+      <FileName>PAL\Forms\ChangePassword.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.Forms.Class1">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PAL\Forms\Database Connection Helper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.Forms.Form1">
+    <Position X="3.25" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PAL\Forms\Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.Forms.FormForgotPassword">
+    <Position X="1.25" Y="3.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ACQgAhQBACQAARAgEACQJABCAgAYIAAQUgAAMQBMAAg=</HashCode>
+      <FileName>PAL\Forms\FormForgotPassword.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.Forms.FormLogin">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABAAABABJCAAABgkSACAoEASgQAUgEgQASEQEQBEACI=</HashCode>
+      <FileName>PAL\Forms\FormLogin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.Forms.FormMain">
+    <Position X="20" Y="7" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>IJAAAAYAkCKAAFCUHQCBEAACQEAIBowkBABAEwBGBAE=</HashCode>
+      <FileName>PAL\Forms\FormMain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.Forms.FormStudentAccess">
+    <Position X="11.5" Y="4.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>MBAABAYAACCAABAUHQCAAAgCgAAAAowEBAAAGwBGRAE=</HashCode>
+      <FileName>PAL\Forms\FormStudentAccess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.User_Control.UserControl1AddStudentcs">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>8SGAAAAABGAEFBwQCAiBAgsKSJA4BwAAHAABQyAABCA=</HashCode>
+      <FileName>PAL\User Control\UserControl1AddStudentcs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.User_Control.UserControlAddClass">
+    <Position X="9.5" Y="3" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>8RGAiAAiBSRgAF0CSAiBQogCBIg4BwAAAAAUBUAABCA=</HashCode>
+      <FileName>PAL\User Control\UserControlAddClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.User_Control.UserControlAnalyticsReport">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ASIAIAAAACAAICAAAACAREgCAIABAAAAAAgSIQAAAAA=</HashCode>
+      <FileName>PAL\User Control\UserControlAnalyticsReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.User_Control.UserControlAttendance">
+    <Position X="20" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABABEAACACAABhgCggCAAAkCDIAAAAgAEAAAAQAQBAA=</HashCode>
+      <FileName>PAL\User Control\UserControlAttendance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.User_Control.UserControlDashboard">
+    <Position X="15.75" Y="8" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAQACCAAwCAAAAAAAAAAAAAQJAAAA=</HashCode>
+      <FileName>PAL\User Control\UserControlDashboard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.User_Control.UserControlRegister">
+    <Position X="5.25" Y="6.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>/2mQRsWRwyCA0fgADACMEguCAAAQFAAAlxBAASPuAyI=</HashCode>
+      <FileName>PAL\User Control\UserControlRegister.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.User_Control.UserControlStudentAnalyticsReport">
+    <Position X="9.5" Y="8.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAACAAACAAAACABEACAAAAAAAAAAACIQAAAAA=</HashCode>
+      <FileName>PAL\User Control\UserControlStudentAnalyticsReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.User_Control.UserControlStudentAppeal">
+    <Position X="13.75" Y="4.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>gAABAAAAACAAARwACACAAAwCCIQAEAAAAAAAAAAABAA=</HashCode>
+      <FileName>PAL\User Control\UserControlStudentAppeal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.PAL.User_Control.UserControlStudentDashboard">
+    <Position X="15.75" Y="5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACAAABgAAACBAAgCAAACAAAAAAAAAQAABAA=</HashCode>
+      <FileName>PAL\User Control\UserControlStudentDashboard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Final_Project.Program">
+    <Position X="11.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Windows.Forms.UserControl">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.Forms.Form">
+    <Position X="17.75" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="System.Windows.Forms.Form.ControlCollection" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="Final_Project.PAL.Forms.IAttendanceService">
+    <Position X="1.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>PAL\Forms\IAttendanceService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

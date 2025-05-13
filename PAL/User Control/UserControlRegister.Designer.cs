@@ -461,9 +461,9 @@
             tabPageSearchUser.Location = new Point(4, 4);
             tabPageSearchUser.Name = "tabPageSearchUser";
             tabPageSearchUser.Padding = new Padding(3);
-            tabPageSearchUser.Size = new Size(939, 561);
+            tabPageSearchUser.Size = new Size(939, 558);
             tabPageSearchUser.TabIndex = 1;
-            tabPageSearchUser.Text = "Search Account";
+            tabPageSearchUser.Text = "Accounts";
             tabPageSearchUser.UseVisualStyleBackColor = true;
             // 
             // combobxSearchBy
@@ -475,6 +475,7 @@
             combobxSearchBy.Name = "combobxSearchBy";
             combobxSearchBy.Size = new Size(186, 31);
             combobxSearchBy.TabIndex = 18;
+            combobxSearchBy.Visible = false;
             combobxSearchBy.SelectedIndexChanged += combobxAccountType_SelectedIndexChanged;
             // 
             // panel4
@@ -484,6 +485,7 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(186, 2);
             panel4.TabIndex = 17;
+            panel4.Visible = false;
             // 
             // textBox1
             // 
@@ -503,6 +505,7 @@
             label9.Size = new Size(115, 19);
             label9.TabIndex = 15;
             label9.Text = "Search Type:";
+            label9.Visible = false;
             // 
             // labelCountStudent
             // 
@@ -555,6 +558,7 @@
             textBoxSearch.Name = "textBoxSearch";
             textBoxSearch.Size = new Size(225, 21);
             textBoxSearch.TabIndex = 6;
+            textBoxSearch.Visible = false;
             textBoxSearch.TextChanged += textBoxSearch_TextChanged;
             // 
             // pictureBoxSearch
@@ -567,6 +571,7 @@
             pictureBoxSearch.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxSearch.TabIndex = 8;
             pictureBoxSearch.TabStop = false;
+            pictureBoxSearch.Visible = false;
             // 
             // panel5
             // 
@@ -575,6 +580,7 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(270, 2);
             panel5.TabIndex = 7;
+            panel5.Visible = false;
             // 
             // label6
             // 
@@ -585,6 +591,7 @@
             label6.Size = new Size(71, 19);
             label6.TabIndex = 5;
             label6.Text = "Search:";
+            label6.Visible = false;
             // 
             // label7
             // 
@@ -594,9 +601,9 @@
             label7.ForeColor = Color.Maroon;
             label7.Location = new Point(6, 6);
             label7.Name = "label7";
-            label7.Size = new Size(161, 23);
+            label7.Size = new Size(97, 23);
             label7.TabIndex = 4;
-            label7.Text = "Search Student:";
+            label7.Text = "Students:";
             // 
             // tabPageUPStudent
             // 
@@ -632,7 +639,7 @@
             tabPageUPStudent.Location = new Point(4, 4);
             tabPageUPStudent.Name = "tabPageUPStudent";
             tabPageUPStudent.Padding = new Padding(3);
-            tabPageUPStudent.Size = new Size(939, 558);
+            tabPageUPStudent.Size = new Size(939, 561);
             tabPageUPStudent.TabIndex = 2;
             tabPageUPStudent.Text = "Update and Delete Account";
             // 
@@ -684,7 +691,7 @@
             // 
             pictureBox4.Anchor = AnchorStyles.None;
             pictureBox4.Image = Properties.Resources._614338_;
-            pictureBox4.Location = new Point(831, 169);
+            pictureBox4.Location = new Point(831, 167);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(19, 17);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
@@ -707,7 +714,7 @@
             // 
             pictureBox1.Anchor = AnchorStyles.None;
             pictureBox1.Image = Properties.Resources._614338_;
-            pictureBox1.Location = new Point(393, 243);
+            pictureBox1.Location = new Point(393, 241);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(19, 17);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -765,7 +772,7 @@
             // 
             pictureBox2.Anchor = AnchorStyles.None;
             pictureBox2.Image = Properties.Resources._614338_;
-            pictureBox2.Location = new Point(390, 169);
+            pictureBox2.Location = new Point(390, 167);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(19, 17);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;

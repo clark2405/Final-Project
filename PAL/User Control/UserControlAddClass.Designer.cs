@@ -116,7 +116,7 @@
             tabPageAddClass.Location = new Point(4, 4);
             tabPageAddClass.Name = "tabPageAddClass";
             tabPageAddClass.Padding = new Padding(3);
-            tabPageAddClass.Size = new Size(934, 530);
+            tabPageAddClass.Size = new Size(934, 560);
             tabPageAddClass.TabIndex = 0;
             tabPageAddClass.Text = "Add Class";
             tabPageAddClass.UseVisualStyleBackColor = true;
@@ -270,7 +270,7 @@
             tabPageSearchClass.Padding = new Padding(3);
             tabPageSearchClass.Size = new Size(934, 560);
             tabPageSearchClass.TabIndex = 1;
-            tabPageSearchClass.Text = "Search Class";
+            tabPageSearchClass.Text = "Classes";
             tabPageSearchClass.UseVisualStyleBackColor = true;
             // 
             // labelTotalClass
@@ -362,6 +362,7 @@
             textBoxSearch.Name = "textBoxSearch";
             textBoxSearch.Size = new Size(225, 21);
             textBoxSearch.TabIndex = 6;
+            textBoxSearch.Visible = false;
             // 
             // pictureBoxSearch
             // 
@@ -372,6 +373,7 @@
             pictureBoxSearch.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxSearch.TabIndex = 8;
             pictureBoxSearch.TabStop = false;
+            pictureBoxSearch.Visible = false;
             pictureBoxSearch.MouseHover += pictureBoxSearch_MouseHover;
             // 
             // panel5
@@ -381,6 +383,7 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(270, 2);
             panel5.TabIndex = 7;
+            panel5.Visible = false;
             // 
             // label6
             // 
@@ -391,6 +394,7 @@
             label6.Size = new Size(65, 19);
             label6.TabIndex = 5;
             label6.Text = "Name:";
+            label6.Visible = false;
             // 
             // label7
             // 
@@ -400,9 +404,9 @@
             label7.ForeColor = Color.Maroon;
             label7.Location = new Point(6, 3);
             label7.Name = "label7";
-            label7.Size = new Size(141, 23);
+            label7.Size = new Size(90, 23);
             label7.TabIndex = 4;
-            label7.Text = "Search Class:";
+            label7.Text = "Classes:";
             // 
             // tabPageUPClass
             // 
@@ -424,7 +428,7 @@
             tabPageUPClass.Location = new Point(4, 4);
             tabPageUPClass.Name = "tabPageUPClass";
             tabPageUPClass.Padding = new Padding(3);
-            tabPageUPClass.Size = new Size(934, 560);
+            tabPageUPClass.Size = new Size(934, 561);
             tabPageUPClass.TabIndex = 2;
             tabPageUPClass.Text = "Update and Delete Class";
             tabPageUPClass.UseVisualStyleBackColor = true;

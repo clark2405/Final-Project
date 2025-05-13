@@ -3173,7 +3173,7 @@
   <data name="buttonLogout.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1
-        MAAA6mAAADqYAAAXcJy6UTwAAAAJcEhZcwALn8kAC5/JAaMeV5AAAAAHdElNRQfpAxQPMCX6Wv97AAAA
+        MAAA6mAAADqYAAAXcJy6UTwAAAAJcEhZcwALn8MAC5/DAfhqnHwAAAAHdElNRQfpAxQPMCX6Wv97AAAA
         GXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAitJREFUSEutlktOwzAQhrkEbOEYZQMz
         vMop2EJbCdjAAqRyC5BgywXaPY8dSO2uLEGqxBWASojyoz9TN3HsJLwsjRLbM/NlbE/GMzORBlUn81Bt
         QLUL1SFUR1D9nDzZ70KkAZEFZ1PZIOKcz0H1EKoPUH2HKkqE89SjPu2KYcmkQWpQvYXqR8QhIBKOmVD/
@@ -3204,7 +3204,7 @@
     <value>17, 17</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>25</value>
+    <value>55</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

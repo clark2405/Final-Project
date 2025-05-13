@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
+using System.Data.OleDb;
 using System.Windows.Forms;
 
 namespace Final_Project.PAL.Forms
@@ -9,6 +11,7 @@ namespace Final_Project.PAL.Forms
         public string StatusValue { get; set; }
         public string DateTextBoxValue { get; set; }
         public string ClassNameValue { get; set; }
+        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Database Files\Attendance Management\DatabaseHere (Final).accdb";
 
         // Add these new properties to get the updated values. Crucial for passing data back.
         public string NewStatusValue { get; set; }
@@ -59,7 +62,6 @@ namespace Final_Project.PAL.Forms
             DialogResult = DialogResult.OK; // Set the DialogResult to OK.
             Close(); // Close the form, returning to the main form.
         }
-
 
         private void textBoxDate_TextChanged(object sender, EventArgs e)
         {

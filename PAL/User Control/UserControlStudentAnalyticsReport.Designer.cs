@@ -1,6 +1,6 @@
 ﻿namespace Final_Project.PAL.User_Control
 {
-    partial class UserControlAnalyticsReport
+    partial class UserControlStudentAnalyticsReport
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,25 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            studentsData = new LiveChartsCore.SkiaSharpView.WinForms.CartesianChart();
             panel1 = new Panel();
             menuStrip1 = new MenuStrip();
             dailyToolStripMenuItem = new ToolStripMenuItem();
             weeklyToolStripMenuItem = new ToolStripMenuItem();
             monthlyToolStripMenuItem = new ToolStripMenuItem();
             yearlyToolStripMenuItem = new ToolStripMenuItem();
+            studentsData = new LiveChartsCore.SkiaSharpView.WinForms.CartesianChart();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // studentsData
-            // 
-            studentsData.Dock = DockStyle.Fill;
-            studentsData.Location = new Point(0, 0);
-            studentsData.MatchAxesScreenDataRatio = false;
-            studentsData.Name = "studentsData";
-            studentsData.Size = new Size(932, 597);
-            studentsData.TabIndex = 0;
             // 
             // panel1
             // 
@@ -55,7 +46,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(932, 41);
-            panel1.TabIndex = 1;
+            panel1.TabIndex = 3;
             // 
             // menuStrip1
             // 
@@ -72,36 +63,41 @@
             dailyToolStripMenuItem.Name = "dailyToolStripMenuItem";
             dailyToolStripMenuItem.Size = new Size(57, 24);
             dailyToolStripMenuItem.Text = "Daily";
-            dailyToolStripMenuItem.Click += dailyToolStripMenuItem_Click;
             // 
             // weeklyToolStripMenuItem
             // 
             weeklyToolStripMenuItem.Name = "weeklyToolStripMenuItem";
             weeklyToolStripMenuItem.Size = new Size(70, 24);
             weeklyToolStripMenuItem.Text = "Weekly";
-            weeklyToolStripMenuItem.Click += weeklyToolStripMenuItem_Click;
             // 
             // monthlyToolStripMenuItem
             // 
             monthlyToolStripMenuItem.Name = "monthlyToolStripMenuItem";
             monthlyToolStripMenuItem.Size = new Size(77, 24);
             monthlyToolStripMenuItem.Text = "Monthly";
-            monthlyToolStripMenuItem.Click += monthlyToolStripMenuItem_Click;
             // 
             // yearlyToolStripMenuItem
             // 
             yearlyToolStripMenuItem.Name = "yearlyToolStripMenuItem";
             yearlyToolStripMenuItem.Size = new Size(62, 24);
             yearlyToolStripMenuItem.Text = "Yearly";
-            yearlyToolStripMenuItem.Click += yearlyToolStripMenuItem_Click;
             // 
-            // UserControlAnalyticsReport
+            // studentsData
+            // 
+            studentsData.Dock = DockStyle.Fill;
+            studentsData.Location = new Point(0, 0);
+            studentsData.MatchAxesScreenDataRatio = false;
+            studentsData.Name = "studentsData";
+            studentsData.Size = new Size(932, 597);
+            studentsData.TabIndex = 2;
+            // 
+            // UserControlStudentAnalyticsReport
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel1);
             Controls.Add(studentsData);
-            Name = "UserControlAnalyticsReport";
+            Name = "UserControlStudentAnalyticsReport";
             Size = new Size(932, 597);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -112,12 +108,12 @@
 
         #endregion
 
-        private LiveChartsCore.SkiaSharpView.WinForms.CartesianChart studentsData;
         private Panel panel1;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem dailyToolStripMenuItem;
         private ToolStripMenuItem weeklyToolStripMenuItem;
         private ToolStripMenuItem monthlyToolStripMenuItem;
         private ToolStripMenuItem yearlyToolStripMenuItem;
+        private LiveChartsCore.SkiaSharpView.WinForms.CartesianChart studentsData;
     }
 }

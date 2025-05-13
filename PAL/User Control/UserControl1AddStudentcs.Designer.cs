@@ -299,7 +299,7 @@
             tabPageSearchStudent.Padding = new Padding(3);
             tabPageSearchStudent.Size = new Size(934, 563);
             tabPageSearchStudent.TabIndex = 1;
-            tabPageSearchStudent.Text = "Search Student";
+            tabPageSearchStudent.Text = "Students";
             tabPageSearchStudent.UseVisualStyleBackColor = true;
             // 
             // comboBox1
@@ -312,6 +312,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(186, 29);
             comboBox1.TabIndex = 18;
+            comboBox1.Visible = false;
             // 
             // panel4
             // 
@@ -320,6 +321,7 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(186, 2);
             panel4.TabIndex = 17;
+            panel4.Visible = false;
             // 
             // textBox1
             // 
@@ -339,6 +341,7 @@
             label9.Size = new Size(96, 19);
             label9.TabIndex = 15;
             label9.Text = "Search By:";
+            label9.Visible = false;
             // 
             // labelCountStudent
             // 
@@ -428,6 +431,7 @@
             textBoxSearch.Name = "textBoxSearch";
             textBoxSearch.Size = new Size(225, 21);
             textBoxSearch.TabIndex = 6;
+            textBoxSearch.Visible = false;
             // 
             // pictureBoxSearch
             // 
@@ -439,6 +443,7 @@
             pictureBoxSearch.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxSearch.TabIndex = 8;
             pictureBoxSearch.TabStop = false;
+            pictureBoxSearch.Visible = false;
             // 
             // panel5
             // 
@@ -447,6 +452,7 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(270, 2);
             panel5.TabIndex = 7;
+            panel5.Visible = false;
             // 
             // label6
             // 
@@ -457,6 +463,7 @@
             label6.Size = new Size(71, 19);
             label6.TabIndex = 5;
             label6.Text = "Search:";
+            label6.Visible = false;
             // 
             // label7
             // 
@@ -466,9 +473,9 @@
             label7.ForeColor = Color.Maroon;
             label7.Location = new Point(3, 3);
             label7.Name = "label7";
-            label7.Size = new Size(161, 23);
+            label7.Size = new Size(97, 23);
             label7.TabIndex = 4;
-            label7.Text = "Search Student:";
+            label7.Text = "Students:";
             // 
             // tabPageUPStudent
             // 
@@ -491,7 +498,7 @@
             tabPageUPStudent.Location = new Point(4, 4);
             tabPageUPStudent.Name = "tabPageUPStudent";
             tabPageUPStudent.Padding = new Padding(3);
-            tabPageUPStudent.Size = new Size(934, 563);
+            tabPageUPStudent.Size = new Size(934, 564);
             tabPageUPStudent.TabIndex = 2;
             tabPageUPStudent.Text = "Update and Delete Student";
             tabPageUPStudent.UseVisualStyleBackColor = true;

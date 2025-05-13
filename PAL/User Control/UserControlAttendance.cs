@@ -10,23 +10,32 @@ namespace Final_Project.PAL.User_Control
     public partial class UserControlAttendance : UserControl
     {
         private OleDbConnection myConn;
-        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Users\joshlee rash\Downloads\DatabaseHere.accdb";
+        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Database Files\Attendance Management\DatabaseHere (Final).accdb";
+        public int UserID { get; set; }
 
-        public UserControlAttendance()
+        public UserControlAttendance(int userID)
         {
             InitializeComponent();
-            InitializeDataGridView();
+            UserID = userID;
+            InitializeDataGridView(); // Make sure this method defines columns including "StudentID"
             LoadClasses();
-            // Set the default date to today's date when the control loads
             dateTimePicker1.Value = DateTime.Today;
-            LoadAttendanceForSelectedClassAndDate(); // Load attendance for today's date initially
+            LoadAttendanceForSelectedClassAndDate();
         }
 
         private void InitializeDataGridView()
         {
-            // Ensure the DataGridView is set up correctly in the designer.
-            // Columns: StudentName (string), Status (string), Date (DateTime)
-            // Set AutoGenerateColumns = false and add columns manually.
+            // Ensure dataGridViewMarkAttendance has columns:
+            // "StudentID" (Visible=false if preferred, but data should be there)
+            // "StudentName"
+            // "Status"
+            // "AttendanceDate"
+            // Example:
+            // dataGridViewMarkAttendance.AutoGenerateColumns = false;
+            // dataGridViewMarkAttendance.Columns.Add(new DataGridViewTextBoxColumn { Name = "StudentID", HeaderText = "Student ID", DataPropertyName = "StudentID", Visible = false });
+            // dataGridViewMarkAttendance.Columns.Add(new DataGridViewTextBoxColumn { Name = "StudentName", HeaderText = "Student Name", DataPropertyName = "StudentName" });
+            // dataGridViewMarkAttendance.Columns.Add(new DataGridViewTextBoxColumn { Name = "Status", HeaderText = "Status", DataPropertyName = "Status" });
+            // dataGridViewMarkAttendance.Columns.Add(new DataGridViewTextBoxColumn { Name = "AttendanceDate", HeaderText = "Date", DataPropertyName = "AttendanceDate", DefaultCellStyle = new DataGridViewCellStyle { Format = "d" } }); // Short date format
         }
 
         private void LoadClasses()
@@ -36,9 +45,10 @@ namespace Final_Project.PAL.User_Control
                 using (myConn = new OleDbConnection(connectionString))
                 {
                     myConn.Open();
-                    string query = "SELECT ClassID, ClassName FROM Class ORDER BY ClassName";
+                    string query = "SELECT ClassID, ClassName FROM Class WHERE TeacherID = @userIDParam ORDER BY ClassName";
                     using (OleDbCommand cmd = new OleDbCommand(query, myConn))
                     {
+                        cmd.Parameters.AddWithValue("@userIDParam", UserID);
                         OleDbDataReader reader = cmd.ExecuteReader();
                         DataTable dt = new DataTable();
                         dt.Load(reader);
@@ -64,17 +74,46 @@ namespace Final_Project.PAL.User_Control
 
         private void dateTimePickerAttendanceDate_ValueChanged(object sender, EventArgs e)
         {
+            // This seems to be an older event handler name from a previous control.
+            // Assuming dateTimePicker1 is the correct one as used in constructor and LoadAttendanceForSelectedClassAndDate
             LoadAttendanceForSelectedClassAndDate();
         }
 
+        // This is the event handler for your DateTimePicker named dateTimePicker1
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            LoadAttendanceForSelectedClassAndDate();
+            // You might not need FilterAttendanceByDate if LoadAttendanceForSelectedClassAndDate already reloads for the new date.
+            // FilterAttendanceByDate(dateTimePicker1.Value.Date); // If you keep this, ensure it works with how LoadAttendance populates the grid.
+        }
+
+
         private void LoadAttendanceForSelectedClassAndDate()
         {
-            if (comboBoxClass.SelectedItem != null)
+            if (comboBoxClass.SelectedItem != null && comboBoxClass.SelectedValue != null)
             {
                 DataRowView selectedRow = (DataRowView)comboBoxClass.SelectedItem;
-                int selectedClassID = Convert.ToInt32(selectedRow["ClassID"]);
-                DateTime selectedDate = dateTimePicker1.Value.Date; // Get only the date part
-                LoadAttendance(selectedClassID, selectedDate);
+                // Ensure selectedValue is convertible to int.
+                if (int.TryParse(comboBoxClass.SelectedValue.ToString(), out int selectedClassID))
+                {
+                    DateTime selectedDate = dateTimePicker1.Value.Date;
+                    LoadAttendance(selectedClassID, selectedDate);
+                }
+                else
+                {
+                    if (dataGridViewMarkAttendance.DataSource != null)
+                    {
+                        ((DataTable)dataGridViewMarkAttendance.DataSource).Rows.Clear();
+                    }
+                    // Optionally, show a message if ClassID is not valid.
+                }
+            }
+            else
+            {
+                if (dataGridViewMarkAttendance.DataSource != null)
+                {
+                    ((DataTable)dataGridViewMarkAttendance.DataSource).Rows.Clear();
+                }
             }
         }
 
@@ -86,60 +125,64 @@ namespace Final_Project.PAL.User_Control
                 {
                     myConn.Open();
 
-                    // Query to get all students for the selected class
-                    string studentQuery = @"SELECT StudentID, Name AS StudentName
-                                   FROM AddStudent
-                                   WHERE ClassID = @classIDParam";
-
+                    string studentQuery = @"SELECT StudentID, Name AS StudentName  
+                                                   FROM AddStudent  
+                                                   WHERE ClassID = @classIDParam";
+                    DataTable studentDt = new DataTable();
                     using (OleDbCommand studentCmd = new OleDbCommand(studentQuery, myConn))
                     {
                         studentCmd.Parameters.AddWithValue("@classIDParam", classID);
                         OleDbDataAdapter studentAdapter = new OleDbDataAdapter(studentCmd);
-                        DataTable studentDt = new DataTable();
                         studentAdapter.Fill(studentDt);
+                    }
 
-                        // Query to get all attendance records for the selected class and date
-                        string attendanceQuery = @"SELECT StudentID, Status
-                                         FROM Attendance
-                                         WHERE ClassID = @classIDParam AND AttendanceDate = @attendanceDateParam";
-                        using (OleDbCommand attendanceCmd = new OleDbCommand(attendanceQuery, myConn))
+                    string attendanceQuery = @"SELECT StudentID, Status  
+                                                      FROM Attendance  
+                                                      WHERE ClassID = @classIDParam AND AttendanceDate = @attendanceDateParam";
+
+                    DataTable attendanceDt = new DataTable();
+                    using (OleDbCommand attendanceCmd = new OleDbCommand(attendanceQuery, myConn))
+                    {
+                        attendanceCmd.Parameters.AddWithValue("@classIDParam", classID);
+                        attendanceCmd.Parameters.AddWithValue("@attendanceDateParam", attendanceDate.Date); // Ensure date only  
+                        OleDbDataAdapter attendanceAdapter = new OleDbDataAdapter(attendanceCmd);
+                        attendanceAdapter.Fill(attendanceDt);
+                    }
+
+                    var attendanceStatus = new System.Collections.Generic.Dictionary<int, string>();
+                    foreach (DataRow row in attendanceDt.Rows)
+                    {
+                        if (row["StudentID"] != DBNull.Value && row["Status"] != DBNull.Value)
                         {
-                            attendanceCmd.Parameters.AddWithValue("@classIDParam", classID);
-                            attendanceCmd.Parameters.AddWithValue("@attendanceDateParam", attendanceDate.Date);
-                            OleDbDataAdapter attendanceAdapter = new OleDbDataAdapter(attendanceCmd);
-                            DataTable attendanceDt = new DataTable();
-                            attendanceAdapter.Fill(attendanceDt);
-
-                            // Create a dictionary to easily look up attendance status by StudentID
-                            var attendanceStatus = new System.Collections.Generic.Dictionary<int, string>();
-                            foreach (DataRow row in attendanceDt.Rows)
-                            {
-                                if (row["StudentID"] != DBNull.Value && row["Status"] != DBNull.Value)
-                                {
-                                    attendanceStatus[(int)row["StudentID"]] = row["Status"].ToString();
-                                }
-                            }
-
-                            // Create a new DataTable to bind to the DataGridView
-                            DataTable attendanceReportDt = new DataTable();
-                            attendanceReportDt.Columns.Add("StudentID", typeof(int));
-                            attendanceReportDt.Columns.Add("StudentName", typeof(string));
-                            attendanceReportDt.Columns.Add("Status", typeof(string));
-                            attendanceReportDt.Columns.Add("AttendanceDate", typeof(DateTime));
-
-                            // Populate the attendance report DataTable by matching students with their attendance
-                            foreach (DataRow studentRow in studentDt.Rows)
-                            {
-                                int studentID = (int)studentRow["StudentID"];
-                                string studentName = studentRow["StudentName"].ToString();
-                                string status = attendanceStatus.ContainsKey(studentID) ? attendanceStatus[studentID] : "Absent";
-
-                                attendanceReportDt.Rows.Add(studentID, studentName, status, attendanceDate.Date);
-                            }
-
-                            dataGridViewMarkAttendance.DataSource = attendanceReportDt;
+                            attendanceStatus[Convert.ToInt32(row["StudentID"])] = row["Status"].ToString();
                         }
                     }
+
+                    DataTable attendanceReportDt = new DataTable();
+                    attendanceReportDt.Columns.Add("StudentID", typeof(int));
+                    attendanceReportDt.Columns.Add("StudentName", typeof(string));
+                    attendanceReportDt.Columns.Add("Status", typeof(string));
+                    attendanceReportDt.Columns.Add("AttendanceDate", typeof(DateTime));
+
+                    foreach (DataRow studentRow in studentDt.Rows)
+                    {
+                        int studentID = Convert.ToInt32(studentRow["StudentID"]);
+                        string studentName = studentRow["StudentName"].ToString();
+                        string status = string.Empty; // Default status  
+
+                        if (attendanceStatus.ContainsKey(studentID))
+                        {
+                            string userStatus = attendanceStatus[studentID];
+                            if (!string.IsNullOrEmpty(userStatus))
+                            {
+                                status = userStatus; // Use the status from the database if available  
+                            }
+                        }
+
+                        attendanceReportDt.Rows.Add(studentID, studentName, status, attendanceDate.Date);
+                    }
+
+                    dataGridViewMarkAttendance.DataSource = attendanceReportDt;
                 }
             }
             catch (Exception ex)
@@ -153,33 +196,49 @@ namespace Final_Project.PAL.User_Control
             if (dataGridViewMarkAttendance.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dataGridViewMarkAttendance.SelectedRows[0];
+
+                if (selectedRow.Cells["StudentID"] == null || selectedRow.Cells["StudentID"].Value == null || selectedRow.Cells["StudentID"].Value == DBNull.Value)
+                {
+                    MessageBox.Show("Selected row does not contain a valid StudentID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int studentID = Convert.ToInt32(selectedRow.Cells["StudentID"].Value);
                 string studentName = selectedRow.Cells["StudentName"].Value?.ToString();
-                string status = selectedRow.Cells["Status"].Value?.ToString();
-                DateTime date = Convert.ToDateTime(selectedRow.Cells["AttendanceDate"].Value);
-                string className = comboBoxClass.Text; // Get the current class name
+                string currentStatus = selectedRow.Cells["Status"].Value?.ToString();
+                DateTime currentDate = Convert.ToDateTime(selectedRow.Cells["AttendanceDate"].Value);
+                string className = comboBoxClass.Text;
 
-                AttendanceSheet attendanceForm = new AttendanceSheet();
+                int classID_context = -1;
+                if (comboBoxClass.SelectedValue != null && int.TryParse(comboBoxClass.SelectedValue.ToString(), out int parsedClassID))
+                {
+                    classID_context = parsedClassID;
+                }
+                else
+                {
+                    MessageBox.Show("Could not determine the current Class ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-                if (attendanceForm != null)
+                using (AttendanceSheet attendanceForm = new AttendanceSheet())
                 {
                     attendanceForm.StudentNameValue = studentName;
-                    attendanceForm.StatusValue = status;
-                    attendanceForm.DateTextBoxValue = date.ToShortDateString();
-                    attendanceForm.ClassNameValue = className; // Pass the class name
+                    attendanceForm.StatusValue = currentStatus;
+                    attendanceForm.DateTextBoxValue = currentDate.ToShortDateString();
+                    attendanceForm.ClassNameValue = className;
+
                     if (attendanceForm.ShowDialog() == DialogResult.OK)
                     {
                         string newStatus = attendanceForm.NewStatusValue;
-                        DateTime newDate = attendanceForm.NewDateValue.Date; // Ensure only the date part is used
-
-                        // Update the DataGridView directly
-                        selectedRow.Cells["Status"].Value = newStatus;
-                        selectedRow.Cells["AttendanceDate"].Value = newDate;
+                        DateTime newDate = attendanceForm.NewDateValue.Date;
 
                         // Update the database
-                        UpdateAttendanceInDatabase(studentName, newDate, newStatus);
+                        UpdateAttendanceInDatabase(studentID, classID_context, newDate, newStatus);
+
+                        // Reload the attendance data to reflect changes
+                        LoadAttendanceForSelectedClassAndDate();
                     }
                 }
-                attendanceForm.Dispose();
             }
             else
             {
@@ -187,7 +246,9 @@ namespace Final_Project.PAL.User_Control
             }
         }
 
-        private void UpdateAttendanceInDatabase(string studentName, DateTime date, string status)
+
+        // Modified UpdateAttendanceInDatabase to use StudentID and ClassID directly
+        private void UpdateAttendanceInDatabase(int studentID, int classID, DateTime attendanceDate, string status)
         {
             try
             {
@@ -195,67 +256,50 @@ namespace Final_Project.PAL.User_Control
                 {
                     conn.Open();
 
-                    // First, get the StudentID and ClassID based on the StudentName
-                    string getStudentIDQuery = "SELECT StudentID, ClassID FROM AddStudent WHERE Name = ?";
-                    int studentID = -1;
-                    int classID = -1;
-                    using (OleDbCommand getIDCmd = new OleDbCommand(getStudentIDQuery, conn))
-                    {
-                        getIDCmd.Parameters.AddWithValue("?", studentName);
-                        using (OleDbDataReader reader = getIDCmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                studentID = Convert.ToInt32(reader["StudentID"]);
-                                classID = Convert.ToInt32(reader["ClassID"]);
-                            }
-                            else
-                            {
-                                MessageBox.Show($"Could not find StudentID for '{studentName}'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
-                        }
-                    }
+                    // Step 1: Check if a record already exists
+                    string checkQuery = @"SELECT COUNT(*) FROM Attendance
+                                  WHERE StudentID = @StudentID AND ClassID = @ClassID AND AttendanceDate = @AttendanceDate";
 
-                    // *** IMPORTANT: Replace this with your actual logic to get the current UserID ***
-                    int currentUserID = GetCurrentUserID(); // Implement this method
-
-                    // Check if an attendance record exists for the StudentID on the given date
-                    string checkQuery = "SELECT COUNT(*) FROM Attendance WHERE StudentID = ? AND AttendanceDate = ?";
                     using (OleDbCommand checkCmd = new OleDbCommand(checkQuery, conn))
                     {
-                        checkCmd.Parameters.AddWithValue("?", studentID);
-                        checkCmd.Parameters.AddWithValue("?", date.Date); // Use AttendanceDate
-                        int recordCount = (int)checkCmd.ExecuteScalar();
+                        checkCmd.Parameters.AddWithValue("@StudentID", studentID);
+                        checkCmd.Parameters.AddWithValue("@ClassID", classID);
+                        checkCmd.Parameters.AddWithValue("@AttendanceDate", attendanceDate.Date);
 
-                        if (recordCount > 0)
+                        int count = (int)checkCmd.ExecuteScalar();
+
+                        if (count > 0)
                         {
-                            // Update existing record using StudentID
+                            // Record exists: UPDATE it
                             string updateQuery = @"UPDATE Attendance
-                                           SET Status = ?, UserID = ?, ClassID = ?
-                                           WHERE StudentID = ? AND AttendanceDate = ?";
+                                           SET Status = @Status, TeacherID = @TeacherID
+                                           WHERE StudentID = @StudentID AND ClassID = @ClassID AND AttendanceDate = @AttendanceDate";
+
                             using (OleDbCommand updateCmd = new OleDbCommand(updateQuery, conn))
                             {
-                                updateCmd.Parameters.AddWithValue("?", status);
-                                updateCmd.Parameters.AddWithValue("?", currentUserID); // Use the actual UserID
-                                updateCmd.Parameters.AddWithValue("?", classID);
-                                updateCmd.Parameters.AddWithValue("?", studentID);
-                                updateCmd.Parameters.AddWithValue("?", date.Date); // Use AttendanceDate
+                                updateCmd.Parameters.AddWithValue("@Status", status);
+                                updateCmd.Parameters.AddWithValue("@TeacherID", UserID);
+                                updateCmd.Parameters.AddWithValue("@StudentID", studentID);
+                                updateCmd.Parameters.AddWithValue("@ClassID", classID);
+                                updateCmd.Parameters.AddWithValue("@AttendanceDate", attendanceDate.Date);
+
                                 updateCmd.ExecuteNonQuery();
                             }
                         }
                         else
                         {
-                            // Insert a new record including UserID and ClassID
-                            string insertQuery = @"INSERT INTO Attendance (StudentID, AttendanceDate, Status, UserID, ClassID)
-                                           VALUES (?, ?, ?, ?, ?)";
+                            // Record does not exist: INSERT new
+                            string insertQuery = @"INSERT INTO Attendance (StudentID, ClassID, AttendanceDate, Status, TeacherID)
+                                           VALUES (@StudentID, @ClassID, @AttendanceDate, @Status, @TeacherID)";
+
                             using (OleDbCommand insertCmd = new OleDbCommand(insertQuery, conn))
                             {
-                                insertCmd.Parameters.AddWithValue("?", studentID);
-                                insertCmd.Parameters.AddWithValue("?", date.Date); // Use AttendanceDate
-                                insertCmd.Parameters.AddWithValue("?", status);
-                                insertCmd.Parameters.AddWithValue("?", currentUserID); // Use the actual UserID
-                                insertCmd.Parameters.AddWithValue("?", classID);
+                                insertCmd.Parameters.AddWithValue("@StudentID", studentID);
+                                insertCmd.Parameters.AddWithValue("@ClassID", classID);
+                                insertCmd.Parameters.AddWithValue("@AttendanceDate", attendanceDate.Date);
+                                insertCmd.Parameters.AddWithValue("@Status", status);
+                                insertCmd.Parameters.AddWithValue("@TeacherID", UserID);
+
                                 insertCmd.ExecuteNonQuery();
                             }
                         }
@@ -264,16 +308,30 @@ namespace Final_Project.PAL.User_Control
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error updating attendance: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error updating attendance in database: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        // You need to implement this method to get the current UserID
-        private int GetCurrentUserID()
+        // FilterAttendanceByDate might not be necessary if LoadAttendanceForSelectedClassAndDate
+        // is called on dateTimePicker1_ValueChanged and correctly reloads the grid.
+        // If you use it, ensure it's compatible with how data is loaded.
+        private void FilterAttendanceByDate(DateTime selectedDate)
         {
-            // Replace this with your actual logic to retrieve the logged-in user's ID
-            // For example, you might get it from a session variable, a global property, etc.
-            return 1; // Placeholder - ensure this is a valid UserID from your Users table
+            if (dataGridViewMarkAttendance.DataSource is DataTable attendanceTable)
+            {
+                // Apply a filter to the DataTable to show only rows matching the selected date
+                // Note: OleDb date literals are usually enclosed in # in Access SQL.
+                // Ensure the format matches your database expectations.
+                try
+                {
+                    attendanceTable.DefaultView.RowFilter = $"AttendanceDate = #{selectedDate:MM/dd/yyyy}#";
+                }
+                catch (Exception ex)
+                {
+                    // Handle potential errors if AttendanceDate column is not a DateTime type after all, or filter is malformed
+                    MessageBox.Show("Error filtering by date: " + ex.Message, "Filter Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
     }
 }

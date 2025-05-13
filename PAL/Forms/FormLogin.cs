@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Final_Project.PAL.Forms
 {
@@ -15,7 +17,10 @@ namespace Final_Project.PAL.Forms
     {
         OleDbConnection Account_DataBase_Conn;
         OleDbCommand Account_DataBase_Command;
-        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Users\joshlee rash\Downloads\DatabaseHere.accdb";
+        public static int LoggedInUserID {  get; private set; }
+        //private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Users\joshlee rash\Downloads\DatabaseHere.accdb";
+        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Database Files\Attendance Management\DatabaseHere (Final).accdb";
+
 
         public FormLogin()
         {
@@ -126,7 +131,7 @@ namespace Final_Project.PAL.Forms
                     conn.Open();
 
                     // Try logging in as a teacher
-                    string teacherQuery = "SELECT TeacherID, TeacherName FROM TeacherAccount WHERE TeacherName = ? AND Password = ?";
+                    string teacherQuery = "SELECT TeacherID, TeacherName FROM TeacherAccount WHERE StrComp(TeacherName, ?, 0) = 0 AND StrComp([Password], ?, 0) = 0";
                     using (OleDbCommand teacherCmd = new OleDbCommand(teacherQuery, conn))
                     {
                         teacherCmd.Parameters.AddWithValue("?", username); // Using TeacherName as username
@@ -138,6 +143,10 @@ namespace Final_Project.PAL.Forms
                             {
                                 string loggedInTeacherName = teacherReader["TeacherName"].ToString();
                                 int teacherID = Convert.ToInt32(teacherReader["TeacherID"]);
+                                LoggedInUserID = teacherID;
+
+                                // Show MessageBox with Teacher ID
+                                MessageBox.Show($"Logged in as Teacher. ID: {teacherID}", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 FormMain mainForm = new FormMain
                                 {
@@ -154,7 +163,7 @@ namespace Final_Project.PAL.Forms
                     }
 
                     // If teacher login failed, try logging in as a student
-                    string studentQuery = "SELECT StudentID, StudentName FROM StudentAccount WHERE StudentName = ? AND Password = ?";
+                    string studentQuery = "SELECT StudentID, StudentName FROM StudentAccount WHERE StrComp(StudentName, ?, 0) = 0 AND StrComp([Password], ?, 0) = 0";
                     using (OleDbCommand studentCmd = new OleDbCommand(studentQuery, conn))
                     {
                         studentCmd.Parameters.AddWithValue("?", username); // Using StudentName as username
@@ -166,6 +175,10 @@ namespace Final_Project.PAL.Forms
                             {
                                 int studentID = Convert.ToInt32(studentReader["StudentID"]);
                                 string loggedInStudentName = studentReader["StudentName"].ToString();
+                                LoggedInUserID = studentID;
+
+                                // Show MessageBox with Student ID
+                                MessageBox.Show($"Logged in as Student. ID: {studentID}", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 FormStudentAccess studentAccessForm = new FormStudentAccess
                                 {
@@ -201,6 +214,21 @@ namespace Final_Project.PAL.Forms
         private void buttonTestLogin_Click(object sender, EventArgs e)
         {
            
+        }
+
+        public string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(password);
+                byte[] hash = sha256.ComputeHash(bytes);
+                StringBuilder builder = new StringBuilder();
+                foreach (byte b in hash)
+                {
+                    builder.Append(b.ToString("x2")); // Convert to hex
+                }
+                return builder.ToString();
+            }
         }
 
         private void buttonLogin_Click_1(object sender, EventArgs e)

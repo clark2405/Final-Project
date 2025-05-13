@@ -47,10 +47,28 @@
             toolTip1 = new ToolTip(components);
             panel3 = new Panel();
             timer1 = new System.Windows.Forms.Timer(components);
+            panel5 = new Panel();
+            label5 = new Label();
+            panel6 = new Panel();
+            textBox2 = new TextBox();
+            label6 = new Label();
+            label7 = new Label();
+            button1 = new Button();
+            panel7 = new Panel();
+            pictureBox2 = new PictureBox();
+            button2 = new Button();
+            textBox3 = new TextBox();
+            label8 = new Label();
+            pictureBox3 = new PictureBox();
+            pictureBox4 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxError).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
+            panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -233,12 +251,174 @@
             // 
             timer1.Tick += timer1_Tick;
             // 
+            // panel5
+            // 
+            panel5.BackColor = Color.White;
+            panel5.Controls.Add(label5);
+            panel5.Controls.Add(panel6);
+            panel5.Controls.Add(textBox2);
+            panel5.Controls.Add(label6);
+            panel5.Controls.Add(label7);
+            panel5.Controls.Add(button1);
+            panel5.Controls.Add(panel7);
+            panel5.Controls.Add(pictureBox2);
+            panel5.Controls.Add(button2);
+            panel5.Controls.Add(textBox3);
+            panel5.Controls.Add(label8);
+            panel5.Controls.Add(pictureBox3);
+            panel5.Controls.Add(pictureBox4);
+            panel5.Location = new Point(587, 12);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(569, 482);
+            panel5.TabIndex = 12;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Century Gothic", 7.20000029F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label5.Location = new Point(107, 365);
+            label5.Name = "label5";
+            label5.Size = new Size(408, 16);
+            label5.TabIndex = 16;
+            label5.Text = "Input the OTP verification code that you received in your email";
+            // 
+            // panel6
+            // 
+            panel6.BackColor = Color.LightGray;
+            panel6.Location = new Point(157, 412);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(270, 2);
+            panel6.TabIndex = 14;
+            // 
+            // textBox2
+            // 
+            textBox2.BorderStyle = BorderStyle.None;
+            textBox2.Font = new Font("Century Gothic", 10F);
+            textBox2.ForeColor = Color.DarkGray;
+            textBox2.Location = new Point(157, 384);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(270, 21);
+            textBox2.TabIndex = 15;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.ForeColor = SystemColors.MenuHighlight;
+            label6.Location = new Point(274, 300);
+            label6.Name = "label6";
+            label6.Size = new Size(44, 20);
+            label6.TabIndex = 13;
+            label6.Text = "00:00";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Century Gothic", 7.20000029F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label7.Location = new Point(121, 273);
+            label7.Name = "label7";
+            label7.Size = new Size(375, 16);
+            label7.TabIndex = 12;
+            label7.Text = "A new OTP code will be generated when the time expires";
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.Maroon;
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(250, 323);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 11;
+            button1.Text = "Send";
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.LightGray;
+            panel7.Location = new Point(157, 259);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(270, 2);
+            panel7.TabIndex = 0;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Cursor = Cursors.Hand;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(433, 235);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(19, 17);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 10;
+            pictureBox2.TabStop = false;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.Maroon;
+            button2.Cursor = Cursors.Hand;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold);
+            button2.ForeColor = Color.White;
+            button2.Image = (Image)resources.GetObject("button2.Image");
+            button2.ImageAlign = ContentAlignment.MiddleLeft;
+            button2.Location = new Point(157, 421);
+            button2.Name = "button2";
+            button2.Size = new Size(270, 38);
+            button2.TabIndex = 2;
+            button2.Text = "Verify";
+            button2.UseVisualStyleBackColor = false;
+            // 
+            // textBox3
+            // 
+            textBox3.BorderStyle = BorderStyle.None;
+            textBox3.Font = new Font("Century Gothic", 10F);
+            textBox3.ForeColor = Color.DarkGray;
+            textBox3.Location = new Point(157, 231);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(270, 21);
+            textBox3.TabIndex = 1;
+            textBox3.Text = "juandelacruz@gmail.com";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(157, 209);
+            label8.Name = "label8";
+            label8.Size = new Size(161, 19);
+            label8.TabIndex = 7;
+            label8.Text = "Username or Email";
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictureBox3.Cursor = Cursors.Hand;
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(572, 31);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(158, 146);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 2;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictureBox4.Cursor = Cursors.Hand;
+            pictureBox4.Image = Properties.Resources.images;
+            pictureBox4.Location = new Point(895, 12);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(31, 31);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox4.TabIndex = 1;
+            pictureBox4.TabStop = false;
+            // 
             // FormForgotPassword
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Brown;
-            ClientSize = new Size(593, 506);
+            ClientSize = new Size(1167, 506);
+            Controls.Add(panel5);
             Controls.Add(panel3);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -251,6 +431,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxError).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).EndInit();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
         }
 
@@ -273,5 +458,19 @@
         private Panel panel4;
         private TextBox textBox1;
         private Label label4;
+        private Panel panel5;
+        private Label label5;
+        private Panel panel6;
+        private TextBox textBox2;
+        private Label label6;
+        private Label label7;
+        private Button button1;
+        private Panel panel7;
+        private PictureBox pictureBox2;
+        private Button button2;
+        private TextBox textBox3;
+        private Label label8;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox4;
     }
 }

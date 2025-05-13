@@ -10,12 +10,12 @@ namespace Final_Project.PAL.User_Control
         private OleDbConnection connection;
         OleDbConnection myConn;
         OleDbCommand cmd;
-        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Users\joshlee rash\Downloads\DatabaseHere.accdb";
-
-        public UserControl1AddStudentcs()
+        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Database Files\Attendance Management\DatabaseHere (Final).accdb";
+        public int UserID { get; set; }
+        public UserControl1AddStudentcs(int userID)
         {
             InitializeComponent();
-
+            UserID =  userID;
             // Initialize database connection
             connection = new OleDbConnection(connectionString);
 
@@ -27,6 +27,7 @@ namespace Final_Project.PAL.User_Control
             LoadClasses();
             LoadStudents();
             ConfigureDataGridView();
+            CountStudents();
         }
 
         private void LoadClasses()
@@ -36,8 +37,10 @@ namespace Final_Project.PAL.User_Control
                 using (OleDbConnection loadConnection = new OleDbConnection(connectionString))
                 {
                     loadConnection.Open();
-                    string query = "SELECT ClassID, ClassName FROM Class ORDER BY ClassName";
+                    // Modify query to filter classes by the logged-in user's ID
+                    string query = "SELECT ClassID, ClassName FROM Class WHERE TeacherID = ? ORDER BY ClassName";
                     OleDbCommand cmd = new OleDbCommand(query, loadConnection);
+                    cmd.Parameters.AddWithValue("@TeacherID", UserID); // Use the logged-in teacher's ID
 
                     DataTable dt = new DataTable();
                     dt.Load(cmd.ExecuteReader());
@@ -67,10 +70,13 @@ namespace Final_Project.PAL.User_Control
                 {
                     loadConnection.Open();
 
-                    // Simple query to get all students
-                    string query = "SELECT * FROM AddStudent";
+                    // Query to get only the students added by the logged-in teacher
+                    string query = "SELECT * FROM AddStudent WHERE TeacherID = ?";
 
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(query, loadConnection);
+                    OleDbCommand cmd = new OleDbCommand(query, loadConnection);
+                    cmd.Parameters.AddWithValue("@TeacherID", UserID); // Filter by the logged-in teacher's ID
+
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
 
@@ -125,9 +131,7 @@ namespace Final_Project.PAL.User_Control
                 return;
             }
 
-            // Declare regNo variable outside the if block
-            int regNo;
-            if (!int.TryParse(textBoxRegNo.Text, out regNo))
+            if (!int.TryParse(textBoxRegNo.Text, out int regNo))
             {
                 MessageBox.Show("Please enter a valid registration number", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -135,7 +139,7 @@ namespace Final_Project.PAL.User_Control
 
             // Get selected class ID and name
             int classID = Convert.ToInt32(comboBoxClass.SelectedValue);
-            string className = comboBoxClass.Text; // Get the ClassName directly
+            string className = comboBoxClass.Text;
 
             // Get gender
             string gender = radioButtonMale.Checked ? "Male" : "Female";
@@ -146,15 +150,71 @@ namespace Final_Project.PAL.User_Control
                 {
                     connection.Open();
 
+                    // Check gender limits in the Class table
+                    string classQuery = "SELECT MaleNumber, FemaleNumber FROM Class WHERE ClassID = ?";
+                    using (var classCmd = new OleDbCommand(classQuery, connection))
+                    {
+                        classCmd.Parameters.AddWithValue("@ClassID", classID);
+                        using (var reader = classCmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int maleLimit = Convert.ToInt32(reader["MaleNumber"]);
+                                int femaleLimit = Convert.ToInt32(reader["FemaleNumber"]);
+
+                                // Count existing students by gender in the AddStudent table
+                                string countQuery = "SELECT Gender, COUNT(Gender) AS GenderCount FROM AddStudent WHERE ClassID = ? GROUP BY Gender";
+                                using (var countCmd = new OleDbCommand(countQuery, connection))
+                                {
+                                    countCmd.Parameters.AddWithValue("@ClassID", classID);
+                                    using (var countReader = countCmd.ExecuteReader())
+                                    {
+                                        int currentMaleCount = 0;
+                                        int currentFemaleCount = 0;
+
+                                        while (countReader.Read())
+                                        {
+                                            string existingGender = countReader["Gender"]?.ToString() ?? string.Empty;
+                                            int count = Convert.ToInt32(countReader["GenderCount"]);
+
+                                            if (existingGender == "Male")
+                                                currentMaleCount = count;
+                                            else if (existingGender == "Female")
+                                                currentFemaleCount = count;
+                                        }
+
+                                        // Check if adding the new student exceeds the gender limit
+                                        if (gender == "Male" && currentMaleCount >= maleLimit)
+                                        {
+                                            MessageBox.Show("The male student limit for this class has been reached.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            return;
+                                        }
+                                        else if (gender == "Female" && currentFemaleCount >= femaleLimit)
+                                        {
+                                            MessageBox.Show("The female student limit for this class has been reached.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Class not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+                    }
+
                     // Insert the student using both ClassID and Class
-                    string studentQuery = "INSERT INTO AddStudent (Name, RegNo, ClassID, Class, Gender) VALUES (?, ?, ?, ?, ?)";
+                    string studentQuery = "INSERT INTO AddStudent (Name, RegNo, ClassID, Class, Gender, TeacherID) VALUES (?, ?, ?, ?, ?, ?)";
                     using (var studentCmd = new OleDbCommand(studentQuery, connection))
                     {
                         studentCmd.Parameters.AddWithValue("@Name", textBoxName.Text.Trim());
-                        studentCmd.Parameters.AddWithValue("@RegNo", regNo); // regNo is now accessible here
-                        studentCmd.Parameters.AddWithValue("@ClassID", classID); // Use ClassID here
-                        studentCmd.Parameters.AddWithValue("@Class", className); // Use Class name here
+                        studentCmd.Parameters.AddWithValue("@RegNo", regNo);
+                        studentCmd.Parameters.AddWithValue("@ClassID", classID);
+                        studentCmd.Parameters.AddWithValue("@Class", className);
                         studentCmd.Parameters.AddWithValue("@Gender", gender);
+                        studentCmd.Parameters.AddWithValue("@TeacherID", UserID);
 
                         int studentResult = studentCmd.ExecuteNonQuery();
 
@@ -296,78 +356,32 @@ namespace Final_Project.PAL.User_Control
 
             try
             {
-                // Get selected student data
+                // Get selected student data  
                 DataGridViewRow selectedRow = dataGridViewStudent.SelectedRows[0];
 
-                // Check if the necessary columns exist
-                if (!selectedRow.DataGridView.Columns.Contains("RegNo"))
-                {
-                    MessageBox.Show("RegNo column not found in the grid. Please check column names.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                // Use Name as the unique identifier for a student  
+                string studentName = selectedRow.Cells["Name"].Value.ToString();
 
-                // Use RegNo as the unique identifier for a student
-                int regNo = Convert.ToInt32(selectedRow.Cells["RegNo"].Value);
-
-                // Get ClassID and Gender if they exist
-                int classID = 0;
-                string gender = "";
-
-                if (selectedRow.DataGridView.Columns.Contains("ClassID"))
-                {
-                    classID = Convert.ToInt32(selectedRow.Cells["ClassID"].Value);
-                }
-
-                if (selectedRow.DataGridView.Columns.Contains("Gender"))
-                {
-                    gender = selectedRow.Cells["Gender"].Value.ToString();
-                }
-
-                if (MessageBox.Show("Are you sure you want to delete this student?", "Confirm Delete",
+                if (MessageBox.Show($"Are you sure you want to delete the student '{studentName}'?", "Confirm Delete",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    // Always create a new connection for each operation
+                    // Always create a new connection for each operation  
                     using (OleDbConnection conn = new OleDbConnection(connectionString))
                     {
                         conn.Open();
 
-                        // 1. Delete the student using RegNo (unique identifier)
-                        string deleteQuery = "DELETE FROM AddStudent WHERE RegNo = ?";
+                        // Delete the student using Name  
+                        string deleteQuery = "DELETE FROM AddStudent WHERE Name = ?";
                         OleDbCommand deleteCmd = new OleDbCommand(deleteQuery, conn);
-                        deleteCmd.Parameters.AddWithValue("?", regNo);
+                        deleteCmd.Parameters.AddWithValue("?", studentName);
 
                         int deleteResult = deleteCmd.ExecuteNonQuery();
 
                         if (deleteResult > 0)
                         {
-                            // 2. Update class statistics if ClassID is valid
-                            if (classID > 0)
-                            {
-                                try
-                                {
-                                    string updateClassQuery = @"UPDATE Class SET 
-                                                 QuantityStudents = QuantityStudents - 1,
-                                                 MaleNumber = IIF(? = 'Male', MaleNumber - 1, MaleNumber),
-                                                 FemaleNum = IIF(? = 'Female', FemaleNum - 1, FemaleNum)
-                                                 WHERE ClassID = ?";
-                                    OleDbCommand updateCmd = new OleDbCommand(updateClassQuery, conn);
-                                    updateCmd.Parameters.AddWithValue("?", gender);
-                                    updateCmd.Parameters.AddWithValue("?", gender);
-                                    updateCmd.Parameters.AddWithValue("?", classID);
-
-                                    updateCmd.ExecuteNonQuery();
-                                }
-                                catch (Exception ex)
-                                {
-                                    // Just log this error but continue - the student is already deleted
-                                    //MessageBox.Show("Warning: Student deleted but class statistics could not be updated: " + ex.Message,
-                                    //    "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                }
-                            }
-
                             MessageBox.Show("Student deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            // Clear update fields
+                            // Clear update fields  
                             textBoxName1.Clear();
                             comboBoxClass1.SelectedIndex = -1;
                             textBoxRegNo1.Clear();
@@ -378,9 +392,9 @@ namespace Final_Project.PAL.User_Control
                             MessageBox.Show("No student was deleted. The student may no longer exist in the database.",
                                 "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
-                    } // Connection is automatically closed here
+                    } // Connection is automatically closed here  
 
-                    // Refresh the student list - with a new connection
+                    // Refresh the student list  
                     LoadStudents();
                     LoadClasses();
                 }
@@ -388,6 +402,30 @@ namespace Final_Project.PAL.User_Control
             catch (Exception ex)
             {
                 MessageBox.Show("Error deleting student: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void CountStudents()
+        {
+            try
+            {
+                using (OleDbConnection countConnection = new OleDbConnection(connectionString))
+                {
+                    countConnection.Open();
+
+                    // Query to count students added by the logged-in teacher
+                    string query = "SELECT COUNT(*) FROM AddStudent WHERE TeacherID = ?";
+                    OleDbCommand cmd = new OleDbCommand(query, countConnection);
+                    cmd.Parameters.AddWithValue("@TeacherID", UserID);
+
+                    int studentCount = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    // Update the label with the student count
+                    labelCountStudent.Text = $"{studentCount}";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error counting students: " + ex.Message);
             }
         }
     }

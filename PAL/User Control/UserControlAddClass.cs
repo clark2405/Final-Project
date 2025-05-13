@@ -16,7 +16,7 @@ namespace Final_Project.PAL.User_Control
     {
         OleDbConnection myConn;
         OleDbCommand cmd;
-        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Users\joshlee rash\Downloads\DatabaseHere.accdb";
+        private string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Database Files\Attendance Management\DatabaseHere (Final).accdb";
 
         // Public properties to store selected class data
         public static string SelectedClassName { get; set; }
@@ -24,10 +24,12 @@ namespace Final_Project.PAL.User_Control
         public static string SelectedMale { get; set; }
         public static string SelectedFemale { get; set; }
         public static int SelectedClassID { get; set; }
+        public int UserID { get; set; }
 
-        public UserControlAddClass()
+        public UserControlAddClass(int userID)
         {
             InitializeComponent();
+            UserID = userID;
             LoadClass();
             TestConnection();
             labelTotalClass.Text = LoadLabel().ToString();
@@ -88,7 +90,7 @@ namespace Final_Project.PAL.User_Control
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            string addInfo = "INSERT INTO Class (ClassName, QuantityStudents, MaleNumber, FemaleNumber) VALUES (?, ?, ?, ?)";
+            string addInfo = "INSERT INTO Class (ClassName, QuantityStudents, MaleNumber, FemaleNumber, TeacherID) VALUES (?, ?, ?, ?, ?)";
             myConn = new OleDbConnection(connectionString);
 
             try
@@ -117,13 +119,11 @@ namespace Final_Project.PAL.User_Control
                     return;
                 }
 
-                // The following line was REMOVED:
-                // cmd.Parameters.AddWithValue("@UserID", 1);
-
                 cmd.Parameters.AddWithValue("@ClassName", name);
                 cmd.Parameters.AddWithValue("@QuantityStudents", quantity);
                 cmd.Parameters.AddWithValue("@MaleNumber", maleCount);
                 cmd.Parameters.AddWithValue("@FemaleNumber", femaleCount);
+                cmd.Parameters.AddWithValue("@TeacherID", UserID); // Store the UserID in the Class table
 
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Class Added Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -145,27 +145,29 @@ namespace Final_Project.PAL.User_Control
 
         private void LoadClass()
         {
-            string query = @"SELECT ClassID, ClassName, QuantityStudents, MaleNumber, FemaleNumber
-                       FROM Class";
+            string query = @"SELECT ClassID, ClassName, QuantityStudents, MaleNumber, FemaleNumber  
+                            FROM Class  
+                            WHERE TeacherID = ?"; // Filter classes by the current user's ID  
 
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
                 try
                 {
                     OleDbDataAdapter adapter = new OleDbDataAdapter(query, connection);
+                    adapter.SelectCommand.Parameters.AddWithValue("@TeacherID", UserID); // Pass the current user's ID  
+
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
 
                     dataGridViewClass.Columns.Clear();
                     dataGridViewClass.DataSource = dt;
 
-                    // Rename columns for better readability
+                    // Rename columns for better readability  
                     if (dataGridViewClass.Columns.Contains("ClassID")) dataGridViewClass.Columns["ClassID"].HeaderText = "Class ID";
                     if (dataGridViewClass.Columns.Contains("ClassName")) dataGridViewClass.Columns["ClassName"].HeaderText = "Class Name";
                     if (dataGridViewClass.Columns.Contains("QuantityStudents")) dataGridViewClass.Columns["QuantityStudents"].HeaderText = "Total Students";
                     if (dataGridViewClass.Columns.Contains("MaleNumber")) dataGridViewClass.Columns["MaleNumber"].HeaderText = "Male Students";
                     if (dataGridViewClass.Columns.Contains("FemaleNumber")) dataGridViewClass.Columns["FemaleNumber"].HeaderText = "Female Students";
-                    // The JOIN with the Users table is no longer needed and has been removed.
                 }
                 catch (OleDbException ex)
                 {
@@ -450,7 +452,7 @@ namespace Final_Project.PAL.User_Control
         }
         private int LoadLabel()
         {
-            string query = "SELECT COUNT(*) FROM Class";
+            string query = "SELECT COUNT(*) FROM Class WHERE TeacherID = ?";
 
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
@@ -459,6 +461,7 @@ namespace Final_Project.PAL.User_Control
                     connection.Open();
                     using (OleDbCommand command = new OleDbCommand(query, connection))
                     {
+                        command.Parameters.AddWithValue("@TeacherID", UserID); // Filter by the current user's ID
                         object result = command.ExecuteScalar();
                         if (result != null && int.TryParse(result.ToString(), out int totalClasses))
                         {

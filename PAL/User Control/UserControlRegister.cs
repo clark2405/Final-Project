@@ -13,11 +13,12 @@ namespace Final_Project.PAL.User_Control
     public partial class UserControlRegister : UserControl
     {
         // Connection string to the Access database
-        private string accessConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source= C:\Users\joshlee rash\Downloads\DatabaseHere.accdb";
-
-        public UserControlRegister()
+        private string accessConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Database Files\Attendance Management\DatabaseHere (Final).accdb";
+        public int UserID { get; set; }
+        public UserControlRegister(int userID)
         {
             InitializeComponent();
+            UserID = userID;
             InitializeInputPlaceholders();
             SetupInputValidation();
             LoadAccountData(); // Load all data initially
@@ -188,7 +189,31 @@ namespace Final_Project.PAL.User_Control
 
         private void buttonAdd_Click_1(object sender, EventArgs e)
         {
+            //aqrd tszf pecv iibd app password
             RegisterStudent(); // Directly register a student
+        }
+
+        private bool IsStudentInAddStudentTable(string studentName)
+        {
+            string query = "SELECT COUNT(*) FROM AddStudent WHERE Name = ?";
+            using (var connection = new OleDbConnection(accessConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (var cmd = new OleDbCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("?", studentName);
+                        int count = (int)cmd.ExecuteScalar();
+                        return count > 0; // Return true if the student exists
+                    }
+                }
+                catch (OleDbException ex)
+                {
+                    MessageBox.Show($"Database Error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
         }
 
         private void RegisterStudent()
@@ -196,11 +221,19 @@ namespace Final_Project.PAL.User_Control
             if (!AreInputsValid()) return;
 
             string studentName = textBoxFullName.Text;
+
+            // Check if the student exists in the AddStudent table
+            if (!IsStudentInAddStudentTable(studentName))
+            {
+                MessageBox.Show("The student does not exist in the AddStudent table. Please add the student first.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string studentEmail = textBoxEmail.Text;
             string schoolId = textBoxID.Text == textBoxID.Tag?.ToString() ? null : textBoxID.Text;
             string password = textBoxPassword.Text;
             DateTime birthday = DateTime.Parse(((MaskedTextBox)dateTimePickerDOB).Text).Date;
-            string gender = radioButtonMale.Checked ? "Male" : (radioButtonFemale.Checked ? "Female" : null); // Capture gender here
+            string gender = radioButtonMale.Checked ? "Male" : (radioButtonFemale.Checked ? "Female" : null);
             string address = textBoxAddress.Text == textBoxAddress.Tag?.ToString() ? null : textBoxAddress.Text;
 
             using (var connection = new OleDbConnection(accessConnectionString))
@@ -233,7 +266,7 @@ namespace Final_Project.PAL.User_Control
 
         private void InsertStudentAccount(OleDbConnection connection, OleDbTransaction transaction, string studentName, string studentEmail, string schoolId, string password, DateTime birthday, string gender, string address)
         {
-            const string query = @"INSERT INTO [StudentAccount] ([StudentName], [StudentEmail], [SchoolID], [Password], [Birthday], [Gender], [Address]) VALUES (?, ?, ?, ?, ?, ?, ?)"; // Removed StudentID as it's AutoNumber
+            const string query = @"INSERT INTO [StudentAccount] ([StudentName], [StudentEmail], [SchoolID], [Password], [Birthday], [Gender], [Address], TeacherID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"; // Removed StudentID as it's AutoNumber
             using (var cmd = new OleDbCommand(query, connection, transaction))
             {
                 cmd.Parameters.AddWithValue("@StudentName", studentName);
@@ -243,7 +276,27 @@ namespace Final_Project.PAL.User_Control
                 cmd.Parameters.AddWithValue("@Birthday", birthday.Date);
                 cmd.Parameters.AddWithValue("@Gender", string.IsNullOrEmpty(gender) ? DBNull.Value : gender); // Save gender here
                 cmd.Parameters.AddWithValue("@Address", string.IsNullOrEmpty(address) ? DBNull.Value : address);
+                cmd.Parameters.AddWithValue("@TeacherID", UserID);
                 cmd.ExecuteNonQuery();
+            }
+            try
+            {
+                MailMessage mailMessage = new MailMessage();
+                mailMessage.From = new MailAddress("clarkjaca@gmail.com");
+                mailMessage.To.Add(studentEmail);
+                mailMessage.Subject = "Student Account Registration";
+                mailMessage.Body = $"Hello {studentName},\n\nYour account has been successfully registered.\n\nUsername: {studentName}\nPassword: {password}\n\nBest regards,\nThe Team";
+
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587)
+                {
+                    Credentials = new System.Net.NetworkCredential("clarkjaca@gmail.com", "aqrd tszf pecv iibd"),
+                    EnableSsl = true
+                };
+                smtpClient.Send(mailMessage);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to send email: {ex.Message}", "Email Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -279,18 +332,18 @@ namespace Final_Project.PAL.User_Control
 
             string searchText = textBoxSearch.Text.Trim().ToUpper();
             string searchBy = combobxSearchBy.SelectedItem?.ToString();
-            string query = "SELECT StudentID, StudentName, StudentEmail, SchoolID, Password, Birthday, Gender, Address FROM StudentAccount";
+            string query = "SELECT StudentID, StudentName, StudentEmail, SchoolID, Password, Birthday, Gender, Address FROM StudentAccount WHERE TeacherID = @TeacherID"; // Filter by TeacherID
             string whereClause = "";
 
             if (!string.IsNullOrEmpty(searchText) && searchText != "SEARCH...")
             {
                 if (searchBy == "Student Name")
                 {
-                    whereClause = " WHERE UCase(StudentName) LIKE @SearchText";
+                    whereClause = " AND UCase(StudentName) LIKE @SearchText";
                 }
                 else if (searchBy == "Student ID")
                 {
-                    whereClause = " WHERE UCase(SchoolID) LIKE @SearchText";
+                    whereClause = " AND UCase(SchoolID) LIKE @SearchText";
                 }
             }
 
@@ -303,6 +356,7 @@ namespace Final_Project.PAL.User_Control
                     connection.Open();
                     using (var cmd = new OleDbCommand(query, connection))
                     {
+                        cmd.Parameters.AddWithValue("@TeacherID", UserID); // Add TeacherID parameter
                         if (!string.IsNullOrEmpty(searchText) && searchText != "SEARCH...")
                         {
                             cmd.Parameters.AddWithValue("@SearchText", "%" + searchText + "%");

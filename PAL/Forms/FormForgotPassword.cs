@@ -8,33 +8,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MailKit.Security;
+using MimeKit;
 
 // Add this reference
 using System.Data.Common;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace Final_Project.PAL.Forms
 {
-    public partial class FormForgotPassword : Form
+    public partial class FormForgotPassword : BaseForm
     {
-
+        private string verificationCode;
+        private string userEmail;
         int cd = 30;
 
         public FormForgotPassword()
         {
             InitializeComponent();
-        }
-
-        private bool IsValidEmail(string email)
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
@@ -46,7 +37,6 @@ namespace Final_Project.PAL.Forms
         {
             toolTip1.SetToolTip(pictureBoxClose, "Close");
         }
-
         private void textBoxEmail_Enter(object sender, EventArgs e)
         {
             if (textBoxEmail.Text == "juandelacruz@gmail.com")
@@ -55,7 +45,7 @@ namespace Final_Project.PAL.Forms
                 textBoxEmail.ForeColor = Color.Black;
             }
 
-            if (!IsValidEmail(textBoxEmail.Text) || textBoxEmail.Text == "juandelacruz@gmail.com")
+            if (!IsEmailRegistered(textBoxEmail.Text) || textBoxEmail.Text == "juandelacruz@gmail.com")
                 pictureBoxError.Show();
             else
                 pictureBoxError.Hide();
@@ -69,7 +59,7 @@ namespace Final_Project.PAL.Forms
                 textBoxEmail.ForeColor = Color.DarkGray;
             }
 
-            if (!IsValidEmail(textBoxEmail.Text) || textBoxEmail.Text == "juandelacruz@gmail.com")
+            if (!IsEmailRegistered(textBoxEmail.Text) || textBoxEmail.Text == "juandelacruz@gmail.com")
                 pictureBoxError.Show();
             else
                 pictureBoxError.Hide();
@@ -82,59 +72,16 @@ namespace Final_Project.PAL.Forms
 
         private void buttonVerify_Click(object sender, EventArgs e)
         {
-            string email = textBoxEmail.Text.Trim();
-
-            if (!IsValidEmail(email) || email == "juandelacruz@gmail.com")
+            if (textBox1.Text == verificationCode)
             {
-                MessageBox.Show("Invalid Email!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show("Code verified. You can now reset your password.");
+                ChangePassword change = new ChangePassword();
+                change.Show();
+                this.Hide();
             }
-
-            // Check if email exists in database
-            try
+            else
             {
-                using (OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\\Users\\joshlee rash\\Downloads\\DatabaseHere.accdb;"))
-                {
-                    connection.Open();
-                    string query = "SELECT UserID, Username FROM Users WHERE Email = @Email";
-
-                    using (OleDbCommand command = new OleDbCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@Email", email);
-
-                        using (DbDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                // Email exists in database
-                                int userId = Convert.ToInt32(reader["UserID"]);
-                                string username = reader["Username"]?.ToString() ?? string.Empty;
-
-                                // In a real application, you would:
-                                // 1. Generate a password reset token
-                                // 2. Store it in the database with an expiration time
-                                // 3. Send an email with a reset link
-
-                                // For this demo, we'll just show a success message
-                                MessageBox.Show($"Password reset instructions sent to {email} for user: {username}",
-                                    "Email Sent", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                Close();
-                            }
-                            else
-                            {
-                                // Email not found
-                                MessageBox.Show("No account found with this email address.",
-                                    "Email Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error verifying email: " + ex.Message,
-                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Incorrect verification code.");
             }
         }
 
@@ -172,14 +119,81 @@ namespace Final_Project.PAL.Forms
 
         private void buttonsend_Click(object sender, EventArgs e)
         {
-            string email = textBoxEmail.Text.Trim();
+            //string email = textBoxEmail.Text.Trim();
 
-            if (string.IsNullOrEmpty(email) || email == "juandelacruz@gmail.com" || !IsValidEmail(email))
+            //if (string.IsNullOrEmpty(email) || email == "juandelacruz@gmail.com" || !IsValidEmail(email))
+            //{
+            //  MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            // return;
+            //  }
+            //Countdown();
+
+            userEmail = textBoxEmail.Text.Trim();
+
+            if (string.IsNullOrEmpty(userEmail))
             {
-                MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please enter your registered email.");
                 return;
             }
-            Countdown();
+
+            if (IsEmailRegistered(userEmail)) // Use inherited method
+            {
+                verificationCode = GenerateVerificationCode();
+                if (SendVerificationEmail(userEmail, verificationCode))
+                {
+                    MessageBox.Show("A verification code has been sent to your email.");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to send email. Please try again.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("This email is not registered.");
+            }
         }
+
+        private string GenerateVerificationCode()
+        {
+            Random rnd = new Random();
+            return rnd.Next(100000, 999999).ToString();
+        }
+
+        private bool SendVerificationEmail(string recipientEmail, string verificationCode)
+        {
+            try
+            {
+                var message = new MimeMessage();
+                message.From.Add(new MailboxAddress("CheckPoint Support", "@yeshahahhaa@gmail.com"));
+                message.To.Add(MailboxAddress.Parse(recipientEmail));
+                message.Subject = "CheckPoint Password Reset Code";
+
+                message.Body = new TextPart("plain")
+                {
+                    Text = $"Hello,\n\nYour password reset verification code is: {verificationCode}\n\nIf you did not request this, please ignore this email.\n\n- CheckPoint Team"
+                };
+
+                using (var client = new MailKit.Net.Smtp.SmtpClient())
+                {
+                    client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+
+                    // IMPORTANT: Replace this with your Gmail App Password (not your actual Gmail password)
+                    client.Authenticate("yesshahahhaa@gmail.com", "czob ysvj bosb tiek");
+
+                    client.Send(message);
+                    client.Disconnect(true);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Email sending failed:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        
     }
 }

@@ -13,15 +13,16 @@ namespace Final_Project.PAL.User_Control
 {
     public partial class UserControlDashboard : UserControl
     {
-        private string accessConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;
-                                          Data Source= C:\Users\joshlee rash\Downloads\DatabaseHere.accdb";
+        private string accessConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= C:\Database Files\Attendance Management\DatabaseHere (Final).accdb";
+        public int UserID { get; set; }
 
-
-        public UserControlDashboard()
+        public UserControlDashboard(int userID)
         {
             InitializeComponent();
+            UserID = userID;
             Count();
         }
+
         public void Count()
         {
             try
@@ -30,25 +31,21 @@ namespace Final_Project.PAL.User_Control
                 {
                     connection.Open();
 
-                    // Query to count classes from the Class table
-                    string classQuery = "SELECT COUNT(*) FROM Class";
+                    // Query to count classes owned by the current user  
+                    string classQuery = "SELECT COUNT(*) FROM Class WHERE TeacherID = @UserID";
                     OleDbCommand classCmd = new OleDbCommand(classQuery, connection);
+                    classCmd.Parameters.AddWithValue("@UserID", UserID);
                     int classCount = (int)classCmd.ExecuteScalar();
 
-                    // Query to count students from the AddStudent table
-                    string studentQuery = "SELECT COUNT(*) FROM AddStudent";
+                    // Query to count students added by the current user  
+                    string studentQuery = "SELECT COUNT(*) FROM AddStudent WHERE TeacherID = @UserID";
                     OleDbCommand studentCmd = new OleDbCommand(studentQuery, connection);
+                    studentCmd.Parameters.AddWithValue("@UserID", UserID);
                     int studentCount = (int)studentCmd.ExecuteScalar();
 
-                    // Query to count users from the Users table
-                    string roleQuery = "SELECT COUNT(*) FROM Users";
-                    OleDbCommand roleCmd = new OleDbCommand(roleQuery, connection);
-                    int roleCount = (int)roleCmd.ExecuteScalar();
-
-                    // Update UI labels
+                    // Update UI labels  
                     labelTotalClasses.Text = classCount.ToString();
                     labelTotalStudent.Text = studentCount.ToString();
-                    labelTotalRole.Text = roleCount.ToString();
                 }
             }
             catch (Exception ex)
